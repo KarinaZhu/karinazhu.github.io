@@ -43,6 +43,33 @@ a {
   text-decoration: none;
 }
 
+.site-logo {
+  position: fixed;
+  top: 19px;
+  left: var(--space-md);
+  z-index: 101;
+  display: block;
+  width: 64px;
+  color: #ffffff;
+  line-height: 0;
+  transition: opacity var(--transition);
+}
+
+.site-logo:hover {
+  opacity: 0.7;
+}
+
+.site-logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-logo svg * {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -53,7 +80,7 @@ a {
 .nav {
   position: fixed;
   top: 24px;
-  left: var(--space-md);
+  left: calc(var(--space-md) + 82px);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -67,15 +94,15 @@ a {
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #ffffff;
   background: rgba(10, 10, 10, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
 
 .nav__link {
-  color: var(--color-text-muted);
-  font-size: 10px;
+  color: #ffffff;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -83,7 +110,7 @@ a {
 }
 
 .nav__link:hover {
-  color: var(--color-accent);
+  color: #ffffff;
 }
 
 /* Hero */
@@ -499,8 +526,19 @@ a {
 }
 
 @media (max-width: 600px) {
+  .site-logo {
+    top: 18px;
+    width: 50px;
+  }
+
   .nav {
     gap: var(--space-sm);
+    left: calc(var(--space-md) + 58px);
+    padding: 9px 10px;
+  }
+
+  .nav.scrolled {
+    left: 50%;
   }
 
   .project__name {

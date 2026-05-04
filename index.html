@@ -3,513 +3,103 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Karina Zhu — Multi-disciplinary designer building contemporary brands and crafting stories that capture attention.">
-  <title>Karina Zhu — Designer</title>
+  <meta name="description" content="Karina Zhu - Multi-disciplinary designer building contemporary brands and crafting stories that capture attention.">
 
-  <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+  <title>Karina Zhu - Designer</title>
+
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <script src="KarinaZhu.js"></script>
+  <link rel="stylesheet" href="style.css">
 
-  <style>
-    :root {
-      --color-bg:           #080808;
-      --color-surface:      #111111;
-      --color-border:       rgba(255, 255, 255, 0.07);
-      --color-text-primary: rgba(255, 255, 255, 0.92);
-      --color-text-muted:   rgba(255, 255, 255, 0.35);
-      --color-text-faint:   rgba(255, 255, 255, 0.15);
-      --color-accent:       #ffffff;
-      --font-sans:    'DM Sans', sans-serif;
-      --font-serif:   'DM Serif Display', serif;
-      --space-xs:  8px;
-      --space-sm:  16px;
-      --space-md:  32px;
-      --space-lg:  64px;
-      --space-xl:  120px;
-      --transition: 0.2s ease;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body {
-      background: var(--color-bg);
-      color: var(--color-text-primary);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* NAV */
-    .nav {
-      position: fixed;
-      top: 24px;
-      left: var(--space-md);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      padding: 10px 16px;
-      border-radius: 100px;
-      transition: all 0.3s ease;
-    }
-
-    .nav__link {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      transition: color var(--transition);
-    }
-    .nav__link:hover { color: var(--color-accent); }
-    .nav {
-  position: fixed;
-  top: 24px;
-  left: var(--space-md);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: 10px 16px;
-  border-radius: 100px;
-  transition: all 0.3s ease;
-}
-.nav.scrolled {
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(10, 10, 10, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-    /* HERO */
-    .hero {
-      width: 100%;
-      height: 100vh;
-      display: block;
-      position: relative;
-    }
-    .hero spline-viewer { width: 100%; height: 100%; display: block; }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 160px;
-      background: linear-gradient(to bottom, transparent, var(--color-bg));
-      pointer-events: none;
-    }
-
-    /* LAYOUT */
-    .container { max-width: 960px; margin: 0 auto; padding: 0 var(--space-md); }
-
-    /* INTRO */
-    .intro { padding: var(--space-xl) 0 var(--space-lg); }
-    .intro__headline {
-      font-family: var(--font-serif);
-      font-size: clamp(26px, 4vw, 42px);
-      font-weight: 400;
-      line-height: 1.3;
-      color: var(--color-text-primary);
-      max-width: 680px;
-    }
-
-    /* PROJECTS */
-    .projects { padding: var(--space-lg) 0 var(--space-xl); }
-    .projects__label {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-faint);
-      margin-bottom: var(--space-md);
-    }
-    .project-list { list-style: none; }
-
-    .project {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 0;
-      border-bottom: 0.5px solid var(--color-border);
-      cursor: pointer;
-      transition: opacity var(--transition);
-      position: relative;
-    }
-    .project:first-child { border-top: 0.5px solid var(--color-border); }
-    .project-list:hover .project:not(:hover) { opacity: 0.35; }
-
-    .project__left { display: flex; align-items: center; gap: 20px; }
-    .project__index {
-      font-size: 15px;
-      color: var(--color-text-faint);
-      font-weight: 300;
-      min-width: 22px;
-      transition: color var(--transition);
-    }
-    .project__name {
-      font-size: 30px;
-      font-weight: 600;
-      color: var(--color-text-primary);
-      letter-spacing: -0.01em;
-    }
-    .project__discipline {
-      font-size: 11px;
-      color: var(--color-text-muted);
-      letter-spacing: 0.08em;
-      margin-top: 2px;
-    }
-    .project__arrow {
-      font-size: 20px;
-      color: var(--color-text-faint);
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: opacity var(--transition), transform var(--transition);
-    }
-    .project:hover .project__arrow { opacity: 1; transform: translateX(0); }
-    .project:hover .project__index { color: var(--color-text-muted); }
-
-    /* ============================================================
-       PROJECT HOVER PREVIEW
-       A floating image thumbnail that follows near the row on hover
-    ============================================================ */
-    .project__preview {
-      position: fixed;
-      pointer-events: none;
-      z-index: 50;
-      width: 260px;
-      height: 170px;
-      border-radius: 6px;
-      overflow: hidden;
-      opacity: 0;
-      transform: scale(0.92) translateY(6px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
-      border: 0.5px solid rgba(255,255,255,0.08);
-    }
-    .project__preview.active {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    .project__preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ============================================================
-       MODAL OVERLAY
-       Full-screen lightbox that opens when a project is clicked.
-    ============================================================ */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0);
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-      pointer-events: none;
-      transition: background 0.35s ease, backdrop-filter 0.35s ease;
-    }
-    .modal-overlay.open {
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      pointer-events: all;
-    }
-
-    .modal {
-      position: relative;
-      max-width: 840px;
-      width: calc(100% - 48px);
-      background: #121212;
-      border: 0.5px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(28px) scale(0.97);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-    .modal-overlay.open .modal {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    /* Image fills top of modal */
-    .modal__image-wrap {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #1a1a1a;
-    }
-    .modal__image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
-    .modal-overlay.open .modal__image-wrap img {
-      transform: scale(1);
-    }
-
-    .modal__body {
-      padding: 28px 32px 32px;
-    }
-
-    .modal__meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .modal__index {
-      font-size: 10px;
-      color: var(--color-text-faint);
-      font-weight: 300;
-    }
-    .modal__tag {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      border: 0.5px solid rgba(255,255,255,0.12);
-      padding: 3px 9px;
-      border-radius: 100px;
-    }
-
-    .modal__title {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 400;
-      color: var(--color-text-primary);
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .modal__desc {
-      font-size: 13px;
-      color: var(--color-text-muted);
-      line-height: 1.7;
-      max-width: 560px;
-    }
-
-    /* Close button */
-    .modal__close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      border: 0.5px solid rgba(255,255,255,0.1);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-muted);
-      font-size: 16px;
-      line-height: 1;
-      transition: background var(--transition), color var(--transition);
-      z-index: 10;
-    }
-    .modal__close:hover {
-      background: rgba(255,255,255,0.12);
-      color: var(--color-accent);
-    }
-
-    /* Prev / Next nav inside modal */
-    .modal__nav {
-      display: flex;
-      gap: 8px;
-      margin-top: 24px;
-    }
-    .modal__nav-btn {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      border: 0.5px solid rgba(255,255,255,0.12);
-      padding: 9px 20px;
-      border-radius: 100px;
-      cursor: pointer;
-      background: transparent;
-      transition: color var(--transition), border-color var(--transition), background var(--transition);
-    }
-    .modal__nav-btn:hover {
-      color: var(--color-accent);
-      border-color: rgba(255,255,255,0.4);
-      background: rgba(255,255,255,0.04);
-    }
-    .modal__nav-btn:disabled {
-      opacity: 0.2;
-      cursor: default;
-      pointer-events: none;
-    }
-
-    /* CONTACT */
-    .contact {
-      padding: var(--space-xl) 0;
-      text-align: center;
-      border-top: 0.5px solid var(--color-border);
-    }
-    .contact__heading {
-      font-family: var(--font-serif);
-      font-size: clamp(32px, 6vw, 56px);
-      font-weight: 400;
-      margin-bottom: var(--space-md);
-      color: var(--color-text-primary);
-    }
-    .contact__link {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      border: 0.5px solid rgba(255,255,255,0.2);
-      padding: 12px 32px;
-      border-radius: 100px;
-      transition: color var(--transition), border-color var(--transition), background var(--transition);
-    }
-    .contact__link:hover {
-      color: var(--color-accent);
-      border-color: rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* FOOTER */
-    .footer { padding: var(--space-md) 0; border-top: 0.5px solid var(--color-border); }
-    .footer__inner { display: flex; justify-content: space-between; align-items: center; }
-    .footer__copy { font-size: 11px; color: var(--color-text-faint); }
-    .footer__social a {
-      font-size: 11px;
-      color: var(--color-text-faint);
-      margin-left: var(--space-sm);
-      transition: color var(--transition);
-    }
-    .footer__social a:hover { color: var(--color-text-muted); }
-
-    /* REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .reveal:nth-child(2) { transition-delay: 0.08s; }
-    .reveal:nth-child(3) { transition-delay: 0.16s; }
-    .reveal:nth-child(4) { transition-delay: 0.24s; }
-    .reveal:nth-child(5) { transition-delay: 0.32s; }
-    .reveal:nth-child(6) { transition-delay: 0.40s; }
-
-    @media (max-width: 600px) {
-      .nav { gap: var(--space-sm); }
-      .project__name { font-size: 18px; }
-      .modal__body { padding: 20px 20px 24px; }
-      .project__preview { display: none; }
-    }
-  </style>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+  <script defer src="KarinaZhu.js"></script>
 </head>
 
 <body>
-
   <nav class="nav" aria-label="Main navigation">
     <a href="#" class="nav__link">Home</a>
     <a href="#projects" class="nav__link">Projects</a>
     <a href="#contact" class="nav__link">About</a>
   </nav>
 
-  <section class="hero" aria-label="3D hero scene">
-    <spline-viewer url="https://prod.spline.design/Mz42hrAEZjrkZ3PC/scene.splinecode"></spline-viewer>
-  </section>
+  <main>
+    <section class="hero" aria-label="3D hero scene">
+      <spline-viewer url="https://prod.spline.design/Mz42hrAEZjrkZ3PC/scene.splinecode"></spline-viewer>
+    </section>
 
-  <section class="intro">
-    <div class="container">
-      <h2 class="intro__headline reveal">
-        Design student @ USYD
-        <hr>
-        Principle designer @ Unlimited Plus
-        <hr>
-      </h2>
-      <br>
-      <h4 class="intro__headline reveal">
-        <p> Creating impactful human-centered design and making pixels work smarter with digital marketing
-      </h4>
-    </div>
-  </section>
+    <section class="intro">
+      <div class="container">
+        <h1 class="intro__headline reveal">
+          Design student @ USYD
+          <br>
+          Principle designer @ Unlimited Plus
+        </h1>
+        <p class="intro__copy reveal">
+          Creating impactful human-centered design and making pixels work smarter with digital marketing.
+        </p>
+      </div>
+    </section>
 
-  <section id="projects" class="projects">
-    <div class="container">
-      <p class="projects__label">Selected work</p>
-      <ul class="project-list" aria-label="Project list">
-
-        <li class="project reveal" data-project="0" tabindex="0" role="button" aria-label="View Quadmark project">
-          <div class="project__left">
-            <span class="project__index" aria-hidden="true">01</span>
-            <div>
-              <h2 class="project__name">City2Surf</h2>
-              <p class="project__discipline">UI/UX Design · Website</p>
+    <section id="projects" class="projects">
+      <div class="container">
+        <p class="projects__label">Selected work</p>
+        <ul class="project-list" aria-label="Project list">
+          <li class="project reveal" data-project="0" tabindex="0" role="button" aria-label="View City2Surf project">
+            <div class="project__left">
+              <span class="project__index" aria-hidden="true">01</span>
+              <div>
+                <h2 class="project__name">City2Surf</h2>
+                <p class="project__discipline">UI/UX Design · Website</p>
+              </div>
             </div>
-          </div>
-          <span class="project__arrow" aria-hidden="true">→</span>
-        </li>
+            <span class="project__arrow" aria-hidden="true">→</span>
+          </li>
 
-        <li class="project reveal" data-project="1" tabindex="0" role="button" aria-label="View Harbour project">
-          <div class="project__left">
-            <span class="project__index" aria-hidden="true">02</span>
-            <div>
-              <h2 class="project__name">Harbour</h2>
-              <p class="project__discipline">Brand · Packaging</p>
+          <li class="project reveal" data-project="1" tabindex="0" role="button" aria-label="View Harbour project">
+            <div class="project__left">
+              <span class="project__index" aria-hidden="true">02</span>
+              <div>
+                <h2 class="project__name">Harbour</h2>
+                <p class="project__discipline">Brand · Packaging</p>
+              </div>
             </div>
-          </div>
-          <span class="project__arrow" aria-hidden="true">→</span>
-        </li>
+            <span class="project__arrow" aria-hidden="true">→</span>
+          </li>
 
-        <li class="project reveal" data-project="2" tabindex="0" role="button" aria-label="View Gravity project">
-          <div class="project__left">
-            <span class="project__index" aria-hidden="true">03</span>
-            <div>
-              <h2 class="project__name">Gravity</h2>
-              <p class="project__discipline">Product · Print</p>
+          <li class="project reveal" data-project="2" tabindex="0" role="button" aria-label="View Gravity project">
+            <div class="project__left">
+              <span class="project__index" aria-hidden="true">03</span>
+              <div>
+                <h2 class="project__name">Gravity</h2>
+                <p class="project__discipline">Product · Print</p>
+              </div>
             </div>
-          </div>
-          <span class="project__arrow" aria-hidden="true">→</span>
-        </li>
+            <span class="project__arrow" aria-hidden="true">→</span>
+          </li>
 
-        <li class="project reveal" data-project="3" tabindex="0" role="button" aria-label="View Hester project">
-          <div class="project__left">
-            <span class="project__index" aria-hidden="true">04</span>
-            <div>
-              <h2 class="project__name">Hester</h2>
-              <p class="project__discipline">Brand</p>
+          <li class="project reveal" data-project="3" tabindex="0" role="button" aria-label="View Hester project">
+            <div class="project__left">
+              <span class="project__index" aria-hidden="true">04</span>
+              <div>
+                <h2 class="project__name">Hester</h2>
+                <p class="project__discipline">Brand</p>
+              </div>
             </div>
-          </div>
-          <span class="project__arrow" aria-hidden="true">→</span>
-        </li>
+            <span class="project__arrow" aria-hidden="true">→</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      </ul>
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="contact__heading reveal">Let's talk</h2>
-      <a href="mailto:karliskah@gmail.com" class="contact__link reveal">Get in touch</a>
-    </div>
-  </section>
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="contact__heading reveal">Let's talk</h2>
+        <a href="mailto:karliskah@gmail.com" class="contact__link reveal">Get in touch</a>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
@@ -524,12 +114,10 @@
     </div>
   </footer>
 
-  <!-- Hover preview thumbnail (follows cursor) -->
   <div class="project__preview" id="hoverPreview">
     <img src="" alt="" id="hoverPreviewImg">
   </div>
 
-  <!-- Modal lightbox -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal" id="modal">
       <button class="modal__close" id="modalClose" aria-label="Close modal">✕</button>
@@ -550,171 +138,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    // ============================================================
-    // PROJECT DATA
-    // Replace `image` URLs with your actual project images.
-    // Placeholder images use Unsplash for demo purposes.
-    // ============================================================
-   
-    const projects = [
-      {
-        index: '01',
-        name: 'City2Surf',
-        discipline: 'UI/UX Design · Website',
-        desc: 'A bold identity system built around geometric precision and kinetic motion. Developed the full brand language including logomark, type system, and animated brand expressions for digital and physical touchpoints.',
-        image: 'City2Surf.png'
-      },
-      {
-        index: '02',
-        name: 'Harbour',
-        discipline: 'Brand · Packaging',
-        desc: 'Coastal-inspired packaging design for a premium lifestyle brand. The identity balances nautical heritage with contemporary minimalism — clean forms, muted sea tones, and tactile material choices that reward close inspection.',
-        image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80'
-      },
-      {
-        index: '03',
-        name: 'Gravity',
-        discipline: 'Product · Print',
-        desc: 'Product design and editorial print collateral for a high-performance equipment brand. Focused on communicating technical precision through clean data-forward layouts and a disciplined typographic grid.',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80'
-      },
-      {
-        index: '04',
-        name: 'Hester',
-        discipline: 'Brand',
-        desc: 'A refined brand identity for an independent hospitality concept. Rooted in warmth and craft, the visual language draws on warm neutrals, hand-lettered details, and an unhurried editorial sensibility.',
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80'
-      },
-      {
-        index: '05',
-        name: 'ORCA',
-        discipline: 'Brand · Campaign',
-        desc: 'Full brand and campaign rollout for an emerging sustainable activewear label. The identity leads with deep ocean tones and bold condensed typography — striking in-store and across social channels.',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80'
-      },
-      {
-        index: '06',
-        name: 'Nike',
-        discipline: 'Campaign · Motion',
-        desc: 'Conceptual campaign and motion work exploring the intersection of sport and urban culture. Developed storyboards, type treatments, and short-form video sequences for a student brief under the Nike brand.',
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&q=80'
-      }
-    ];
-
-    // ============================================================
-    // STATE
-    // ============================================================
-    let currentIndex = 0;
-
-    // ============================================================
-    // ELEMENTS
-    // ============================================================
-    const overlay    = document.getElementById('modalOverlay');
-    const modalClose = document.getElementById('modalClose');
-    const modalImg   = document.getElementById('modalImg');
-    const modalIndex = document.getElementById('modalIndex');
-    const modalTag   = document.getElementById('modalTag');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc  = document.getElementById('modalDesc');
-    const modalPrev  = document.getElementById('modalPrev');
-    const modalNext  = document.getElementById('modalNext');
-    const preview    = document.getElementById('hoverPreview');
-    const previewImg = document.getElementById('hoverPreviewImg');
-
-    // ============================================================
-    // MODAL OPEN / CLOSE
-    // ============================================================
-    function openModal(index) {
-      currentIndex = index;
-      renderModal();
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function renderModal() {
-      const p = projects[currentIndex];
-      modalImg.src    = p.image;
-      modalImg.alt    = p.name;
-      modalIndex.textContent = p.index;
-      modalTag.textContent   = p.discipline;
-      modalTitle.textContent = p.name;
-      modalDesc.textContent  = p.desc;
-      modalPrev.disabled = currentIndex === 0;
-      modalNext.disabled = currentIndex === projects.length - 1;
-    }
-
-    modalClose.addEventListener('click', closeModal);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', (e) => {
-      if (!overlay.classList.contains('open')) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowRight' && currentIndex < projects.length - 1) { currentIndex++; renderModal(); }
-      if (e.key === 'ArrowLeft'  && currentIndex > 0)                   { currentIndex--; renderModal(); }
-    });
-
-    modalPrev.addEventListener('click', () => { if (currentIndex > 0) { currentIndex--; renderModal(); } });
-    modalNext.addEventListener('click', () => { if (currentIndex < projects.length - 1) { currentIndex++; renderModal(); } });
-
-    // ============================================================
-    // PROJECT ROW CLICK & KEYBOARD
-    // ============================================================
-    document.querySelectorAll('.project').forEach((el) => {
-      const idx = parseInt(el.dataset.project, 10);
-
-      el.addEventListener('click', () => openModal(idx));
-      el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(idx); } });
-
-      // ---- Hover preview ----
-      el.addEventListener('mouseenter', () => {
-        previewImg.src = projects[idx].image;
-        previewImg.alt = projects[idx].name;
-        preview.classList.add('active');
-      });
-      el.addEventListener('mouseleave', () => {
-        preview.classList.remove('active');
-      });
-      el.addEventListener('mousemove', (e) => {
-        // Position preview above/below cursor, keeping it within viewport
-        const vw = window.innerWidth;
-        const vh = window.innerHeight;
-        const pw = 260;
-        const ph = 170;
-        const offset = 20;
-
-        let x = e.clientX + offset;
-        let y = e.clientY - ph - offset;
-
-        if (x + pw > vw - 16) x = e.clientX - pw - offset;
-        if (y < 16) y = e.clientY + offset;
-
-        preview.style.left = x + 'px';
-        preview.style.top  = y + 'px';
-      });
-    });
-
-    // ============================================================
-    // SCROLL REVEAL
-    // ============================================================
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-  </script>
-
 </body>
 </html>

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "City2Surf",
       discipline: "UI/UX Design · Website",
       desc: "A bold identity system built around geometric precision and kinetic motion. Developed the full brand language including logomark, type system, and animated brand expressions for digital and physical touchpoints.",
-      image: "images/City2Surf.png",
+      image: "City2Surf.png",
     },
     {
       index: "02",
@@ -42,8 +42,64 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalNext = document.getElementById("modalNext");
   const preview = document.getElementById("hoverPreview");
   const previewImg = document.getElementById("hoverPreviewImg");
+  const hero = document.querySelector(".hero");
+  const splineViewer = document.querySelector("spline-viewer");
+  const copyEmail = document.getElementById("copyEmail");
+  const copyEmailText = document.getElementById("copyEmailText");
 
   let currentIndex = 0;
+  let splineHasRendered = false;
+
+  function showSplineViewer() {
+    if (splineHasRendered) return;
+
+    splineHasRendered = true;
+    hero?.classList.add("spline-ready");
+  }
+
+  function removeSplineBadge() {
+    const shadowRoot = splineViewer?.shadowRoot;
+    if (!shadowRoot) return false;
+
+    const badge = shadowRoot.querySelector(
+      "#logo, a[href*='spline.design'], [class*='logo']"
+    );
+    if (!badge) return false;
+
+    badge.remove();
+    return true;
+  }
+
+  function watchSplineBadge() {
+    if (!splineViewer) return;
+    let observer;
+
+    function observeShadowRoot() {
+      if (observer || !splineViewer.shadowRoot) return;
+
+      observer = new MutationObserver(removeSplineBadge);
+      observer.observe(splineViewer.shadowRoot, { childList: true, subtree: true });
+    }
+
+    const attempts = window.setInterval(() => {
+      observeShadowRoot();
+      if (removeSplineBadge()) {
+        window.clearInterval(attempts);
+        showSplineViewer();
+      }
+    }, 250);
+
+    window.setTimeout(() => {
+      window.clearInterval(attempts);
+      removeSplineBadge();
+      showSplineViewer();
+    }, 5000);
+
+    splineViewer.addEventListener("load", () => {
+      removeSplineBadge();
+      window.setTimeout(showSplineViewer, 250);
+    });
+  }
 
   function updateNavState() {
     if (!nav) return;
@@ -107,8 +163,28 @@ document.addEventListener("DOMContentLoaded", () => {
     preview.style.top = `${y}px`;
   }
 
+  async function copyEmailToClipboard() {
+    if (!copyEmail || !copyEmailText) return;
+
+    const email = copyEmail.dataset.copy;
+    if (!email) return;
+
+    try {
+      await navigator.clipboard.writeText(email);
+      copyEmailText.textContent = "Copied!";
+      window.setTimeout(() => {
+        copyEmailText.textContent = email;
+      }, 1600);
+    } catch {
+      window.location.href = `mailto:${email}`;
+    }
+  }
+
   window.addEventListener("scroll", updateNavState);
   updateNavState();
+  watchSplineBadge();
+
+  copyEmail?.addEventListener("click", copyEmailToClipboard);
 
   modalClose.addEventListener("click", closeModal);
   modalPrev.addEventListener("click", showPreviousProject);
@@ -138,9 +214,10 @@ document.addEventListener("DOMContentLoaded", () => {
       openModal(index);
     });
 
-    projectRow.addEventListener("mouseenter", () => {
+    projectRow.addEventListener("mouseenter", (event) => {
       previewImg.src = project.image;
       previewImg.alt = project.name;
+      movePreview(event);
       preview.classList.add("active");
     });
 

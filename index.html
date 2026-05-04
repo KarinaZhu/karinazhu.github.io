@@ -10,7 +10,8 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
@@ -44,7 +45,7 @@
   <nav class="nav" aria-label="Main navigation">
     <a href="#" class="nav__link">Home</a>
     <a href="#projects" class="nav__link">Projects</a>
-    <a href="#contact" class="nav__link">About</a>
+    <a href="#about" class="nav__link">About</a>
   </nav>
 
   <main>
@@ -54,12 +55,12 @@
 
     <section class="intro">
       <div class="container">
-        <h1 class="intro__headline reveal">
+        <h1 class="intro__headline intro__text reveal">
           Design student @ USYD
           <br>
           Principle designer @ Unlimited Plus
         </h1>
-        <p class="intro__copy reveal">
+        <p class="intro__copy intro__text reveal">
           Creating impactful human-centered design and making pixels work smarter with digital marketing.
         </p>
       </div>
@@ -116,26 +117,101 @@
       </div>
     </section>
 
+    <section id="about" class="about-services" aria-labelledby="aboutServicesTitle">
+      <div class="container">
+        <p class="about-services__label reveal" id="aboutServicesTitle">What I do</p>
+        <ul class="services-gallery" aria-label="Design services">
+          <li class="service-card reveal">
+            <img src="City2Surf.png" alt="">
+            <h3>UI/UX Design</h3>
+          </li>
+          <li class="service-card reveal">
+            <img src="City2Surf.png" alt="">
+            <h3>Web Design</h3>
+          </li>
+          <li class="service-card reveal">
+            <img src="City2Surf.png" alt="">
+            <h3>Graphic Design</h3>
+          </li>
+          <li class="service-card reveal">
+            <img src="City2Surf.png" alt="">
+            <h3>Video Editing</h3>
+          </li>
+          <li class="service-card reveal">
+            <img src="City2Surf.png" alt="">
+            <h3>Front End</h3>
+          </li>
+          <li class="service-card reveal">
+            <img src="City2Surf.png" alt="">
+            <h3>Digital Content</h3>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section id="contact" class="contact">
       <div class="container">
-        <h2 class="contact__heading reveal">Let's talk</h2>
-        <a href="mailto:karliskah@gmail.com" class="contact__link reveal">Get in touch</a>
+        <div class="contact-card reveal">
+          <div class="contact-card__main">
+            <div>
+              <p class="contact-card__eyebrow">Get in touch</p>
+              <h2 class="contact-card__heading">Let's talk</h2>
+              <p class="contact-card__copy">
+                Collaborate, connect, or chat.
+                <br>
+                Design is what I do.
+              </p>
+            </div>
+            <a href="mailto:karliskah@gmail.com" class="contact-card__cta">
+              <span>View contact info</span>
+              <span class="contact-card__cta-icon" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="contact-card__grid">
+            <div class="contact-card__group">
+              <p class="contact-card__label">Quick actions</p>
+              <button class="contact-action" type="button" id="copyEmail" data-copy="karliskah@gmail.com">
+                <span id="copyEmailText">karliskah@gmail.com</span>
+                <span aria-hidden="true">Copy</span>
+              </button>
+              <a class="contact-action" href="#" aria-label="Download CV">
+                <span>Download CV</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+
+            <div class="contact-card__group">
+              <p class="contact-card__label">Site navigation</p>
+              <nav class="contact-card__nav" aria-label="Contact section navigation">
+                <a href="#">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+              </nav>
+            </div>
+
+            <div class="contact-card__group">
+              <p class="contact-card__label">Social</p>
+              <div class="contact-card__social">
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Read.cv</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card__footer">
+            <a href="#contact" class="contact-card__status">
+              <span class="contact-card__dot" aria-hidden="true"></span>
+              Available for freelance
+            </a>
+            <span>© 2026 Karina Zhu</span>
+            <a href="#" class="contact-card__top" aria-label="Back to top">↑</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <span class="footer__copy">© 2026 Karina Zhu</span>
-        <nav class="footer__social" aria-label="Social links">
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Read.cv</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
 
   <div class="project__preview" id="hoverPreview">
     <img src="" alt="" id="hoverPreviewImg">

@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js">
+  <link rel="preload" href="https://prod.spline.design/pW3KXmN8I617aVfQ/scene.splinecode" as="fetch" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
@@ -50,7 +51,7 @@
 
   <main>
     <section class="hero" aria-label="3D hero scene">
-      <spline-viewer url="https://prod.spline.design/Mz42hrAEZjrkZ3PC/scene.splinecode"></spline-viewer>
+      <spline-viewer url="https://prod.spline.design/pW3KXmN8I617aVfQ/scene.splinecode"></spline-viewer>
     </section>
 
     <section class="intro">
@@ -119,30 +120,72 @@
 
     <section id="about" class="about-services" aria-labelledby="aboutServicesTitle">
       <div class="container">
-        <p class="about-services__label reveal" id="aboutServicesTitle">What I do</p>
-        <ul class="services-gallery" aria-label="Design services">
-          <li class="service-card reveal">
+        <p class="about-services__label reveal" id="aboutServicesTitle">Selected capabilities</p>
+      </div>
+      <div class="services-carousel reveal" aria-label="Design services">
+        <ul class="services-gallery">
+          <li class="service-card service-card--large">
             <img src="City2Surf.png" alt="">
             <h3>UI/UX Design</h3>
           </li>
-          <li class="service-card reveal">
-            <img src="City2Surf.png" alt="">
-            <h3>Web Design</h3>
+          <li class="service-stack">
+            <article class="service-card service-card--stacked">
+              <img src="3D model.png" alt="">
+              <h3>Web Design</h3>
+            </article>
+            <article class="service-card service-card--stacked">
+              <img src="3D model.png" alt="">
+              <h3>Video Editing</h3>
+            </article>
           </li>
-          <li class="service-card reveal">
+          <li class="service-card">
             <img src="City2Surf.png" alt="">
             <h3>Graphic Design</h3>
           </li>
-          <li class="service-card reveal">
-            <img src="City2Surf.png" alt="">
-            <h3>Video Editing</h3>
+          <li class="service-stack">
+            <article class="service-card service-card--stacked">
+              <img src="City2Surf.png" alt="">
+              <h3>Front End</h3>
+            </article>
+            <article class="service-card service-card--stacked">
+              <img src="City2Surf.png" alt="">
+              <h3>Graphic Design</h3>
+            </article>
           </li>
-          <li class="service-card reveal">
-            <img src="City2Surf.png" alt="">
-            <h3>Front End</h3>
+          <li class="service-card service-card--wide">
+            <img src="3D model.png" alt="">
+            <h3>Digital Content</h3>
           </li>
-          <li class="service-card reveal">
+          <li class="service-card service-card--large" aria-hidden="true">
             <img src="City2Surf.png" alt="">
+            <h3>UI/UX Design</h3>
+          </li>
+          <li class="service-stack" aria-hidden="true">
+            <article class="service-card service-card--stacked">
+              <img src="3D model.png" alt="">
+              <h3>Web Design</h3>
+            </article>
+            <article class="service-card service-card--stacked">
+              <img src="3D model.png" alt="">
+              <h3>Video Editing</h3>
+            </article>
+          </li>
+          <li class="service-card" aria-hidden="true">
+            <img src="City2Surf.png" alt="">
+            <h3>Graphic Design</h3>
+          </li>
+          <li class="service-stack" aria-hidden="true">
+            <article class="service-card service-card--stacked">
+              <img src="City2Surf.png" alt="">
+              <h3>Front End</h3>
+            </article>
+            <article class="service-card service-card--stacked">
+              <img src="City2Surf.png" alt="">
+              <h3>Graphic Design</h3>
+            </article>
+          </li>
+          <li class="service-card service-card--wide" aria-hidden="true">
+            <img src="3D model.png" alt="">
             <h3>Digital Content</h3>
           </li>
         </ul>

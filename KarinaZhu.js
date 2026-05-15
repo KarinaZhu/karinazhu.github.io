@@ -61,12 +61,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const shadowRoot = splineViewer?.shadowRoot;
     if (!shadowRoot) return false;
 
-    const badge = shadowRoot.querySelector(
-      "#logo, a[href*='spline.design'], [class*='logo']"
-    );
-    if (!badge) return false;
+    if (!shadowRoot.getElementById("hide-spline-badge")) {
+      const style = document.createElement("style");
+      style.id = "hide-spline-badge";
+      style.textContent = `
+        #logo,
+        a[href*="spline.design"],
+        [class*="logo"],
+        [class*="badge"],
+        [class*="watermark"] {
+          display: none !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+          visibility: hidden !important;
+        }
+      `;
+      shadowRoot.append(style);
+    }
 
-    badge.remove();
+    const badges = shadowRoot.querySelectorAll(
+      "#logo, a[href*='spline.design'], [class*='logo'], [class*='badge'], [class*='watermark']"
+    );
+    if (!badges.length) return false;
+
+    badges.forEach((badge) => badge.remove());
     return true;
   }
 
@@ -99,6 +117,24 @@ document.addEventListener("DOMContentLoaded", () => {
       removeSplineBadge();
       window.setTimeout(showSplineViewer, 250);
     });
+  }
+
+  function keepHeroScrollable() {
+    if (!hero) return;
+
+    hero.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+
+        window.scrollBy({
+          top: event.deltaY,
+          left: 0,
+          behavior: "auto",
+        });
+      },
+      { passive: true }
+    );
   }
 
   function updateNavState() {
@@ -183,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateNavState);
   updateNavState();
   watchSplineBadge();
+  keepHeroScrollable();
 
   copyEmail?.addEventListener("click", copyEmailToClipboard);
 

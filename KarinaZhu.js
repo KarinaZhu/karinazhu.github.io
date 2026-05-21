@@ -13,21 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Harbour",
       discipline: "Brand · Packaging",
       desc: "Coastal-inspired packaging design for a premium lifestyle brand. The identity balances nautical heritage with contemporary minimalism, clean forms, muted sea tones, and tactile material choices that reward close inspection.",
-      image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80",
+      image: "Ocean Echoes, City Rhythms.png",
     },
     {
       index: "03",
       name: "Gravity",
       discipline: "Product · Print",
       desc: "Product design and editorial print collateral for a high-performance equipment brand. Focused on communicating technical precision through clean data-forward layouts and a disciplined typographic grid.",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+      image: "yasumo.jpg",
     },
     {
       index: "04",
       name: "Hester",
       discipline: "Brand",
       desc: "A refined brand identity for an independent hospitality concept. Rooted in warmth and craft, the visual language draws on warm neutrals, hand-lettered details, and an unhurried editorial sensibility.",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      image: "Cross.jpg",
     },
   ];
 

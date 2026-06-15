@@ -51,10 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let splineHasRendered = false;
 
-  if (splineViewer) {
-    splineViewer.setAttribute("url", splineSceneUrl);
-  }
-
   function showSplineViewer() {
     if (splineHasRendered) return;
 

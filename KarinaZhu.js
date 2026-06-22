@@ -47,15 +47,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const splineViewer = document.querySelector("spline-viewer");
   const copyEmail = document.getElementById("copyEmail");
   const copyEmailText = document.getElementById("copyEmailText");
+  const loader = document.getElementById("loader");
+  const startTime = Date.now();
+
+const MIN_LOADING_TIME = 3500;
 
   let currentIndex = 0;
   let splineHasRendered = false;
 
   function showSplineViewer() {
     if (splineHasRendered) return;
-
     splineHasRendered = true;
-    hero?.classList.add("spline-ready");
+    const elapsed =
+    Date.now() - startTime;
+    const remaining = 
+    Math.max(
+      0,
+      MIN_LOADING_TIME - elapsed
+    );
+    
+    setTimeout(() => {
+      loader?.classList.add("hidden");
+      hero?.classList.add("spline-ready");
+    }, remaining);
   }
 
   function removeSplineBadge() {
@@ -93,12 +107,29 @@ document.addEventListener("DOMContentLoaded", () => {
     window.setTimeout(() => {
       window.clearInterval(attempts);
       removeSplineBadge();
-      showSplineViewer();
+      function finishLoading(){
+
+  loader.classList.add("hidden");
+
+  hero?.classList.add("spline-ready");
+};
     }, 5000);
 
+    const MIN_LOADING_TIME = 3000;
+
+const startTime = Date.now();
+
     splineViewer.addEventListener("load", () => {
-      removeSplineBadge();
-      window.setTimeout(showSplineViewer, 250);
+      const elapsed =
+      Date.now() - startTime;
+      
+      const remaining =
+      Math.max(0,
+      MIN_LOADING_TIME - elapsed);
+        
+      setTimeout(() => {
+        finishLoading();
+      }, remaining);
     });
   }
 
@@ -244,3 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(element);
   });
 });
+
+const loader =
+document.getElementById("loader");

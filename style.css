@@ -85,10 +85,17 @@
   font-family:"DM Sans",sans-serif;
   font-size:12px;
 
-  letter-spacing:.3em;
-  text-transform:uppercase;
+  letter-spacing:.08em;
+  text-transform:none;
+  max-width:320px;
+  text-align:center;
+  line-height:1.5;
 
   color:rgba(255,255,255,.55);
+
+  .loader-text{
+  transition: opacity .3s ease;
+}
 
   animation:
   textPulse 2.5s ease infinite;
@@ -234,6 +241,48 @@ a {
 }
 
 /* Hero */
+.hero-content{
+
+position:absolute;
+
+z-index:5;
+
+left:64px;
+
+bottom:120px;
+
+max-width:600px;
+
+}
+
+
+.hero-content h1{
+
+font-size:clamp(42px,6vw,80px);
+
+font-weight:500;
+
+letter-spacing:-0.04em;
+
+color:white;
+
+}
+
+
+.hero-content p{
+
+margin-top:20px;
+
+font-size:20px;
+
+line-height:1.4;
+
+color:rgba(255,255,255,.7);
+
+max-width:500px;
+
+}
+
 .hero {
   position: relative;
   display: block;
@@ -284,15 +333,6 @@ a {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
-}
-
-.intro .container:hover .intro__text {
-  color: #ffffff;
-  transform: translateY(-6px);
-}
-
-.intro .container:hover .intro__copy {
-  transform: translateY(-2px);
 }
 
 .intro__headline {

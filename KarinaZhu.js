@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const splineSceneUrl = "https://prod.spline.design/Mz42hrAEZjrkZ3PC/scene.splinecode";
+
   const projects = [
     {
       index: "01",
@@ -10,271 +10,606 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       index: "02",
-      name: "Harbour",
-      discipline: "Brand · Packaging",
-      desc: "Coastal-inspired packaging design for a premium lifestyle brand. The identity balances nautical heritage with contemporary minimalism, clean forms, muted sea tones, and tactile material choices that reward close inspection.",
+      name: "Ocean Echoes, City Rhythms",
+      discipline: "Experience Design · Interactive Installation",
+      desc: "An interactive public installation exploring the relationship between sound, movement, and urban environments.",
       image: "Ocean Echoes, City Rhythms.png",
     },
     {
       index: "03",
-      name: "Gravity",
-      discipline: "Product · Print",
-      desc: "Product design and editorial print collateral for a high-performance equipment brand. Focused on communicating technical precision through clean data-forward layouts and a disciplined typographic grid.",
+      name: "Yasumo",
+      discipline: "Product · Device Interface",
+      desc: "A product experience designed around intuitive interaction, physical form, and human-centered digital interfaces.",
       image: "yasumo.jpg",
     },
     {
       index: "04",
-      name: "Hester",
-      discipline: "Brand",
-      desc: "A refined brand identity for an independent hospitality concept. Rooted in warmth and craft, the visual language draws on warm neutrals, hand-lettered details, and an unhurried editorial sensibility.",
+      name: "Crossing without Crossing",
+      discipline: "Experience Design · Interactive Installation",
+      desc: "An immersive experience exploring human behaviour, spatial interaction, and alternative ways of navigating public spaces.",
       image: "Cross.jpg",
     },
   ];
 
-  const nav = document.querySelector(".nav");
-  const overlay = document.getElementById("modalOverlay");
-  const modalClose = document.getElementById("modalClose");
-  const modalImg = document.getElementById("modalImg");
-  const modalIndex = document.getElementById("modalIndex");
-  const modalTag = document.getElementById("modalTag");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalPrev = document.getElementById("modalPrev");
-  const modalNext = document.getElementById("modalNext");
-  const preview = document.getElementById("hoverPreview");
-  const previewImg = document.getElementById("hoverPreviewImg");
+
+  /*
+  ==========================
+  Loader
+  ==========================
+  */
+
+  const loader = document.getElementById("loader");
+  const loaderText = document.querySelector(".loader-text");
   const hero = document.querySelector(".hero");
   const splineViewer = document.querySelector("spline-viewer");
-  const copyEmail = document.getElementById("copyEmail");
-  const copyEmailText = document.getElementById("copyEmailText");
-  const loader = document.getElementById("loader");
+
+
+  const loadingMessages = [
+  "Welcome to Karina Zhu's design world.",
+  "Crafting meaningful experiences.",
+  "Designing beyond pixels.",
+  "Turning ideas into interactions.",
+  "Creating with purpose.",
+  "Almost there..."
+];
+
+let loadingIndex = 0;
+
+
+function rotateLoadingText(){
+
+  if(!loaderText) return;
+
+
+  loaderText.style.opacity = 0;
+
+
+  setTimeout(()=>{
+
+    loaderText.textContent =
+    loadingMessages[loadingIndex];
+
+
+    loaderText.style.opacity = 1;
+
+
+    loadingIndex =
+    (loadingIndex + 1)
+    % loadingMessages.length;
+
+
+  },300);
+
+}
+
+
+
+rotateLoadingText();
+
+
+const loadingInterval =
+setInterval(
+  rotateLoadingText,
+  1500
+);
+
+
+  const MIN_LOADING_TIME = 3500;
   const startTime = Date.now();
 
-const MIN_LOADING_TIME = 3500;
 
-  let currentIndex = 0;
-  let splineHasRendered = false;
+  function finishLoading(){
+    clearInterval(loadingInterval);
 
-  function showSplineViewer() {
-    if (splineHasRendered) return;
-    splineHasRendered = true;
-    const elapsed =
-    Date.now() - startTime;
-    const remaining = 
-    Math.max(
-      0,
-      MIN_LOADING_TIME - elapsed
-    );
-    
-    setTimeout(() => {
+    const elapsed = Date.now() - startTime;
+
+    const remaining =
+    Math.max(0, MIN_LOADING_TIME - elapsed);
+
+
+    setTimeout(()=>{
+
       loader?.classList.add("hidden");
       hero?.classList.add("spline-ready");
+
     }, remaining);
+
   }
 
-  function removeSplineBadge() {
-    const shadowRoot = splineViewer?.shadowRoot;
-    if (!shadowRoot) return false;
 
-    const badge = shadowRoot.querySelector(
+
+  /*
+  ==========================
+  Remove Spline badge
+  ==========================
+  */
+
+
+  function removeSplineBadge(){
+
+    const shadowRoot =
+    splineViewer?.shadowRoot;
+
+
+    if(!shadowRoot) return;
+
+
+    const badge =
+    shadowRoot.querySelector(
       "#logo, a[href*='spline.design'], [class*='logo']"
     );
-    if (!badge) return false;
 
-    badge.remove();
-    return true;
-  }
 
-  function watchSplineBadge() {
-    if (!splineViewer) return;
-    let observer;
-
-    function observeShadowRoot() {
-      if (observer || !splineViewer.shadowRoot) return;
-
-      observer = new MutationObserver(removeSplineBadge);
-      observer.observe(splineViewer.shadowRoot, { childList: true, subtree: true });
+    if(badge){
+      badge.remove();
     }
 
-    const attempts = window.setInterval(() => {
-      observeShadowRoot();
-      if (removeSplineBadge()) {
-        window.clearInterval(attempts);
-        showSplineViewer();
-      }
-    }, 250);
+  }
 
-    window.setTimeout(() => {
-      window.clearInterval(attempts);
+
+
+  function watchSpline(){
+
+    if(!splineViewer){
+      finishLoading();
+      return;
+    }
+
+
+    const observer =
+    new MutationObserver(()=>{
       removeSplineBadge();
-      function finishLoading(){
-
-  loader.classList.add("hidden");
-
-  hero?.classList.add("spline-ready");
-};
-    }, 5000);
-
-    const MIN_LOADING_TIME = 3000;
-
-const startTime = Date.now();
-
-    splineViewer.addEventListener("load", () => {
-      const elapsed =
-      Date.now() - startTime;
-      
-      const remaining =
-      Math.max(0,
-      MIN_LOADING_TIME - elapsed);
-        
-      setTimeout(() => {
-        finishLoading();
-      }, remaining);
-    });
-  }
-
-  function updateNavState() {
-    if (!nav) return;
-    nav.classList.toggle("scrolled", window.scrollY > 20);
-  }
-
-  function renderModal() {
-    const project = projects[currentIndex];
-
-    modalImg.src = project.image;
-    modalImg.alt = project.name;
-    modalIndex.textContent = project.index;
-    modalTag.textContent = project.discipline;
-    modalTitle.textContent = project.name;
-    modalDesc.textContent = project.desc;
-    modalPrev.disabled = currentIndex === 0;
-    modalNext.disabled = currentIndex === projects.length - 1;
-  }
-
-  function openModal(index) {
-    currentIndex = index;
-    renderModal();
-    overlay.classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    overlay.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-
-  function showPreviousProject() {
-    if (currentIndex === 0) return;
-    currentIndex -= 1;
-    renderModal();
-  }
-
-  function showNextProject() {
-    if (currentIndex === projects.length - 1) return;
-    currentIndex += 1;
-    renderModal();
-  }
-
-  function movePreview(event) {
-    const previewWidth = 260;
-    const previewHeight = 170;
-    const offset = 20;
-
-    let x = event.clientX + offset;
-    let y = event.clientY - previewHeight - offset;
-
-    if (x + previewWidth > window.innerWidth - 16) {
-      x = event.clientX - previewWidth - offset;
-    }
-
-    if (y < 16) {
-      y = event.clientY + offset;
-    }
-
-    preview.style.left = `${x}px`;
-    preview.style.top = `${y}px`;
-  }
-
-  async function copyEmailToClipboard() {
-    if (!copyEmail || !copyEmailText) return;
-
-    const email = copyEmail.dataset.copy;
-    if (!email) return;
-
-    try {
-      await navigator.clipboard.writeText(email);
-      copyEmailText.textContent = "Copied!";
-      window.setTimeout(() => {
-        copyEmailText.textContent = email;
-      }, 1600);
-    } catch {
-      window.location.href = `mailto:${email}`;
-    }
-  }
-
-  window.addEventListener("scroll", updateNavState);
-  updateNavState();
-  watchSplineBadge();
-
-  copyEmail?.addEventListener("click", copyEmailToClipboard);
-
-  modalClose.addEventListener("click", closeModal);
-  modalPrev.addEventListener("click", showPreviousProject);
-  modalNext.addEventListener("click", showNextProject);
-
-  overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) closeModal();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (!overlay.classList.contains("open")) return;
-
-    if (event.key === "Escape") closeModal();
-    if (event.key === "ArrowLeft") showPreviousProject();
-    if (event.key === "ArrowRight") showNextProject();
-  });
-
-  document.querySelectorAll(".project").forEach((projectRow) => {
-    const index = Number.parseInt(projectRow.dataset.project, 10);
-    const project = projects[index];
-
-    projectRow.addEventListener("click", () => openModal(index));
-
-    projectRow.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      openModal(index);
     });
 
-    projectRow.addEventListener("mouseenter", (event) => {
-      previewImg.src = project.image;
-      previewImg.alt = project.name;
-      movePreview(event);
-      preview.classList.add("active");
-    });
 
-    projectRow.addEventListener("mouseleave", () => {
-      preview.classList.remove("active");
-    });
+    const checkShadow =
+    setInterval(()=>{
 
-    projectRow.addEventListener("mousemove", movePreview);
-  });
+      if(splineViewer.shadowRoot){
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.15 }
+        observer.observe(
+          splineViewer.shadowRoot,
+          {
+            childList:true,
+            subtree:true
+          }
+        );
+
+        removeSplineBadge();
+
+        clearInterval(checkShadow);
+
+      }
+
+    },250);
+
+
+
+    splineViewer.addEventListener(
+      "load",
+      finishLoading
+    );
+
+
+    // fallback
+    setTimeout(()=>{
+      finishLoading();
+    },5000);
+
+  }
+
+
+
+  watchSpline();
+
+
+
+  /*
+  ==========================
+  Navigation
+  ==========================
+  */
+
+
+  const nav =
+  document.querySelector(".nav");
+
+
+  function updateNavState(){
+
+    nav?.classList.toggle(
+      "scrolled",
+      window.scrollY > 20
+    );
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateNavState
   );
 
-  document.querySelectorAll(".reveal").forEach((element) => {
-    observer.observe(element);
-  });
-});
 
-const loader =
-document.getElementById("loader");
+  updateNavState();
+
+
+
+  /*
+  ==========================
+  Modal
+  ==========================
+  */
+
+
+  const overlay =
+  document.getElementById("modalOverlay");
+
+  const modalImg =
+  document.getElementById("modalImg");
+
+  const modalIndex =
+  document.getElementById("modalIndex");
+
+  const modalTag =
+  document.getElementById("modalTag");
+
+  const modalTitle =
+  document.getElementById("modalTitle");
+
+  const modalDesc =
+  document.getElementById("modalDesc");
+
+
+  const modalClose =
+  document.getElementById("modalClose");
+
+  const modalPrev =
+  document.getElementById("modalPrev");
+
+  const modalNext =
+  document.getElementById("modalNext");
+
+
+  let currentIndex = 0;
+
+
+
+  function renderModal(){
+
+    const project =
+    projects[currentIndex];
+
+
+    modalImg.src =
+    project.image;
+
+
+    modalImg.alt =
+    project.name;
+
+
+    modalIndex.textContent =
+    project.index;
+
+
+    modalTag.textContent =
+    project.discipline;
+
+
+    modalTitle.textContent =
+    project.name;
+
+
+    modalDesc.textContent =
+    project.desc;
+
+
+    modalPrev.disabled =
+    currentIndex === 0;
+
+
+    modalNext.disabled =
+    currentIndex === projects.length-1;
+
+  }
+
+
+
+  function openModal(index){
+
+    currentIndex=index;
+
+    renderModal();
+
+    overlay.classList.add("open");
+
+    document.body.style.overflow="hidden";
+
+  }
+
+
+
+  function closeModal(){
+
+    overlay.classList.remove("open");
+
+    document.body.style.overflow="";
+
+  }
+
+
+
+  function previousProject(){
+
+    if(currentIndex>0){
+
+      currentIndex--;
+
+      renderModal();
+
+    }
+
+  }
+
+
+
+  function nextProject(){
+
+    if(currentIndex < projects.length-1){
+
+      currentIndex++;
+
+      renderModal();
+
+    }
+
+  }
+
+
+
+  modalClose?.addEventListener(
+    "click",
+    closeModal
+  );
+
+
+  modalPrev?.addEventListener(
+    "click",
+    previousProject
+  );
+
+
+  modalNext?.addEventListener(
+    "click",
+    nextProject
+  );
+
+
+
+  overlay?.addEventListener(
+    "click",
+    e=>{
+
+      if(e.target===overlay)
+      closeModal();
+
+    }
+  );
+
+
+
+  document.addEventListener(
+    "keydown",
+    e=>{
+
+      if(!overlay.classList.contains("open"))
+      return;
+
+
+      if(e.key==="Escape")
+      closeModal();
+
+
+      if(e.key==="ArrowLeft")
+      previousProject();
+
+
+      if(e.key==="ArrowRight")
+      nextProject();
+
+    }
+  );
+
+
+
+  /*
+  ==========================
+  Project hover preview
+  ==========================
+  */
+
+
+  const preview =
+  document.getElementById("hoverPreview");
+
+  const previewImg =
+  document.getElementById("hoverPreviewImg");
+
+
+
+  function movePreview(e){
+
+    preview.style.left =
+    `${e.clientX + 20}px`;
+
+
+    preview.style.top =
+    `${e.clientY - 190}px`;
+
+  }
+
+
+
+  document
+  .querySelectorAll(".project")
+  .forEach(item=>{
+
+
+    const index =
+    Number(item.dataset.project);
+
+
+    const project =
+    projects[index];
+
+
+
+    item.addEventListener(
+      "click",
+      ()=>openModal(index)
+    );
+
+
+
+    item.addEventListener(
+      "mouseenter",
+      e=>{
+
+        previewImg.src =
+        project.image;
+
+
+        preview.classList.add(
+          "active"
+        );
+
+
+        movePreview(e);
+
+      }
+    );
+
+
+
+    item.addEventListener(
+      "mousemove",
+      movePreview
+    );
+
+
+
+    item.addEventListener(
+      "mouseleave",
+      ()=>{
+
+        preview.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+
+  });
+
+
+
+  /*
+  ==========================
+  Copy Email
+  ==========================
+  */
+
+
+  const copyEmail =
+  document.getElementById("copyEmail");
+
+
+  const copyEmailText =
+  document.getElementById("copyEmailText");
+
+
+
+  copyEmail?.addEventListener(
+    "click",
+    async ()=>{
+
+
+      const email =
+      copyEmail.dataset.copy;
+
+
+      await navigator.clipboard.writeText(
+        email
+      );
+
+
+      copyEmailText.textContent =
+      "Copied!";
+
+
+      setTimeout(()=>{
+
+        copyEmailText.textContent =
+        email;
+
+      },1600);
+
+
+    }
+  );
+
+
+
+  /*
+  ==========================
+  Reveal Animation
+  ==========================
+  */
+
+
+  const observer =
+  new IntersectionObserver(
+    entries=>{
+
+
+      entries.forEach(entry=>{
+
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add(
+            "is-visible"
+          );
+
+
+          observer.unobserve(
+            entry.target
+          );
+
+        }
+
+
+      });
+
+
+    },
+    {
+      threshold:0.15
+    }
+  );
+
+
+
+  document
+  .querySelectorAll(".reveal")
+  .forEach(el=>{
+
+    observer.observe(el);
+
+  });
+
+
+
+});

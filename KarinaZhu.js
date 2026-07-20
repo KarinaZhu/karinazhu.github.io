@@ -41,167 +41,148 @@ document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("loader");
   const loaderText = document.querySelector(".loader-text");
   const hero = document.querySelector(".hero");
-  const splineViewer = document.querySelector("spline-viewer");
-
 
   const loadingMessages = [
-  "Welcome to Karina Zhu's design world.",
-  "Crafting meaningful experiences.",
-  "Designing beyond pixels.",
-  "Turning ideas into interactions.",
-  "Creating with purpose.",
-  "Almost there..."
-];
+    "Welcome to Karina Zhu's design world.",
+    "Crafting meaningful experiences.",
+    "Designing beyond pixels.",
+    "Turning ideas into interactions.",
+    "Creating with purpose.",
+    "Almost there..."
+  ];
 
-let loadingIndex = 0;
+  let loadingIndex = 0;
 
+  function rotateLoadingText() {
+    if (!loaderText) return;
 
-function rotateLoadingText(){
+    loaderText.style.opacity = 0;
 
-  if(!loaderText) return;
+    setTimeout(() => {
+      loaderText.textContent = loadingMessages[loadingIndex];
+      loaderText.style.opacity = 1;
+      loadingIndex = (loadingIndex + 1) % loadingMessages.length;
+    }, 300);
+  }
 
+  rotateLoadingText();
 
-  loaderText.style.opacity = 0;
+  const loadingInterval = setInterval(rotateLoadingText, 1500);
 
-
-  setTimeout(()=>{
-
-    loaderText.textContent =
-    loadingMessages[loadingIndex];
-
-
-    loaderText.style.opacity = 1;
-
-
-    loadingIndex =
-    (loadingIndex + 1)
-    % loadingMessages.length;
-
-
-  },300);
-
-}
-
-
-
-rotateLoadingText();
-
-
-const loadingInterval =
-setInterval(
-  rotateLoadingText,
-  1500
-);
-
-
-  const MIN_LOADING_TIME = 3500;
+  const MIN_LOADING_TIME = 2200;
   const startTime = Date.now();
 
-
-  function finishLoading(){
+  function finishLoading() {
     clearInterval(loadingInterval);
 
     const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
 
-    const remaining =
-    Math.max(0, MIN_LOADING_TIME - elapsed);
-
-
-    setTimeout(()=>{
-
+    setTimeout(() => {
       loader?.classList.add("hidden");
-      hero?.classList.add("spline-ready");
-
+      hero?.classList.add("hero-ready");
     }, remaining);
-
   }
 
+  // The hero no longer waits on an external 3D scene to load,
+  // so just resolve once the page's own assets are ready.
+  if (document.readyState === "complete") {
+    finishLoading();
+  } else {
+    window.addEventListener("load", finishLoading);
+  }
+
+  // Safety net in case the load event is delayed.
+  setTimeout(finishLoading, 4000);
 
 
   /*
   ==========================
-  Remove Spline badge
+  Rotating identity text (Typed.js)
   ==========================
   */
 
-
-  function removeSplineBadge(){
-
-    const shadowRoot =
-    splineViewer?.shadowRoot;
-
-
-    if(!shadowRoot) return;
-
-
-    const badge =
-    shadowRoot.querySelector(
-      "#logo, a[href*='spline.design'], [class*='logo']"
-    );
-
-
-    if(badge){
-      badge.remove();
-    }
-
+  if (window.Typed && document.querySelector(".rn-text")) {
+    new Typed(".rn-text", {
+      strings: [
+        "Creative",
+        "Product Designer",
+        "Matcha Lover",
+        "Photographer"
+      ],
+      typeSpeed: 70,
+      backSpeed: 40,
+      backDelay: 1500,
+      loop: true
+    });
   }
 
 
+  /*
+  ==========================
+  Archive stacks
+  ==========================
+  */
 
-  function watchSpline(){
+  function initStacks() {
+    const stacks = document.querySelectorAll(".stack");
+    const drawer = document.getElementById("stack-drawer");
 
-    if(!splineViewer){
-      finishLoading();
-      return;
+    if (!stacks.length || !drawer) return;
+
+    function closeDrawer() {
+      drawer.classList.remove("open");
+      drawer.innerHTML = "";
     }
 
+    function openDrawer(stack) {
+      const label = stack.querySelector(".stack-label")?.textContent ?? "";
+      const images = Array.from(
+        stack.querySelectorAll(".stack-layer img, .stack-cover img")
+      ).map((img) => img.getAttribute("src"));
 
-    const observer =
-    new MutationObserver(()=>{
-      removeSplineBadge();
-    });
+      const items = images
+        .map(
+          (src) =>
+            `<div class="stack-drawer__item"><img src="${src}" alt="" loading="lazy"></div>`
+        )
+        .join("");
 
+      drawer.innerHTML = `
+        <h3 class="stack-drawer__heading">${label}</h3>
+        <div class="stack-drawer__grid">${items}</div>
+      `;
 
-    const checkShadow =
-    setInterval(()=>{
+      drawer.classList.add("open");
+    }
 
-      if(splineViewer.shadowRoot){
+    function toggleStack(stack) {
+      const isOpen = stack.getAttribute("aria-pressed") === "true";
 
-        observer.observe(
-          splineViewer.shadowRoot,
-          {
-            childList:true,
-            subtree:true
-          }
-        );
+      stacks.forEach((s) => s.setAttribute("aria-pressed", "false"));
 
-        removeSplineBadge();
-
-        clearInterval(checkShadow);
-
+      if (isOpen) {
+        closeDrawer();
+        return;
       }
 
-    },250);
+      stack.setAttribute("aria-pressed", "true");
+      openDrawer(stack);
+    }
 
+    stacks.forEach((stack) => {
+      stack.addEventListener("click", () => toggleStack(stack));
 
-
-    splineViewer.addEventListener(
-      "load",
-      finishLoading
-    );
-
-
-    // fallback
-    setTimeout(()=>{
-      finishLoading();
-    },5000);
-
+      stack.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleStack(stack);
+        }
+      });
+    });
   }
 
-
-
-  watchSpline();
-
+  initStacks();
 
 
   /*
@@ -210,29 +191,14 @@ setInterval(
   ==========================
   */
 
+  const nav = document.querySelector(".nav");
 
-  const nav =
-  document.querySelector(".nav");
-
-
-  function updateNavState(){
-
-    nav?.classList.toggle(
-      "scrolled",
-      window.scrollY > 20
-    );
-
+  function updateNavState() {
+    nav?.classList.toggle("scrolled", window.scrollY > 20);
   }
 
-
-  window.addEventListener(
-    "scroll",
-    updateNavState
-  );
-
-
+  window.addEventListener("scroll", updateNavState);
   updateNavState();
-
 
 
   /*
@@ -241,186 +207,73 @@ setInterval(
   ==========================
   */
 
-
-  const overlay =
-  document.getElementById("modalOverlay");
-
-  const modalImg =
-  document.getElementById("modalImg");
-
-  const modalIndex =
-  document.getElementById("modalIndex");
-
-  const modalTag =
-  document.getElementById("modalTag");
-
-  const modalTitle =
-  document.getElementById("modalTitle");
-
-  const modalDesc =
-  document.getElementById("modalDesc");
-
-
-  const modalClose =
-  document.getElementById("modalClose");
-
-  const modalPrev =
-  document.getElementById("modalPrev");
-
-  const modalNext =
-  document.getElementById("modalNext");
-
+  const overlay = document.getElementById("modalOverlay");
+  const modalImg = document.getElementById("modalImg");
+  const modalIndex = document.getElementById("modalIndex");
+  const modalTag = document.getElementById("modalTag");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalClose = document.getElementById("modalClose");
+  const modalPrev = document.getElementById("modalPrev");
+  const modalNext = document.getElementById("modalNext");
 
   let currentIndex = 0;
 
+  function renderModal() {
+    const project = projects[currentIndex];
 
+    modalImg.src = project.image;
+    modalImg.alt = project.name;
+    modalIndex.textContent = project.index;
+    modalTag.textContent = project.discipline;
+    modalTitle.textContent = project.name;
+    modalDesc.textContent = project.desc;
 
-  function renderModal(){
-
-    const project =
-    projects[currentIndex];
-
-
-    modalImg.src =
-    project.image;
-
-
-    modalImg.alt =
-    project.name;
-
-
-    modalIndex.textContent =
-    project.index;
-
-
-    modalTag.textContent =
-    project.discipline;
-
-
-    modalTitle.textContent =
-    project.name;
-
-
-    modalDesc.textContent =
-    project.desc;
-
-
-    modalPrev.disabled =
-    currentIndex === 0;
-
-
-    modalNext.disabled =
-    currentIndex === projects.length-1;
-
+    modalPrev.disabled = currentIndex === 0;
+    modalNext.disabled = currentIndex === projects.length - 1;
   }
 
-
-
-  function openModal(index){
-
-    currentIndex=index;
-
+  function openModal(index) {
+    currentIndex = index;
     renderModal();
-
     overlay.classList.add("open");
-
-    document.body.style.overflow="hidden";
-
+    document.body.style.overflow = "hidden";
   }
 
-
-
-  function closeModal(){
-
+  function closeModal() {
     overlay.classList.remove("open");
-
-    document.body.style.overflow="";
-
+    document.body.style.overflow = "";
   }
 
-
-
-  function previousProject(){
-
-    if(currentIndex>0){
-
+  function previousProject() {
+    if (currentIndex > 0) {
       currentIndex--;
-
       renderModal();
-
     }
-
   }
 
-
-
-  function nextProject(){
-
-    if(currentIndex < projects.length-1){
-
+  function nextProject() {
+    if (currentIndex < projects.length - 1) {
       currentIndex++;
-
       renderModal();
-
     }
-
   }
 
+  modalClose?.addEventListener("click", closeModal);
+  modalPrev?.addEventListener("click", previousProject);
+  modalNext?.addEventListener("click", nextProject);
 
+  overlay?.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
+  });
 
-  modalClose?.addEventListener(
-    "click",
-    closeModal
-  );
+  document.addEventListener("keydown", (e) => {
+    if (!overlay.classList.contains("open")) return;
 
-
-  modalPrev?.addEventListener(
-    "click",
-    previousProject
-  );
-
-
-  modalNext?.addEventListener(
-    "click",
-    nextProject
-  );
-
-
-
-  overlay?.addEventListener(
-    "click",
-    e=>{
-
-      if(e.target===overlay)
-      closeModal();
-
-    }
-  );
-
-
-
-  document.addEventListener(
-    "keydown",
-    e=>{
-
-      if(!overlay.classList.contains("open"))
-      return;
-
-
-      if(e.key==="Escape")
-      closeModal();
-
-
-      if(e.key==="ArrowLeft")
-      previousProject();
-
-
-      if(e.key==="ArrowRight")
-      nextProject();
-
-    }
-  );
-
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") previousProject();
+    if (e.key === "ArrowRight") nextProject();
+  });
 
 
   /*
@@ -429,90 +282,32 @@ setInterval(
   ==========================
   */
 
+  const preview = document.getElementById("hoverPreview");
+  const previewImg = document.getElementById("hoverPreviewImg");
 
-  const preview =
-  document.getElementById("hoverPreview");
-
-  const previewImg =
-  document.getElementById("hoverPreviewImg");
-
-
-
-  function movePreview(e){
-
-    preview.style.left =
-    `${e.clientX + 20}px`;
-
-
-    preview.style.top =
-    `${e.clientY - 190}px`;
-
+  function movePreview(e) {
+    preview.style.left = `${e.clientX + 20}px`;
+    preview.style.top = `${e.clientY - 190}px`;
   }
 
+  document.querySelectorAll(".project").forEach((item) => {
+    const index = Number(item.dataset.project);
+    const project = projects[index];
 
+    item.addEventListener("click", () => openModal(index));
 
-  document
-  .querySelectorAll(".project")
-  .forEach(item=>{
+    item.addEventListener("mouseenter", (e) => {
+      previewImg.src = project.image;
+      preview.classList.add("active");
+      movePreview(e);
+    });
 
+    item.addEventListener("mousemove", movePreview);
 
-    const index =
-    Number(item.dataset.project);
-
-
-    const project =
-    projects[index];
-
-
-
-    item.addEventListener(
-      "click",
-      ()=>openModal(index)
-    );
-
-
-
-    item.addEventListener(
-      "mouseenter",
-      e=>{
-
-        previewImg.src =
-        project.image;
-
-
-        preview.classList.add(
-          "active"
-        );
-
-
-        movePreview(e);
-
-      }
-    );
-
-
-
-    item.addEventListener(
-      "mousemove",
-      movePreview
-    );
-
-
-
-    item.addEventListener(
-      "mouseleave",
-      ()=>{
-
-        preview.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
+    item.addEventListener("mouseleave", () => {
+      preview.classList.remove("active");
+    });
   });
-
 
 
   /*
@@ -521,45 +316,20 @@ setInterval(
   ==========================
   */
 
+  const copyEmail = document.getElementById("copyEmail");
+  const copyEmailText = document.getElementById("copyEmailText");
 
-  const copyEmail =
-  document.getElementById("copyEmail");
+  copyEmail?.addEventListener("click", async () => {
+    const email = copyEmail.dataset.copy;
 
+    await navigator.clipboard.writeText(email);
 
-  const copyEmailText =
-  document.getElementById("copyEmailText");
+    copyEmailText.textContent = "Copied!";
 
-
-
-  copyEmail?.addEventListener(
-    "click",
-    async ()=>{
-
-
-      const email =
-      copyEmail.dataset.copy;
-
-
-      await navigator.clipboard.writeText(
-        email
-      );
-
-
-      copyEmailText.textContent =
-      "Copied!";
-
-
-      setTimeout(()=>{
-
-        copyEmailText.textContent =
-        email;
-
-      },1600);
-
-
-    }
-  );
-
+    setTimeout(() => {
+      copyEmailText.textContent = email;
+    }, 1600);
+  });
 
 
   /*
@@ -568,48 +338,20 @@ setInterval(
   ==========================
   */
 
-
-  const observer =
-  new IntersectionObserver(
-    entries=>{
-
-
-      entries.forEach(entry=>{
-
-
-        if(entry.isIntersecting){
-
-          entry.target.classList.add(
-            "is-visible"
-          );
-
-
-          observer.unobserve(
-            entry.target
-          );
-
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         }
-
-
       });
-
-
     },
-    {
-      threshold:0.15
-    }
+    { threshold: 0.15 }
   );
 
-
-
-  document
-  .querySelectorAll(".reveal")
-  .forEach(el=>{
-
+  document.querySelectorAll(".reveal").forEach((el) => {
     observer.observe(el);
-
   });
-
-
 
 });

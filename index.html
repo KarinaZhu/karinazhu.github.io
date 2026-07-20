@@ -10,25 +10,24 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" defer></script>
   <script defer src="KarinaZhu.js"></script>
 </head>
 
 <body>
   <div id="loader">
-    
+
     <img
     src="logo.svg"
     alt="Karina Zhu"
     class="loader-logo"
     >
-    
+
     <p class="loader-text"></p>
-    
+
     <div class="loader-dots">
     <span></span>
     <span></span>
@@ -62,24 +61,34 @@
   <nav class="nav" aria-label="Main navigation">
     <a href="#" class="nav__link">Home</a>
     <a href="#projects" class="nav__link">UI/UX</a>
-    <a href="#projects" class="nav__link">Marketing</a>
+    <a href="#marketing" class="nav__link">Marketing</a>
   </nav>
 
   <main>
-    <section class="hero" aria-label="3D hero scene">
+    <section class="hero" aria-label="Introduction">
+
+      <!-- Floating photo collage — replaces the Spline 3D scene -->
+      <div class="hero-collage" aria-hidden="true">
+        <img src="City2Surf.png" class="hero-tile hero-tile--1" alt="">
+        <img src="Ocean Echoes, City Rhythms.png" class="hero-tile hero-tile--2" alt="">
+        <img src="yasumo.jpg" class="hero-tile hero-tile--3" alt="">
+        <img src="GD 001.jpg" class="hero-tile hero-tile--4" alt="">
+        <img src="Front end.jpg" class="hero-tile hero-tile--5" alt="">
+        <img src="Poca.jpg" class="hero-tile hero-tile--6" alt="">
+        <img src="Video Editing.jpg" class="hero-tile hero-tile--7" alt="">
+      </div>
+
       <div class="hero-content">
-    </div>
-    
-  <spline-viewer
-    url="https://prod.spline.design/Mz42hrAEZjrkZ3PC/scene.splinecode">
-  </spline-viewer>
-
-  <img
-    class="hero-mobile-image"
-    src="hero-cover.webp"
-    alt="Karina Zhu Design">
-
-</section>
+        <p class="hero-content__eyebrow reveal">Portfolio page</p>
+        <h1 class="hero-content__headline reveal">
+          Hello! I am<br>
+          Karina Zhu
+        </h1>
+        <p class="hero-content__role reveal">
+          <span class="rn-text"></span>
+        </p>
+      </div>
+    </section>
 
     <section class="intro">
       <div class="container">
@@ -145,77 +154,95 @@
       </div>
     </section>
 
-    <section id="about" class="about-services" aria-labelledby="aboutServicesTitle">
-      <div class="container">
-        <p class="about-services__label reveal" id="aboutServicesTitle">Selected capabilities</p>
-      </div>
-      <div class="services-carousel reveal" aria-label="Design services">
-        <ul class="services-gallery" aria-label="Design services">
-          <li class="service-card service-card--large">
-            <img src="Ocean Echoes, City Rhythms.png" alt="">
-            <h3>Experience Design</h3>
-          </li>
-          <li class="service-stack">
-            <article class="service-card service-card--stacked">
-              <img src="City2Surf.png" loading="lazy" alt="">
-              <h3>Web Design</h3>
-            </article>
-            <article class="service-card service-card--stacked">
-              <img src="Video Editing.jpg" loading="lazy"  alt="">
-              <h3>Video Editing</h3>
-            </article>
-          </li>
-          <li class="service-card">
-            <img src="GD 001.jpg" loading="lazy"  alt="">
-            <h3>Graphic Design</h3>
-          </li>
-          <li class="service-stack">
-            <article class="service-card service-card--stacked">
-              <img src="Front end.jpg" loading="lazy"  alt="">
-              <h3>Front End</h3>
-            </article>
-            <article class="service-card service-card--stacked">
-              <img src="yasumo.jpg" loading="lazy" alt="">
-              <h3>Product Design</h3>
-            </article>
-          </li>
-          <li class="service-card service-card--wide">
-            <img src="Poca.jpg" loading="lazy"  alt="">
-            <h3>Digital Content</h3>
-          </li>
-          <li class="service-card service-card--large" aria-hidden="true">
-            <img src="3D model.png" loading="lazy"  alt="">
-            <h3>3D Modelling</h3>
-          </li>
-          <li class="service-stack" aria-hidden="true">
-            <article class="service-card service-card--stacked">
-              <img src="Publication.jpg" loading="lazy"  alt="">
-              <h3>Publication Design</h3>
-            </article>
-            <article class="service-card service-card--stacked">
-              <img src="Unlimited.png" loading="lazy"  alt="">
-              <h3>Branding</h3>
-            </article>
-          </li>
-          <li class="service-card" aria-hidden="true">
-            <img src="City2Surf.png" loading="lazy"  alt="">
-            <h3>Graphic Design</h3>
-          </li>
-          <li class="service-stack" aria-hidden="true">
-            <article class="service-card service-card--stacked">
-              <img src="City2Surf.png" loading="lazy"  alt="">
-              <h3>Front End</h3>
-            </article>
-            <article class="service-card service-card--stacked">
-              <img src="City2Surf.png" loading="lazy"  alt="">
-              <h3>Graphic Design</h3>
-            </article>
-          </li>
-          <li class="service-card service-card--wide" aria-hidden="true">
-            <img src="3D model.png" loading="lazy"  alt="">
-            <h3>Digital Content</h3>
-          </li>
-        </ul>
+    <section class="page-section" id="marketing">
+      <div class="section-inner">
+        <h2 class="section-heading reveal">Archive</h2>
+
+        <!-- Margin doodles, anchored to .section-inner so they track the
+             content column rather than the viewport edge. -->
+        <div class="doodle" data-doodle="butterfly" style="left: 70%; top: -48px; width: 90px;" aria-hidden="true">
+          <svg viewBox="0 0 94 80" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M47 28 Q46 42 47 56"></path>
+            <path d="M47 30 Q26 9 14 22 Q10 37 33 42 Q43 44 46 40"></path>
+            <path d="M47 30 Q68 9 80 22 Q84 37 61 42 Q51 44 48 40"></path>
+            <path d="M46 42 Q30 48 27 65 Q34 74 44 56"></path>
+            <path d="M48 42 Q64 48 67 65 Q60 74 50 56"></path>
+            <path d="M47 28 Q42 17 35 13 M47 28 Q52 17 59 13"></path>
+            <circle cx="34" cy="12" r="1.8" fill="currentColor" stroke="none"></circle>
+            <circle cx="60" cy="12" r="1.8" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </div>
+
+        <div class="doodle" data-doodle="coffee" style="left: calc(-1 * var(--page-gutter)); bottom: 20px; width: 100px;" aria-hidden="true">
+          <svg viewBox="0 0 98 86" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M25 34 Q28 56 40 61 Q51 65 60 61 Q72 56 75 34"></path>
+            <path d="M23 33 Q49 44 77 33 Q49 23 23 33 Z"></path>
+            <ellipse cx="50" cy="33" rx="21" ry="6.5" fill="currentColor" stroke="none"></ellipse>
+            <path d="M76 38 Q90 37 88 48 Q86 57 72 55"></path>
+            <path d="M16 64 Q49 76 84 64 Q49 55 16 64 Z"></path>
+          </svg>
+        </div>
+
+        <div class="doodle" data-doodle="pens" style="right: calc(-1 * var(--page-gutter)); bottom: 15px; width: 84px;" aria-hidden="true">
+          <svg viewBox="0 0 86 102" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 60 Q24 90 32 95 Q43 99 54 95 Q62 90 64 60"></path>
+            <path d="M20 59 Q43 68 66 59 Q43 51 20 59 Z"></path>
+            <path d="M35 60 L26 16"></path>
+            <path d="M22 22 L26 16 L31 20"></path>
+            <path d="M43 61 L44 12"></path>
+            <path d="M40 60 L33 24"></path>
+            <path d="M50 60 L60 22"></path>
+            <path d="M47 61 L55 30"></path>
+          </svg>
+        </div>
+
+        <div class="stacks reveal" id="stacks">
+          <div class="stack" data-stack="design" data-index="0" role="button" tabindex="0" aria-pressed="false" aria-label="Open Design">
+            <div class="stack-pile">
+              <div class="stack-layer stack-layer-3" aria-hidden="true"><img src="City2Surf.png" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-4" aria-hidden="true"><img src="Ocean Echoes, City Rhythms.png" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-1" aria-hidden="true"><img src="yasumo.jpg" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-2" aria-hidden="true"><img src="Front end.jpg" alt="" loading="lazy"></div>
+              <div class="stack-cover"><img src="GD 001.jpg" alt="Design"></div>
+            </div>
+            <div class="stack-label">Product design &amp; UX/UI case studies</div>
+          </div>
+
+          <div class="stack" data-stack="marketing" data-index="1" role="button" tabindex="0" aria-pressed="false" aria-label="Open Marketing &amp; Branding">
+            <div class="stack-pile">
+              <div class="stack-layer stack-layer-3" aria-hidden="true"><img src="Poca.jpg" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-4" aria-hidden="true"><img src="3D model.png" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-1" aria-hidden="true"><img src="Publication.jpg" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-2" aria-hidden="true"><img src="City2Surf.png" alt="" loading="lazy"></div>
+              <div class="stack-cover"><img src="Unlimited.png" alt="Marketing &amp; Branding"></div>
+            </div>
+            <div class="stack-label">Campaigns, brand identity &amp; content</div>
+          </div>
+
+          <div class="stack" data-stack="photo-video" data-index="2" role="button" tabindex="0" aria-pressed="false" aria-label="Open Photo &amp; Video">
+            <div class="stack-pile">
+              <div class="stack-layer stack-layer-3" aria-hidden="true"><img src="Ocean Echoes, City Rhythms.png" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-4" aria-hidden="true"><img src="yasumo.jpg" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-1" aria-hidden="true"><img src="GD 001.jpg" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-2" aria-hidden="true"><img src="Poca.jpg" alt="" loading="lazy"></div>
+              <div class="stack-cover"><img src="Video Editing.jpg" alt="Photo &amp; Video"></div>
+            </div>
+            <div class="stack-label">Photography &amp; videography</div>
+          </div>
+
+          <div class="stack" data-stack="art" data-index="3" role="button" tabindex="0" aria-pressed="false" aria-label="Open Art &amp; Graphic Design">
+            <div class="stack-pile">
+              <div class="stack-layer stack-layer-3" aria-hidden="true"><img src="Unlimited.png" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-4" aria-hidden="true"><img src="Front end.jpg" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-1" aria-hidden="true"><img src="3D model.png" alt="" loading="lazy"></div>
+              <div class="stack-layer stack-layer-2" aria-hidden="true"><img src="City2Surf.png" alt="" loading="lazy"></div>
+              <div class="stack-cover"><img src="Publication.jpg" alt="Art &amp; Graphic Design"></div>
+            </div>
+            <div class="stack-label">Illustration &amp; graphic design</div>
+          </div>
+
+          <div class="stack-drawer" id="stack-drawer" aria-live="polite"></div>
+        </div>
       </div>
     </section>
 
@@ -242,7 +269,7 @@
             <div class="contact-card__group">
               <p class="contact-card__label">Quick actions</p>
               <button class="contact-action" type="button" id="copyEmail" data-copy="karliskah@gmail.com">
-                <span id="copyEmailText">kokokikizwq@naver.com</span>
+                <span id="copyEmailText">karliskah@gmail.com</span>
                 <span aria-hidden="true">Copy</span>
               </button>
               <a class="contact-action" href="#" aria-label="Download CV">

@@ -149,10 +149,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.Typed && document.querySelector(".rn-text")) {
     new Typed(".rn-text", {
       strings: [
-        "Creative",
+        "Karina Zhu",
         "Product Designer",
-        "Matcha Lover",
-        "Photographer"
+        "Digital Marketer",
+        "Content Creator",
       ],
       typeSpeed: 70,
       backSpeed: 40,

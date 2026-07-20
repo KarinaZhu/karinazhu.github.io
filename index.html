@@ -64,28 +64,51 @@
     <a href="#marketing" class="nav__link">Marketing</a>
   </nav>
 
+  <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" aria-pressed="false">
+    <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2"></circle>
+      <path d="M12 2.5v2.6M12 18.9v2.6M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12h2.6M18.9 12h2.6M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"></path>
+    </svg>
+    <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 14.2A8.2 8.2 0 1 1 9.8 4a6.6 6.6 0 0 0 10.2 10.2Z"></path>
+    </svg>
+  </button>
+
   <main>
     <section class="hero" aria-label="Introduction">
 
+      <!-- Ambient gradient — ashy pink, slow-drifting blobs -->
+      <div class="hero-gradient" aria-hidden="true">
+        <div class="hero-gradient__blob hero-gradient__blob--1"></div>
+        <div class="hero-gradient__blob hero-gradient__blob--2"></div>
+        <div class="hero-gradient__blob hero-gradient__blob--3"></div>
+      </div>
+
       <!-- Floating photo collage — replaces the Spline 3D scene -->
-      <div class="hero-collage" aria-hidden="true">
-        <img src="City2Surf.png" class="hero-tile hero-tile--1" alt="">
-        <img src="Ocean Echoes, City Rhythms.png" class="hero-tile hero-tile--2" alt="">
-        <img src="yasumo.jpg" class="hero-tile hero-tile--3" alt="">
-        <img src="GD 001.jpg" class="hero-tile hero-tile--4" alt="">
-        <img src="Front end.jpg" class="hero-tile hero-tile--5" alt="">
-        <img src="Poca.jpg" class="hero-tile hero-tile--6" alt="">
-        <img src="Video Editing.jpg" class="hero-tile hero-tile--7" alt="">
+      <div class="hero-collage">
+        <img src="City2Surf.png" class="hero-tile hero-tile--1" alt="" data-caption="City2Surf — UI/UX design">
+        <img src="Ocean Echoes, City Rhythms.png" class="hero-tile hero-tile--2" alt="" data-caption="Ocean Echoes, City Rhythms — experience design">
+        <img src="yasumo.jpg" class="hero-tile hero-tile--3" alt="" data-caption="Yasumo — product design">
+        <img src="GD 001.jpg" class="hero-tile hero-tile--4" alt="" data-caption="">
+        <img src="Front end.jpg" class="hero-tile hero-tile--5" alt="" data-caption="">
+        <img src="Poca.jpg" class="hero-tile hero-tile--6" alt="" data-caption="">
+        <img src="Video Editing.jpg" class="hero-tile hero-tile--7" alt="" data-caption="">
       </div>
 
       <div class="hero-content">
         <p class="hero-content__eyebrow reveal">Portfolio page</p>
-        <h1 class="hero-content__headline reveal">
-          Hello! I am<br>
-          Karina Zhu
-        </h1>
+
+        <div class="hero-photo reveal">
+          <img src="profile.jpg" alt="Karina Zhu" class="hero-photo__img">
+        </div>
+
         <p class="hero-content__role reveal">
           <span class="rn-text"></span>
+        </p>
+
+        <p class="hero-status reveal">
+          <span class="hero-status__dot" aria-hidden="true"></span>
+          Open to work
         </p>
       </div>
     </section>
@@ -154,47 +177,9 @@
       </div>
     </section>
 
-    <section class="page-section" id="marketing">
-      <div class="section-inner">
+    <section class="page-section page-section--wide" id="marketing">
+      <div class="section-inner section-inner--wide">
         <h2 class="section-heading reveal">Archive</h2>
-
-        <!-- Margin doodles, anchored to .section-inner so they track the
-             content column rather than the viewport edge. -->
-        <div class="doodle" data-doodle="butterfly" style="left: 70%; top: -48px; width: 90px;" aria-hidden="true">
-          <svg viewBox="0 0 94 80" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M47 28 Q46 42 47 56"></path>
-            <path d="M47 30 Q26 9 14 22 Q10 37 33 42 Q43 44 46 40"></path>
-            <path d="M47 30 Q68 9 80 22 Q84 37 61 42 Q51 44 48 40"></path>
-            <path d="M46 42 Q30 48 27 65 Q34 74 44 56"></path>
-            <path d="M48 42 Q64 48 67 65 Q60 74 50 56"></path>
-            <path d="M47 28 Q42 17 35 13 M47 28 Q52 17 59 13"></path>
-            <circle cx="34" cy="12" r="1.8" fill="currentColor" stroke="none"></circle>
-            <circle cx="60" cy="12" r="1.8" fill="currentColor" stroke="none"></circle>
-          </svg>
-        </div>
-
-        <div class="doodle" data-doodle="coffee" style="left: calc(-1 * var(--page-gutter)); bottom: 20px; width: 100px;" aria-hidden="true">
-          <svg viewBox="0 0 98 86" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M25 34 Q28 56 40 61 Q51 65 60 61 Q72 56 75 34"></path>
-            <path d="M23 33 Q49 44 77 33 Q49 23 23 33 Z"></path>
-            <ellipse cx="50" cy="33" rx="21" ry="6.5" fill="currentColor" stroke="none"></ellipse>
-            <path d="M76 38 Q90 37 88 48 Q86 57 72 55"></path>
-            <path d="M16 64 Q49 76 84 64 Q49 55 16 64 Z"></path>
-          </svg>
-        </div>
-
-        <div class="doodle" data-doodle="pens" style="right: calc(-1 * var(--page-gutter)); bottom: 15px; width: 84px;" aria-hidden="true">
-          <svg viewBox="0 0 86 102" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 60 Q24 90 32 95 Q43 99 54 95 Q62 90 64 60"></path>
-            <path d="M20 59 Q43 68 66 59 Q43 51 20 59 Z"></path>
-            <path d="M35 60 L26 16"></path>
-            <path d="M22 22 L26 16 L31 20"></path>
-            <path d="M43 61 L44 12"></path>
-            <path d="M40 60 L33 24"></path>
-            <path d="M50 60 L60 22"></path>
-            <path d="M47 61 L55 30"></path>
-          </svg>
-        </div>
 
         <div class="stacks reveal" id="stacks">
           <div class="stack" data-stack="design" data-index="0" role="button" tabindex="0" aria-pressed="false" aria-label="Open Design">
@@ -299,6 +284,10 @@
       </div>
     </section>
   </main>
+
+  <div class="hero-tile__popup" id="heroTilePopup" role="tooltip">
+    <p class="hero-tile__popup-text" id="heroTilePopupText">default</p>
+  </div>
 
   <div class="project__preview" id="hoverPreview">
     <img src="" alt="" id="hoverPreviewImg">

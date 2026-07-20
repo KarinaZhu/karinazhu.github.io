@@ -1,3 +1,13 @@
+(function initTheme() {
+  const stored = localStorage.getItem("theme");
+  const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+  const theme = stored || (prefersLight ? "light" : "dark");
+
+  if (theme === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const projects = [
@@ -98,6 +108,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*
   ==========================
+  Theme toggle
+  ==========================
+  */
+
+  const themeToggle = document.getElementById("themeToggle");
+
+  function setPressedState() {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    themeToggle?.setAttribute("aria-pressed", String(isLight));
+    themeToggle?.setAttribute(
+      "aria-label",
+      isLight ? "Switch to dark mode" : "Switch to light mode"
+    );
+  }
+
+  setPressedState();
+
+  themeToggle?.addEventListener("click", () => {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+
+    if (isLight) {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    }
+
+    setPressedState();
+  });
+
+
+  /*
+  ==========================
   Rotating identity text (Typed.js)
   ==========================
   */
@@ -183,6 +227,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   initStacks();
+
+
+  /*
+  ==========================
+  Hero tile hover popup
+  ==========================
+  */
+
+  const heroTilePopup = document.getElementById("heroTilePopup");
+  const heroTilePopupText = document.getElementById("heroTilePopupText");
+
+  function moveHeroPopup(e) {
+    if (!heroTilePopup) return;
+
+    const offset = 18;
+    const rect = heroTilePopup.getBoundingClientRect();
+    let left = e.clientX + offset;
+    let top = e.clientY + offset;
+
+    if (left + rect.width > window.innerWidth - 12) {
+      left = e.clientX - rect.width - offset;
+    }
+
+    if (top + rect.height > window.innerHeight - 12) {
+      top = e.clientY - rect.height - offset;
+    }
+
+    heroTilePopup.style.left = `${left}px`;
+    heroTilePopup.style.top = `${top}px`;
+  }
+
+  document.querySelectorAll(".hero-tile").forEach((tile) => {
+    tile.addEventListener("mouseenter", (e) => {
+      const caption = tile.dataset.caption?.trim();
+
+      heroTilePopupText.textContent = caption || "default";
+      heroTilePopup?.classList.add("active");
+      moveHeroPopup(e);
+    });
+
+    tile.addEventListener("mousemove", moveHeroPopup);
+
+    tile.addEventListener("mouseleave", () => {
+      heroTilePopup?.classList.remove("active");
+    });
+  });
 
 
   /*

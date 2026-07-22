@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       desc: "A bold identity system built around geometric precision and kinetic motion. Developed the full brand language including logomark, type system, and animated brand expressions for digital and physical touchpoints.",
       image: "City2Surf.png",
     },
+
     {
       index: "02",
       name: "Ocean Echoes, City Rhythms",

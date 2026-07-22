@@ -1374,7 +1374,7 @@ a {
 
   .nav {
     gap: var(--space-sm);
-    left: calc(var(--space-md) + 58px);
+    left: 55px);
     padding: 9px 10px;
   }
 

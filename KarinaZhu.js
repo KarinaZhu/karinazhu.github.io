@@ -256,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateNavState();
 
 
-    item.addEventListener("click", () => openModal(index));
   /*
   ==========================
   Copy Email

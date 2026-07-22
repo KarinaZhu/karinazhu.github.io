@@ -192,7 +192,7 @@ a {
   left: var(--space-md);
   z-index: 101;
   display: block;
-  width: 64px;
+  width: 50px;
   color: var(--color-accent);
   line-height: 0;
   transition: opacity var(--transition);
@@ -222,7 +222,7 @@ a {
 /* Navigation */
 .nav {
   position: fixed;
-  top: 22px;
+  top: 15px;
   left: calc(var(--space-md) + 82px);
   z-index: 100;
   display: flex;
@@ -1332,7 +1332,7 @@ a {
 @media (max-width:600px){
 
   .hero {
-    height: 88vh;
+    height: 100vh;
     min-height: 560px;
   }
 
@@ -1342,24 +1342,29 @@ a {
     border-radius: 14px;
   }
 
-  .hero-tile--1 { top: 10%; left: 8%; }
-  .hero-tile--2 { top: 6%;  left: 62%; width: 92px !important; height: 92px !important; }
+  .hero-tile--1 { top: 15%; left: 8%; }
+  .hero-tile--2 { top: 10%;  left: 62%; width: 92px !important; height: 92px !important; }
   .hero-tile--3 { top: 74%; left: 66%; }
   .hero-tile--4 { top: 78%; left: 10%; }
   .hero-tile--5 { display: none; }
   .hero-tile--6 { display: none; }
   .hero-tile--7 { top: 24%; left: 74%; }
   .hero-photo {
-    width: min(220px, 62vw);
+    width: min(240px, 66vw);
   }
 
   .stacks {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md) var(--space-sm);
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .stack{
+    width: 100%;
   }
 
   .stack-pile {
-    width: 150px;
+    width: 200px;
+    max-width: 260px;
   }
 
   .site-logo {

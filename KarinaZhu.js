@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "City2Surf",
       discipline: "UI/UX Design · Website",
       desc: "A bold identity system built around geometric precision and kinetic motion. Developed the full brand language including logomark, type system, and animated brand expressions for digital and physical touchpoints.",
-      image: "City2Surf.png",
+      image: "test.png",
     },
 
     {

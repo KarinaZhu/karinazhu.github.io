@@ -1373,10 +1373,11 @@ a {
   }
 
   .nav {
+    left: 50%;
+    transform: translateX(-50%);
     gap: var(--space-sm);
-    left: 55px);
     padding: 9px 10px;
-  }
+}
 
   .nav.scrolled {
     left: 50%;
@@ -2135,4 +2136,87 @@ grid-template-columns:1fr;
 
 }
 
+}
+
+[data-theme="light"] .modal{
+
+background:#ffffff;
+
+}
+
+
+[data-theme="light"] .modal__title{
+
+color:#111;
+
+}
+
+
+[data-theme="light"] .modal__desc{
+
+color:rgba(0,0,0,.65);
+
+}
+
+/* ==========================
+   Light mode modal / project fix
+   ========================== */
+
+[data-theme="light"] .modal {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.12);
+}
+
+
+[data-theme="light"] .modal__title {
+  color: #111111;
+}
+
+
+[data-theme="light"] .modal__desc {
+  color: rgba(0,0,0,0.65);
+}
+
+
+[data-theme="light"] .modal__index {
+  color: #111111;
+}
+
+
+[data-theme="light"] .modal__tag {
+  color: #111111;
+  border-color: rgba(0,0,0,0.25);
+}
+
+
+[data-theme="light"] .modal__close {
+  color: #111111;
+  border-color: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.04);
+}
+
+
+[data-theme="light"] .modal__close:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+
+[data-theme="light"] .modal__nav-btn {
+  color:#111111;
+  border-color:rgba(0,0,0,0.25);
+}
+
+
+[data-theme="light"] .modal__nav-btn:hover {
+  background:rgba(0,0,0,0.06);
+}
+
+
+[data-theme="light"] .modal-case h3 {
+  color:#111111;
+}
+
+
+[data-theme="light"] .modal-case p {
+  color:rgba(0,0,0,0.65);
 }

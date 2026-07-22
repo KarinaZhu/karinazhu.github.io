@@ -10,6 +10,39 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  const projects = [
+    {
+      index: "01",
+      name: "City2Surf",
+      discipline: "UI/UX Design · Website",
+      desc: "A bold identity system built around geometric precision and kinetic motion. Developed the full brand language including logomark, type system, and animated brand expressions for digital and physical touchpoints.",
+      image: "City2Surf.png",
+    },
+    {
+      index: "02",
+      name: "Ocean Echoes, City Rhythms",
+      discipline: "Experience Design · Interactive Installation",
+      desc: "An interactive public installation exploring the relationship between sound, movement, and urban environments.",
+      image: "Ocean Echoes, City Rhythms.png",
+    },
+    {
+      index: "03",
+      name: "Yasumo",
+      discipline: "Product · Device Interface",
+      desc: "A product experience designed around intuitive interaction, physical form, and human-centered digital interfaces.",
+      image: "yasumo.jpg",
+    },
+    {
+      index: "04",
+      name: "Crossing without Crossing",
+      discipline: "Experience Design · Interactive Installation",
+      desc: "An immersive experience exploring human behaviour, spatial interaction, and alternative ways of navigating public spaces.",
+      image: "Cross.jpg",
+    },
+  ];
+
+
+
   /*
   ==========================
   Loader
@@ -114,10 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.Typed && document.querySelector(".rn-text")) {
     new Typed(".rn-text", {
       strings: [
-        "Creative",
+        "Karina Zhu",
+        "MIDEA Graduate @ USYD",
         "Product Designer",
-        "Matcha Lover",
-        "Photographer"
+        "Digital Marketer",
+        "Content Creator",
       ],
       typeSpeed: 70,
       backSpeed: 40,
@@ -134,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
   */
 
   function initStacks() {
-    const stacks = document.querySelectorAll(".stack[data-stack]");
+    const stacks = document.querySelectorAll(".stack");
     const drawer = document.getElementById("stack-drawer");
 
     if (!stacks.length || !drawer) return;
@@ -254,6 +288,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", updateNavState);
   updateNavState();
+
+   /*
+  ==========================
+  Modal
+  ==========================
+  */
+
+  const overlay = document.getElementById("modalOverlay");
+  const modalImg = document.getElementById("modalImg");
+  const modalIndex = document.getElementById("modalIndex");
+  const modalTag = document.getElementById("modalTag");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalClose = document.getElementById("modalClose");
+  const modalPrev = document.getElementById("modalPrev");
+  const modalNext = document.getElementById("modalNext");
+
+  let currentIndex = 0;
+
+  function renderModal() {
+    const project = projects[currentIndex];
+
+    modalImg.src = project.image;
+    modalImg.alt = project.name;
+    modalIndex.textContent = project.index;
+    modalTag.textContent = project.discipline;
+    modalTitle.textContent = project.name;
+    modalDesc.textContent = project.desc;
+
+    modalPrev.disabled = currentIndex === 0;
+    modalNext.disabled = currentIndex === projects.length - 1;
+  }
+
+  function openModal(index) {
+    currentIndex = index;
+    renderModal();
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  function previousProject() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderModal();
+    }
+  }
+
+  function nextProject() {
+    if (currentIndex < projects.length - 1) {
+      currentIndex++;
+      renderModal();
+    }
+  }
+
+  modalClose?.addEventListener("click", closeModal);
+  modalPrev?.addEventListener("click", previousProject);
+  modalNext?.addEventListener("click", nextProject);
+
+  overlay?.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!overlay.classList.contains("open")) return;
+
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") previousProject();
+    if (e.key === "ArrowRight") nextProject();
+  });
+
+
+  /*
+  ==========================
+  Project hover preview
+  ==========================
+  */
+
+  const preview = document.getElementById("hoverPreview");
+  const previewImg = document.getElementById("hoverPreviewImg");
+
+  function movePreview(e) {
+    preview.style.left = `${e.clientX + 20}px`;
+    preview.style.top = `${e.clientY - 190}px`;
+  }
+
+  document.querySelectorAll(".project").forEach((item) => {
+    const index = Number(item.dataset.project);
+    const project = projects[index];
+
+    item.addEventListener("click", () => openModal(index));
+
+    item.addEventListener("mouseenter", (e) => {
+      previewImg.src = project.image;
+      preview.classList.add("active");
+      movePreview(e);
+    });
+
+    item.addEventListener("mousemove", movePreview);
+
+    item.addEventListener("mouseleave", () => {
+      preview.classList.remove("active");
+    });
+  });
 
 
   /*

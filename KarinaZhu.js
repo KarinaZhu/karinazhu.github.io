@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     new Typed(".rn-text", {
       strings: [
         "Karina Zhu",
+        "MIDEA Graduate @ USYD",
         "Product Designer",
         "Digital Marketer",
         "Content Creator",

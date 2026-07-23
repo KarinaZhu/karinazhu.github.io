@@ -1121,7 +1121,7 @@ a {
   color: #111111;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
   max-width: 850px;
-  max-height: 450px;
+  height: auto;
   margin: 0 auto;
 }
 
@@ -1143,7 +1143,7 @@ a {
 .contact-card__heading {
   margin-top: 18px;
   font-family: var(--font-serif);
-  font-size: clamp(38px, 7vw, 76px);
+  font-size: clamp(30px, 4.8vw, 56px);
   font-weight: 400;
   line-height: 0.92;
 }
@@ -1401,6 +1401,11 @@ a {
     padding: 22px;
   }
 
+  .contact-card__heading{
+    margin-top:12px;
+    font-size:32px;
+    line-height:.92;
+}
   .contact-card__main,
   .contact-card__grid {
     grid-template-columns: 1fr;
@@ -1410,14 +1415,18 @@ a {
     display: grid;
   }
 
-  .contact-card__cta {
-    width: 100%;
-    justify-content: space-between;
-  }
+  .contact-card__cta{
+    width:100%;
+    min-height:52px;
+    padding:12px 16px;
+    font-size:14px;
+}
 
-  .contact-card__copy {
-    font-size: 17px;
-  }
+  .contact-card__copy{
+    margin-top:14px;
+    font-size:16px;
+    line-height:1.5;
+}
 
   .contact-card__footer {
     grid-template-columns: 1fr 48px;
@@ -1439,6 +1448,10 @@ a {
   .modal__body {
     padding: 20px 20px 24px;
   }
+  
+  .contact-card__cta-icon{
+    display:none;
+}
 }
 
 @media (prefers-reduced-motion: reduce) {

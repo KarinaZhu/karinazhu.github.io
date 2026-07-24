@@ -28,17 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       index: "03",
-      name: "Ocean Echoes, City Rhythms",
-      discipline: "Experience Design · Interactive Installation",
-      desc: "Campbells Cove is a place people pass through, but rarely engage with. Inspired by the rhythms of Sydney Harbour, this interactive installation transforms everyday bollards into playful musical instruments, encouraging strangers to co-create moments of sound, light, and connection in public space.",
-      image: "Ocean Echoes.jpg",
-    },
-    {
-      index: "04",
       name: "Yasumo",
       discipline: "Product Design · Software Interfaces",
       desc: "Japanese workplaces are often designed to maximise productivity rather than wellbeing. This project explores how an AI companion can help young professionals manage stress, communicate emotions safely, and create healthier workplace habits without disrupting existing cultural norms.",
       image: "Yasumo.jpg",
+    },
+    {
+      index: "04",
+      name: "The Underwater Metropolis of 2100",
+      discipline: "3D Modeling · Game Design",
+      desc: "This project explores how computational design can move beyond architecture to create interactive worlds. Using Grasshopper-based parametric modelling, marine biology, and speculative fiction, it develops a living underwater city where every structure contributes to environmental storytelling and gameplay.",
+      image: "The Underwater Metropolis.jpg",
     },
   ];
 

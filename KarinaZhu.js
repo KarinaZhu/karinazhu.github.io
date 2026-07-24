@@ -13,18 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const projects = [
     {
       index: "01",
-      name: "City2Surf",
-      discipline: "UI/UX Design · Website",
-      desc: "A bold identity system built around geometric precision and kinetic motion. Developed the full brand language including logomark, type system, and animated brand expressions for digital and physical touchpoints.",
-      image: "test.png",
+      name: "Crossing without Crossing",
+      discipline: "Experience Design · Interactive Installation",
+      desc: "A border begins as a line on a map, becomes a wall, and eventually becomes a story people inherit about who belongs and who does not. This project reframes the role of design. Not as a tool to remove borders, but as a way to momentarily disrupt the emotional distance they create and reveal the humanity that still exists on the other side.",
+      image: "Crossing without Crossing.jpg",
     },
 
     {
       index: "02",
-      name: "Ocean Echoes, City Rhythms",
-      discipline: "Experience Design · Interactive Installation",
-      desc: "An interactive public installation exploring the relationship between sound, movement, and urban environments.",
-      image: "Ocean Echoes, City Rhythms.png",
+      name: "City2Surf",
+      discipline: "UI/UX Design · Website",
+      desc: "City2Surf attracts thousands of participants each year, but large-scale events rarely create meaningful social connections. This project explores how digital interactions can become real-world engagement through a platform that helps runners discover like-minded participants, build communities before race day, and strengthen the event experience.",
+      image: "City2Surf.jpg",
     },
     {
       index: "03",

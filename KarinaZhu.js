@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "The Underwater Metropolis of 2100",
       discipline: "3D Modeling · Game Design",
       desc: "This project explores how computational design can move beyond architecture to create interactive worlds. Using Grasshopper-based parametric modelling, marine biology, and speculative fiction, it develops a living underwater city where every structure contributes to environmental storytelling and gameplay.",
-      image: "The Underwater Metropolis.jpg",
+      video: "video 3.mp4",
       live:"https://your-link.com"
     },
   ];

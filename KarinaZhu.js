@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discipline: "Experience Design · Interactive Installation",
       desc: "A border begins as a line on a map, becomes a wall, and eventually becomes a story people inherit about who belongs and who does not. This project reframes the role of design. Not as a tool to remove borders, but as a way to momentarily disrupt the emotional distance they create and reveal the humanity that still exists on the other side.",
       video: "A3 video.mp4",
+      image: "Crossing without crossing.jpg",
       live:"https://your-link.com"
     },
 
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discipline: "3D Modeling · Game Design",
       desc: "This project explores how computational design can move beyond architecture to create interactive worlds. Using Grasshopper-based parametric modelling, marine biology, and speculative fiction, it develops a living underwater city where every structure contributes to environmental storytelling and gameplay.",
       video: "video 3.mp4",
+      image: "The Underwater Metropolis.jpg",
       live:"https://your-link.com"
     },
   ];

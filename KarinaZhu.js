@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Crossing without Crossing",
       discipline: "Experience Design · Interactive Installation",
       desc: "A border begins as a line on a map, becomes a wall, and eventually becomes a story people inherit about who belongs and who does not. This project reframes the role of design. Not as a tool to remove borders, but as a way to momentarily disrupt the emotional distance they create and reveal the humanity that still exists on the other side.",
-      image: "Crossing without Crossing.jpg",
+      video: "A3 video.mp4",
+      live:"https://your-link.com"
     },
 
     {
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discipline: "UI/UX Design · Website",
       desc: "City2Surf attracts thousands of participants each year, but large-scale events rarely create meaningful social connections. This project explores how digital interactions can become real-world engagement through a platform that helps runners discover like-minded participants, build communities before race day, and strengthen the event experience.",
       image: "City2Surf.jpg",
+      live:"https://www.figma.com/proto/Aj1CnPZFbpNHQB0G7zyW2Y/Interface-Design-Final-Prototype?node-id=0-1&t=e66c6xBprdMVhdn7-1"
     },
     {
       index: "03",
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discipline: "Product Design · Software Interfaces",
       desc: "Japanese workplaces are often designed to maximise productivity rather than wellbeing. This project explores how an AI companion can help young professionals manage stress, communicate emotions safely, and create healthier workplace habits without disrupting existing cultural norms.",
       image: "Yasumo.jpg",
+      live:"https://your-link.com"
     },
     {
       index: "04",
@@ -39,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discipline: "3D Modeling · Game Design",
       desc: "This project explores how computational design can move beyond architecture to create interactive worlds. Using Grasshopper-based parametric modelling, marine biology, and speculative fiction, it develops a living underwater city where every structure contributes to environmental storytelling and gameplay.",
       image: "The Underwater Metropolis.jpg",
+      live:"https://your-link.com"
     },
   ];
 
@@ -297,11 +301,12 @@ document.addEventListener("DOMContentLoaded", () => {
   */
 
   const overlay = document.getElementById("modalOverlay");
-  const modalImg = document.getElementById("modalImg");
+  const modalVideo = document.getElementById("modalVideo");
   const modalIndex = document.getElementById("modalIndex");
   const modalTag = document.getElementById("modalTag");
   const modalTitle = document.getElementById("modalTitle");
   const modalDesc = document.getElementById("modalDesc");
+  const modalLive = document.getElementById("modalLive");
   const modalClose = document.getElementById("modalClose");
   const modalPrev = document.getElementById("modalPrev");
   const modalNext = document.getElementById("modalNext");
@@ -311,10 +316,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderModal() {
     const project = projects[currentIndex];
 
-    modalImg.src = project.image;
-    modalImg.alt = project.name;
+    modalVideo.src = project.video;
+modalVideo.load();
     modalIndex.textContent = project.index;
     modalTag.textContent = project.discipline;
+    modalLive.href = project.live || "#";
     modalTitle.textContent = project.name;
     modalDesc.textContent = project.desc;
 

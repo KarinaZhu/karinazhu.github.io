@@ -2233,3 +2233,29 @@ color:rgba(0,0,0,.65);
 [data-theme="light"] .modal-case p {
   color:rgba(0,0,0,0.65);
 }
+
+@media (max-width:600px){
+
+  .modal{
+
+      width: calc(100% - 20px);
+
+      max-height: 95vh;
+
+  }
+
+  .modal__image-wrap{
+
+      aspect-ratio: 4/3;
+
+  }
+
+  .modal__body{
+
+      max-height: calc(95vh - 260px);
+
+      padding: 24px;
+
+  }
+
+}

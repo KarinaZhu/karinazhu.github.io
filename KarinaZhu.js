@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // NOTE: replace with the real Vimeo numeric ID for this project (not a local filename).
       // e.g. video: "123456789"
       video: "",
-      image: "Crossing without Crossing.jpg",
+      image: "Crossing without crossing.jpg",
       live:"https://your-link.com"
     },
 
@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (project.video) {
       modalVimeo.src =
-        `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1`;
+        `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
     } else {
       modalVimeo.src = "";
     }

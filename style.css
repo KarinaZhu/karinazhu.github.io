@@ -2273,17 +2273,21 @@ Modal image hover glass
 .modal__image-wrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9; /* 控制视频区域比例 */
+  aspect-ratio: 16 / 9;
   background: black;
 }
 
 
-.modal__image-wrap video {
-  width: 100%;
-  height: 100%;
-  display: block;
+.modal__image-wrap iframe {
 
-  object-fit: cover;
+  width:100%;
+  height:100%;
+
+  border:0;
+
+  display:block;
+
+  pointer-events:none;
 }
 
 .modal__image-wrap:hover video {

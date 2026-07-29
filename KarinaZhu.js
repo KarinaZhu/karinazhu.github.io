@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Crossing without Crossing",
       discipline: "Experience Design · Interactive Installation",
       desc: "A border begins as a line on a map, becomes a wall, and eventually becomes a story people inherit about who belongs and who does not. This project reframes the role of design. Not as a tool to remove borders, but as a way to momentarily disrupt the emotional distance they create and reveal the humanity that still exists on the other side.",
-      video: "A3 video.mp4",
+      // NOTE: replace with the real Vimeo numeric ID for this project (not a local filename).
+      // e.g. video: "123456789"
+      video: "",
       image: "Crossing without crossing.jpg",
       live:"https://your-link.com"
     },
@@ -42,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "The Underwater Metropolis of 2100",
       discipline: "3D Modeling · Game Design",
       desc: "This project explores how computational design can move beyond architecture to create interactive worlds. Using Grasshopper-based parametric modelling, marine biology, and speculative fiction, it develops a living underwater city where every structure contributes to environmental storytelling and gameplay.",
-      video: "video 3.mp4",
+      // This is the Vimeo ID that was previously hardcoded into the iframe in index.html.
+      video: "1213190724",
       image: "The Underwater Metropolis.jpg",
       live:"https://your-link.com"
     },
@@ -303,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
   */
 
   const overlay = document.getElementById("modalOverlay");
-  const modalVideo = document.getElementById("modalVideo");
+  const modalVimeo = document.getElementById("modalVimeo"); // FIX: was missing / mismatched with the HTML id
   const modalIndex = document.getElementById("modalIndex");
   const modalTag = document.getElementById("modalTag");
   const modalTitle = document.getElementById("modalTitle");
@@ -316,15 +319,28 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
 
   function renderModal() {
+
     const project = projects[currentIndex];
 
-    modalVideo.src = project.video;
-modalVideo.load();
     modalIndex.textContent = project.index;
     modalTag.textContent = project.discipline;
-    modalLive.href = project.live || "#";
     modalTitle.textContent = project.name;
     modalDesc.textContent = project.desc;
+
+    if (project.video) {
+      modalVimeo.src =
+        `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1`;
+    } else {
+      modalVimeo.src = "";
+    }
+
+    if (project.live) {
+      modalLive.href = project.live;
+      modalLive.style.display = "";
+    } else {
+      modalLive.removeAttribute("href");
+      modalLive.style.display = "none";
+    }
 
     modalPrev.disabled = currentIndex === 0;
     modalNext.disabled = currentIndex === projects.length - 1;
@@ -340,6 +356,7 @@ modalVideo.load();
   function closeModal() {
     overlay.classList.remove("open");
     document.body.style.overflow = "";
+    modalVimeo.src = ""; // stop playback when closing
   }
 
   function previousProject() {

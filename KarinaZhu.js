@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // NOTE: replace with the real Vimeo numeric ID for this project (not a local filename).
       // e.g. video: "123456789"
       video: "",
-      image: "Crossing without crossing.jpg",
+      image: "Crossing without Crossing.jpg",
       live:"https://your-link.com"
     },
 

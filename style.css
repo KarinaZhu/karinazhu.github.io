@@ -2411,3 +2411,8 @@ Modal image hover glass
     translate(-50%,-50%);
 
 }
+
+/* Marketing page spacing */
+#work {
+  padding-top: 80px;
+}

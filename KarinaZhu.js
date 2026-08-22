@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
   */
 
   const overlay = document.getElementById("modalOverlay");
-  const modalVimeo = document.getElementById("modalVimeo"); // FIX: was missing / mismatched with the HTML id
+  const modalVimeo = document.getElementById("modalVimeo"); 
   const modalIndex = document.getElementById("modalIndex");
   const modalTag = document.getElementById("modalTag");
   const modalTitle = document.getElementById("modalTitle");
@@ -320,31 +320,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderModal() {
 
-    const project = projects[currentIndex];
+  const project = projects[currentIndex];
 
-    modalIndex.textContent = project.index;
-    modalTag.textContent = project.discipline;
-    modalTitle.textContent = project.name;
-    modalDesc.textContent = project.desc;
+  modalIndex.textContent = project.index;
+  modalTag.textContent = project.discipline;
+  modalTitle.textContent = project.name;
+  modalDesc.textContent = project.desc;
 
-    if (project.video) {
-      modalVimeo.src =
-        `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
-    } else {
-      modalVimeo.src = "";
+  /*
+  ==========================
+  Modal media
+  ==========================
+  */
+
+  if (project.video) {
+
+    // Has video → show Vimeo
+    modalVimeo.style.display = "block";
+
+    modalVimeo.src =
+      `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
+
+  } else {
+
+    // No video → show project image
+    modalVimeo.src = "";
+    modalVimeo.style.display = "none";
+
+    const modalImage = document.getElementById("modalImage");
+
+    if (modalImage) {
+      modalImage.src = project.image;
+      modalImage.alt = project.name;
+      modalImage.style.display = "block";
     }
-
-    if (project.live) {
-      modalLive.href = project.live;
-      modalLive.style.display = "";
-    } else {
-      modalLive.removeAttribute("href");
-      modalLive.style.display = "none";
-    }
-
-    modalPrev.disabled = currentIndex === 0;
-    modalNext.disabled = currentIndex === projects.length - 1;
   }
+
+  /*
+  ==========================
+  Live link
+  ==========================
+  */
+
+  if (project.live) {
+    modalLive.href = project.live;
+    modalLive.style.display = "";
+  } else {
+    modalLive.removeAttribute("href");
+    modalLive.style.display = "none";
+  }
+
+  modalPrev.disabled = currentIndex === 0;
+  modalNext.disabled = currentIndex === projects.length - 1;
+}
 
   function openModal(index) {
     currentIndex = index;
@@ -405,23 +433,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.querySelectorAll(".project").forEach((item) => {
-    const index = Number(item.dataset.project);
-    const project = projects[index];
+  const index = Number(item.dataset.project);
+  const project = projects[index];
 
-    item.addEventListener("click", () => openModal(index));
+  item.addEventListener("click", () => openModal(index));
 
-    item.addEventListener("mouseenter", (e) => {
-      previewImg.src = project.image;
-      preview.classList.add("active");
-      movePreview(e);
-    });
+  item.addEventListener("mouseenter", (e) => {
+    previewImg.src = project.image;
+    preview.classList.add("active");
+    movePreview(e);
 
-    item.addEventListener("mousemove", movePreview);
+    /*
+    ==========================
+    Preload video on hover
+    ==========================
+    */
 
-    item.addEventListener("mouseleave", () => {
-      preview.classList.remove("active");
-    });
+    if (project.video) {
+      if (!project.preloadedVideo) {
+        project.preloadedVideo = document.createElement("iframe");
+
+        project.preloadedVideo.src =
+          `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
+
+        project.preloadedVideo.style.position = "absolute";
+        project.preloadedVideo.style.width = "1px";
+        project.preloadedVideo.style.height = "1px";
+        project.preloadedVideo.style.opacity = "0";
+        project.preloadedVideo.style.pointerEvents = "none";
+
+        document.body.appendChild(project.preloadedVideo);
+      }
+    }
   });
+
+  item.addEventListener("mousemove", movePreview);
+
+  item.addEventListener("mouseleave", () => {
+    preview.classList.remove("active");
+  });
+});
 
 
   /*

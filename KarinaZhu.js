@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discipline: "UI/UX Design · Website",
       desc: "City2Surf attracts thousands of participants each year, but large-scale events rarely create meaningful social connections. This project explores how digital interactions can become real-world engagement through a platform that helps runners discover like-minded participants, build communities before race day, and strengthen the event experience.",
       image: "City2Surf.jpg",
-      live:"https://www.figma.com/proto/Aj1CnPZFbpNHQB0G7zyW2Y/Interface-Design-Final-Prototype?node-id=0-1&t=e66c6xBprdMVhdn7-1"
+      live:"https://www.figma.com/proto/Aj1CnPZFbpNHQB0G7zyW2Y/Interface-Design-Final-Prototype?node-id=19-17718&p=f&viewport=-134%2C-930%2C0.06&t=klb0oBT9Qfg6wygb-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=19%3A17691&page-id=0%3A1"
     },
     {
       index: "03",
@@ -307,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("modalOverlay");
   const modalVimeo = document.getElementById("modalVimeo"); 
+  const modalImage = document.getElementById("modalImage");
   const modalIndex = document.getElementById("modalIndex");
   const modalTag = document.getElementById("modalTag");
   const modalTitle = document.getElementById("modalTitle");
@@ -335,26 +336,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (project.video) {
 
-    // Has video → show Vimeo
-    modalVimeo.style.display = "block";
+  // Show video
+  modalImage.style.display = "none";
+  modalImage.src = "";
 
-    modalVimeo.src =
-      `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
+  modalVimeo.style.display = "block";
+  modalVimeo.src =
+    `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
 
-  } else {
+} else {
 
-    // No video → show project image
-    modalVimeo.src = "";
-    modalVimeo.style.display = "none";
+  // Show image
+  modalVimeo.src = "";
+  modalVimeo.style.display = "none";
 
-    const modalImage = document.getElementById("modalImage");
-
-    if (modalImage) {
-      modalImage.src = project.image;
-      modalImage.alt = project.name;
-      modalImage.style.display = "block";
-    }
-  }
+  modalImage.style.display = "block";
+  modalImage.src = project.image;
+  modalImage.alt = project.name;
+}
 
   /*
   ==========================

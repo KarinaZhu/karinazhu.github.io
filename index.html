@@ -267,10 +267,25 @@
     <img src="" alt="" id="hoverPreviewImg">
   </div>
 
-  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal" id="modal">
-      <button class="modal__close" id="modalClose" aria-label="Close modal">✕</button>
-      <div class="modal__image-wrap">
+  <div
+  class="modal-overlay"
+  id="modalOverlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+  >
+  
+  <div class="modal" id="modal">
+    
+    <button
+    class="modal__close"
+    id="modalClose"
+    aria-label="Close modal"
+    >
+    ✕
+  </button>
+  
+  <div class="modal__image-wrap">
 
   <img
     id="modalImage"
@@ -301,19 +316,38 @@
 </div>
 
 </div>
-      <div class="modal__body">
-        <div class="modal__meta">
-          <span class="modal__index" id="modalIndex"></span>
-          <span class="modal__tag" id="modalTag"></span>
-        </div>
-        <h2 class="modal__title" id="modalTitle"></h2>
-        <p class="modal__desc" id="modalDesc"></p>
-        <div class="modal__nav">
-          <button class="modal__nav-btn" id="modalPrev">← Prev</button>
-          <button class="modal__nav-btn" id="modalNext">Next →</button>
-        </div>
+
+<!-- Content -->
+    <div class="modal__body">
+
+      <div class="modal__meta">
+        <span class="modal__index" id="modalIndex"></span>
+        <span class="modal__tag" id="modalTag"></span>
       </div>
+
+      <h2 class="modal__title" id="modalTitle"></h2>
+
+      <p class="modal__desc" id="modalDesc"></p>
+
+      <div class="modal__nav">
+        <button
+          class="modal__nav-btn"
+          id="modalPrev"
+          type="button"
+        >
+          ← Prev
+        </button>
+
+        <button
+          class="modal__nav-btn"
+          id="modalNext"
+          type="button"
+        >
+          Next →
+        </button>
+      </div>
+
     </div>
+
   </div>
-</body>
-</html>
+</div>

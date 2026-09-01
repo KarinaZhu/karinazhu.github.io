@@ -336,24 +336,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (project.video) {
 
-  // Show video
-  modalImage.style.display = "none";
-  modalImage.src = "";
+   // Has video → show Vimeo
+    modalVimeo.style.display = "block";
 
-  modalVimeo.style.display = "block";
-  modalVimeo.src =
-    `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
 
-} else {
+    modalVimeo.src =
+      `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
 
-  // Show image
-  modalVimeo.src = "";
-  modalVimeo.style.display = "none";
 
-  modalImage.style.display = "block";
-  modalImage.src = project.image;
-  modalImage.alt = project.name;
-}
+  } else {
+
+    // No video → show project image
+    modalVimeo.src = "";
+    modalVimeo.style.display = "none";
+
+    const modalImage = document.getElementById("modalImage");
+
+
+
+    if (modalImage) {
+      modalImage.src = project.image;
+      modalImage.alt = project.name;
+      modalImage.style.display = "block";
+    }
+  }
 
   /*
   ==========================

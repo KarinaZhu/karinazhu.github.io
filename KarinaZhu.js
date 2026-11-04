@@ -169,76 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loop: true
     });
   }
-
-
-  /*
-  ==========================
-  Archive stacks
-  ==========================
-  */
-
-  function initStacks() {
-    const stacks = document.querySelectorAll(".stack");
-    const drawer = document.getElementById("stack-drawer");
-
-    if (!stacks.length || !drawer) return;
-
-    function closeDrawer() {
-      drawer.classList.remove("open");
-      drawer.innerHTML = "";
-    }
-
-    function openDrawer(stack) {
-      const label = stack.querySelector(".stack-label")?.textContent ?? "";
-      const images = Array.from(
-        stack.querySelectorAll(".stack-layer img, .stack-cover img")
-      ).map((img) => img.getAttribute("src"));
-
-      const items = images
-        .map(
-          (src) =>
-            `<div class="stack-drawer__item"><img src="${src}" alt="" loading="lazy"></div>`
-        )
-        .join("");
-
-      drawer.innerHTML = `
-        <h3 class="stack-drawer__heading">${label}</h3>
-        <div class="stack-drawer__grid">${items}</div>
-      `;
-
-      drawer.classList.add("open");
-    }
-
-    function toggleStack(stack) {
-      const isOpen = stack.getAttribute("aria-pressed") === "true";
-
-      stacks.forEach((s) => s.setAttribute("aria-pressed", "false"));
-
-      if (isOpen) {
-        closeDrawer();
-        return;
-      }
-
-      stack.setAttribute("aria-pressed", "true");
-      openDrawer(stack);
-    }
-
-    stacks.forEach((stack) => {
-      stack.addEventListener("click", () => toggleStack(stack));
-
-      stack.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggleStack(stack);
-        }
-      });
-    });
-  }
-
-  initStacks();
-
-
-  /*
+/*
   ==========================
   Hero tile hover popup
   ==========================
@@ -299,130 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateNavState);
   updateNavState();
 
-   /*
-  ==========================
-  Modal
-  ==========================
-  */
-
-  const overlay = document.getElementById("modalOverlay");
-  const modalVimeo = document.getElementById("modalVimeo"); 
-  const modalImage = document.getElementById("modalImage");
-  const modalIndex = document.getElementById("modalIndex");
-  const modalTag = document.getElementById("modalTag");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalLive = document.getElementById("modalLive");
-  const modalClose = document.getElementById("modalClose");
-  const modalPrev = document.getElementById("modalPrev");
-  const modalNext = document.getElementById("modalNext");
-
-  let currentIndex = 0;
-
-  function renderModal() {
-
-  const project = projects[currentIndex];
-
-  modalIndex.textContent = project.index;
-  modalTag.textContent = project.discipline;
-  modalTitle.textContent = project.name;
-  modalDesc.textContent = project.desc;
-
-  /*
-  ==========================
-  Modal media
-  ==========================
-  */
-
-  if (project.video) {
-
-   // Has video → show Vimeo
-    modalVimeo.style.display = "block";
-
-
-    modalVimeo.src =
-      `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
-
-
-  } else {
-
-    // No video → show project image
-    modalVimeo.src = "";
-    modalVimeo.style.display = "none";
-
-    const modalImage = document.getElementById("modalImage");
-
-
-
-    if (modalImage) {
-      modalImage.src = project.image;
-      modalImage.alt = project.name;
-      modalImage.style.display = "block";
-    }
-  }
-
-  /*
-  ==========================
-  Live link
-  ==========================
-  */
-
-  if (project.live) {
-    modalLive.href = project.live;
-    modalLive.style.display = "";
-  } else {
-    modalLive.removeAttribute("href");
-    modalLive.style.display = "none";
-  }
-
-  modalPrev.disabled = currentIndex === 0;
-  modalNext.disabled = currentIndex === projects.length - 1;
-}
-
-  function openModal(index) {
-    currentIndex = index;
-    renderModal();
-    overlay.classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    overlay.classList.remove("open");
-    document.body.style.overflow = "";
-    modalVimeo.src = ""; // stop playback when closing
-  }
-
-  function previousProject() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      renderModal();
-    }
-  }
-
-  function nextProject() {
-    if (currentIndex < projects.length - 1) {
-      currentIndex++;
-      renderModal();
-    }
-  }
-
-  modalClose?.addEventListener("click", closeModal);
-  modalPrev?.addEventListener("click", previousProject);
-  modalNext?.addEventListener("click", nextProject);
-
-  overlay?.addEventListener("click", (e) => {
-    if (e.target === overlay) closeModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (!overlay.classList.contains("open")) return;
-
-    if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowLeft") previousProject();
-    if (e.key === "ArrowRight") nextProject();
-  });
-
-
   /*
   ==========================
   Project hover preview
@@ -440,36 +247,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".project").forEach((item) => {
   const index = Number(item.dataset.project);
   const project = projects[index];
-
-  item.addEventListener("click", () => openModal(index));
-
-  item.addEventListener("mouseenter", (e) => {
+item.addEventListener("mouseenter", (e) => {
     previewImg.src = project.image;
     preview.classList.add("active");
     movePreview(e);
 
-    /*
-    ==========================
-    Preload video on hover
-    ==========================
-    */
-
-    if (project.video) {
-      if (!project.preloadedVideo) {
-        project.preloadedVideo = document.createElement("iframe");
-
-        project.preloadedVideo.src =
-          `https://player.vimeo.com/video/${project.video}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0`;
-
-        project.preloadedVideo.style.position = "absolute";
-        project.preloadedVideo.style.width = "1px";
-        project.preloadedVideo.style.height = "1px";
-        project.preloadedVideo.style.opacity = "0";
-        project.preloadedVideo.style.pointerEvents = "none";
-
-        document.body.appendChild(project.preloadedVideo);
-      }
-    }
   });
 
   item.addEventListener("mousemove", movePreview);

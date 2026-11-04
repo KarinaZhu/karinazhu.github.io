@@ -157,11 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.Typed && document.querySelector(".rn-text")) {
     new Typed(".rn-text", {
       strings: [
-        "Karina Zhu",
-        "MIDEA Graduate @ USYD",
-        "Product Designer",
-        "Digital Marketer",
-        "Content Creator",
+        "KARINA ZHU",
+        "FOUNDER @ Pilates Circle",
+        "MIDEA @ University of Sydney",
+        "PRODUCT DESIGNER",
+        "DIGITAL MARKETER",
       ],
       typeSpeed: 70,
       backSpeed: 40,

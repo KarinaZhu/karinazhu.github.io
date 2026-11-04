@@ -7,6 +7,8 @@
   --color-text-muted: rgba(255, 255, 255, 0.35);
   --color-text-faint: rgba(255, 255, 255, 0.15);
   --color-accent: #ffffff;
+  --color-brand: #9cb7c7;
+  --color-brand-soft: rgba(156, 183, 199, 0.14);
   --font-sans: "DM Sans", sans-serif;
   --font-serif: "DM Serif Display", serif;
   --font-pixel: "Press Start 2P", monospace;
@@ -20,14 +22,16 @@
 }
 
 [data-theme="light"] {
-  --color-bg: #f4f1ec;
-  --color-surface: #ffffff;
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-text-primary: rgba(0, 0, 0, 0.88);
-  --color-text-secondary: rgba(0, 0, 0, 0.64);
-  --color-text-muted: rgba(0, 0, 0, 0.4);
-  --color-text-faint: rgba(0, 0, 0, 0.2);
-  --color-accent: #000000;
+  --color-bg: #ffffff;
+  --color-surface: #f8fbfd;
+  --color-border: rgba(111, 143, 162, 0.16);
+  --color-text-primary: rgba(17, 25, 30, 0.90);
+  --color-text-secondary: rgba(17, 25, 30, 0.64);
+  --color-text-muted: rgba(17, 25, 30, 0.42);
+  --color-text-faint: rgba(17, 25, 30, 0.20);
+  --color-accent: #11191e;
+  --color-brand: #6f8fa2;
+  --color-brand-soft: rgba(111, 143, 162, 0.12);
   color-scheme: light;
 }
 
@@ -244,9 +248,9 @@ a {
 }
 
 [data-theme="light"] .nav.scrolled {
-  border: 1px solid rgba(255, 143, 171, 0.55);
-  background: rgba(255, 214, 224, 0.55);
-  box-shadow: 0 8px 30px rgba(255, 91, 133, 0.18);
+  border: 1px solid rgba(111, 143, 162, 0.28);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 30px rgba(111, 143, 162, 0.16);
 }
 
 .nav__link {
@@ -350,7 +354,7 @@ a {
 }
 
 [data-theme="light"] .hero-gradient {
-  background: #fffaf8;
+  background: #ffffff;
 }
 
 .hero-gradient__blob {
@@ -370,7 +374,7 @@ a {
   height: 62vw;
   max-width: 680px;
   max-height: 680px;
-  background: radial-gradient(circle at 60% 35%, #ffe9ee 0%, #ff2f74 40%, #7a0e38 68%, transparent 80%);
+  background: radial-gradient(circle at 60% 35%, #e7f0f4 0%, #6f93a8 40%, #233f50 68%, transparent 80%);
   opacity: 0.75;
   animation: blob-drift-1 22s ease-in-out infinite;
 }
@@ -382,7 +386,7 @@ a {
   height: 55vw;
   max-width: 560px;
   max-height: 560px;
-  background: radial-gradient(circle at 62% 60%, #e8879c, #7a3450 50%, transparent 74%);
+  background: radial-gradient(circle at 62% 60%, #89a7b8, #34586b 50%, transparent 74%);
   opacity: 0.4;
   animation: blob-drift-2 26s ease-in-out infinite;
 }
@@ -394,7 +398,7 @@ a {
   height: 30vw;
   max-width: 340px;
   max-height: 340px;
-  background: radial-gradient(circle, #3a0a1e, transparent 72%);
+  background: radial-gradient(circle, #193746, transparent 72%);
   opacity: 0.5;
   transform: translate(-50%, -50%);
   animation: blob-drift-3 30s ease-in-out infinite;
@@ -406,7 +410,7 @@ a {
 }
 
 [data-theme="light"] .hero-gradient__blob--1 {
-  background: radial-gradient(circle at 32% 32%, #ffe3ea 0%, #ff5b85 38%, #ff0f66 70%, transparent 85%);
+  background: radial-gradient(circle at 32% 32%, #ffffff 0%, #eef5f8 26%, #c7dbe6 48%, #9eb3c0 70%, transparent 86%);
   opacity: 0.85;
   width: 78vw;
   height: 78vw;
@@ -415,7 +419,7 @@ a {
 }
 
 [data-theme="light"] .hero-gradient__blob--2 {
-  background: radial-gradient(circle at 66% 68%, #ff2e73, #ffd0dc 55%, transparent 82%);
+  background: radial-gradient(circle at 66% 68%, #a9c0cd 0%, #dbe9f0 42%, #ffffff 72%, transparent 86%);
   opacity: 0.85;
   width: 72vw;
   height: 72vw;
@@ -424,7 +428,7 @@ a {
 }
 
 [data-theme="light"] .hero-gradient__blob--3 {
-  background: radial-gradient(circle, #ff86a8, transparent 74%);
+  background: radial-gradient(circle, #849eae 0%, #b9ccd6 38%, rgba(255,255,255,0) 76%);
   opacity: 0.65;
   width: 42vw;
   height: 42vw;
@@ -1498,7 +1502,7 @@ a {
 
 .cs-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 91, 133, 0.5);
+  border-color: rgba(111, 143, 162, 0.48);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
 }
 
@@ -1525,13 +1529,13 @@ a {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  background: rgba(255, 91, 133, 0.14) !important;
-  color: #ff5b85 !important;
+  background: var(--color-brand-soft) !important;
+  color: var(--color-brand) !important;
 }
 
 [data-theme="light"] .csc-badge {
-  background: rgba(255, 91, 133, 0.14) !important;
-  color: #c81956 !important;
+  background: var(--color-brand-soft) !important;
+  color: #567487 !important;
 }
 
 .csc-meta {
@@ -1868,7 +1872,7 @@ a {
 }
 
 .csp-eyebrow {
-  color: #ff5b85;
+  color: var(--color-brand);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -1927,7 +1931,7 @@ a {
 }
 
 .csp-jump a:hover {
-  border-color: rgba(255, 91, 133, 0.5);
+  border-color: rgba(111, 143, 162, 0.48);
   color: var(--color-accent);
 }
 
@@ -2030,7 +2034,7 @@ a {
 
 .csp-more-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(255, 91, 133, 0.5);
+  border-color: rgba(111, 143, 162, 0.48);
 }
 
 .csp-more-thumb {
@@ -2415,4 +2419,89 @@ Modal image hover glass
 /* Marketing page spacing */
 #work {
   padding-top: 80px;
+}，
+/* ==========================================================
+   LIGHT THEME POLISH — WHITE + CURRENT BLUE
+   Keeps the existing blue family while making white dominant.
+   ========================================================== */
+
+[data-theme="light"] body {
+  background: #ffffff;
+}
+
+[data-theme="light"] .theme-toggle {
+  border-color: rgba(111, 143, 162, 0.22);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 6px 20px rgba(111, 143, 162, 0.08);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  border-color: rgba(111, 143, 162, 0.48);
+  background: #ffffff;
+}
+
+[data-theme="light"] .hero-status {
+  border-color: rgba(111, 143, 162, 0.20);
+  background: rgba(255, 255, 255, 0.56);
+  box-shadow: 0 8px 26px rgba(111, 143, 162, 0.08);
+}
+
+[data-theme="light"] .hero-tile {
+  border-color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 42px rgba(73, 99, 114, 0.16);
+}
+
+[data-theme="light"] .hero-tile:hover {
+  box-shadow: 0 22px 52px rgba(73, 99, 114, 0.22);
+}
+
+[data-theme="light"] .hero-tile__popup {
+  border-color: rgba(111, 143, 162, 0.18);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 32px rgba(73, 99, 114, 0.14);
+}
+
+[data-theme="light"] .stack-cover,
+[data-theme="light"] .stack-layer,
+[data-theme="light"] .stack-drawer__item,
+[data-theme="light"] .cs-card,
+[data-theme="light"] .exp-icon {
+  border-color: rgba(111, 143, 162, 0.14);
+}
+
+[data-theme="light"] .cs-card {
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgba(111, 143, 162, 0.06);
+}
+
+[data-theme="light"] .cs-card:hover {
+  border-color: rgba(111, 143, 162, 0.46);
+  box-shadow: 0 24px 50px rgba(111, 143, 162, 0.14);
+}
+
+[data-theme="light"] .csc-badge {
+  background: rgba(111, 143, 162, 0.11) !important;
+  color: #567487 !important;
+}
+
+[data-theme="light"] .contact-card {
+  border-color: rgba(111, 143, 162, 0.16);
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(73, 99, 114, 0.12);
+}
+
+[data-theme="light"] .contact-action {
+  border-color: rgba(111, 143, 162, 0.14);
+  background: rgba(111, 143, 162, 0.05);
+}
+
+[data-theme="light"] .contact-action:hover {
+  border-color: rgba(111, 143, 162, 0.30);
+  background: rgba(111, 143, 162, 0.09);
+}
+
+[data-theme="light"] .contact-card__top {
+  border-color: rgba(111, 143, 162, 0.16);
+  background: #ffffff;
+  color: #6f8fa2;
 }

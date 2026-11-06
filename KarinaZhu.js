@@ -55,67 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*
   ==========================
-  Loader
-  ==========================
-  */
-
-  const loader = document.getElementById("loader");
-  const loaderText = document.querySelector(".loader-text");
-  const hero = document.querySelector(".hero");
-
-  const loadingMessages = [
-    "Welcome to Karina Zhu's design world.",
-    "Crafting meaningful experiences.",
-    "Designing beyond pixels.",
-    "Turning ideas into interactions.",
-    "Creating with purpose.",
-    "Almost there..."
-  ];
-
-  let loadingIndex = 0;
-
-  function rotateLoadingText() {
-    if (!loaderText) return;
-
-    loaderText.style.opacity = 0;
-
-    setTimeout(() => {
-      loaderText.textContent = loadingMessages[loadingIndex];
-      loaderText.style.opacity = 1;
-      loadingIndex = (loadingIndex + 1) % loadingMessages.length;
-    }, 300);
-  }
-
-  rotateLoadingText();
-
-  const loadingInterval = setInterval(rotateLoadingText, 1500);
-
-  const MIN_LOADING_TIME = 2200;
-  const startTime = Date.now();
-
-  function finishLoading() {
-    clearInterval(loadingInterval);
-
-    const elapsed = Date.now() - startTime;
-    const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
-
-    setTimeout(() => {
-      loader?.classList.add("hidden");
-      hero?.classList.add("hero-ready");
-    }, remaining);
-  }
-
-  if (document.readyState === "complete") {
-    finishLoading();
-  } else {
-    window.addEventListener("load", finishLoading);
-  }
-
-  setTimeout(finishLoading, 4000);
-
-
-  /*
-  ==========================
   Theme toggle
   ==========================
   */

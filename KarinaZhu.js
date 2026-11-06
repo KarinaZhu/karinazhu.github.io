@@ -245,4 +245,45 @@ item.addEventListener("mouseenter", (e) => {
     observer.observe(el);
   });
 
+
+
+  /*
+  ==========================
+  Case study image loading
+  ==========================
+  */
+  document.querySelectorAll(".c2s-image-frame img, .c2s-hero-media img").forEach((img) => {
+    const frame = img.closest(".c2s-image-frame, .c2s-hero-media");
+
+    const revealImage = () => {
+      img.classList.add("is-loaded");
+      frame?.classList.add("is-loaded");
+    };
+
+    if (img.complete && img.naturalWidth > 0) {
+      requestAnimationFrame(revealImage);
+    } else {
+      img.addEventListener("load", revealImage, { once: true });
+
+      img.addEventListener("error", () => {
+        frame?.classList.add("is-loaded");
+        const fallback = frame?.querySelector(".c2s-image-fallback");
+        if (fallback) fallback.style.display = "grid";
+        img.style.display = "none";
+      }, { once: true });
+    }
+  });
+
+
+
+  document.querySelectorAll(".csc-static, .case-study-media img").forEach((img) => {
+    const show = () => img.classList.add("is-loaded");
+
+    if (img.complete && img.naturalWidth > 0) {
+      requestAnimationFrame(show);
+    } else {
+      img.addEventListener("load", show, { once: true });
+    }
+  });
+
 });

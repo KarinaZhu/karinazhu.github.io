@@ -2569,3 +2569,24 @@ Modal image hover glass
 .case-study-media iframe {
   border-radius: 0 !important;
 }
+
+
+/* ==========================================================
+   IMAGE LOADING POLISH — smoother card/media rendering
+   ========================================================== */
+
+.csc-img-panel,
+.case-study-media {
+  background: rgba(111, 143, 162, 0.05);
+}
+
+.csc-static,
+.case-study-media img {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.csc-static.is-loaded,
+.case-study-media img.is-loaded {
+  opacity: 1;
+}

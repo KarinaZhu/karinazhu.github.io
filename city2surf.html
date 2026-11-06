@@ -12,11 +12,131 @@
   <link rel="stylesheet" href="style.css">
   <script defer src="KarinaZhu.js"></script>
   <style>
+
+    :root{
+      --c2s-blue:#7898aa;
+      --c2s-blue-soft:#8ea9b8;
+      --c2s-image-bg:transparent;
+    }
+    [data-theme="light"]{
+      --c2s-blue:#688b9f;
+      --c2s-blue-soft:#7f9faf;
+      --c2s-image-bg:#ffffff;
+    }
+
+
+    .c2s-section__index{
+      font-size:11.5px !important;
+      letter-spacing:.12em !important;
+      font-weight:600 !important;
+      opacity:.78;
+      line-height:1.4;
+    }
+
+    .c2s-decision__index{
+      font-size:11.5px !important;
+      letter-spacing:.11em !important;
+      opacity:.76;
+    }
+
+    .c2s-title,
+    .c2s-section__title,
+    .c2s-next__title{
+      color:var(--c2s-blue) !important;
+    }
+
+    .c2s-kicker,
+    .c2s-section__index,
+    .c2s-label,
+    .c2s-decision__index,
+    .c2s-next__arrow{
+      color:var(--c2s-blue-soft) !important;
+    }
+
+    .c2s-image-frame,
+    .c2s-hero-media{
+      position:relative;
+      background:var(--c2s-image-bg);
+    }
+    [data-theme="light"] .c2s-image-frame,
+    [data-theme="light"] .c2s-hero-media{
+      background:#ffffff;
+    }
+
+    .c2s-image-frame img,
+    .c2s-hero-media img{
+      opacity:0;
+      filter:blur(6px);
+      transform:scale(1.006);
+      transition:
+        opacity .55s ease,
+        filter .7s ease,
+        transform .7s ease;
+    }
+
+    .c2s-image-frame img.is-loaded,
+    .c2s-hero-media img.is-loaded{
+      opacity:1;
+      filter:blur(0);
+      transform:scale(1);
+    }
+
+    .c2s-image-frame::before,
+    .c2s-hero-media::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        linear-gradient(
+          100deg,
+          transparent 20%,
+          rgba(255,255,255,.12) 40%,
+          transparent 60%
+        );
+      background-size:200% 100%;
+      animation:c2s-image-shimmer 1.5s ease-in-out infinite;
+      opacity:.55;
+    }
+
+    .c2s-image-frame.is-loaded::before,
+    .c2s-hero-media.is-loaded::before{
+      opacity:0;
+      animation:none;
+      transition:opacity .35s ease;
+    }
+
+    .c2s-image-frame img,
+    .c2s-hero-media img,
+    .c2s-image-fallback{
+      position:relative;
+      z-index:1;
+    }
+
+    @keyframes c2s-image-shimmer{
+      0%{background-position:180% 0}
+      100%{background-position:-80% 0}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .c2s-image-frame img,
+      .c2s-hero-media img{
+        transition:none;
+        filter:none;
+        transform:none;
+      }
+      .c2s-image-frame::before,
+      .c2s-hero-media::before{
+        animation:none;
+      }
+    }
+
     .c2s-page{padding:144px 0 96px}
     .c2s-shell{width:min(1180px,calc(100% - 64px));margin:0 auto}
     .c2s-back{display:inline-flex;gap:8px;margin-bottom:72px;color:var(--color-text-muted);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
     .c2s-hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,.5fr);gap:80px;align-items:end;padding-bottom:56px;border-bottom:1px solid var(--color-border)}
-    .c2s-kicker,.c2s-section__index,.c2s-label,.c2s-decision__index{color:var(--color-brand);font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase}
+    .c2s-kicker,.c2s-section__index,.c2s-label,.c2s-decision__index{color:var(--color-brand);font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
     .c2s-title{margin-top:18px;color:var(--color-brand);font-family:var(--font-serif);font-size:clamp(58px,8.8vw,112px);font-weight:400;line-height:.94;letter-spacing:-.035em}
     .c2s-thesis{margin-top:28px;max-width:760px;color:var(--color-text-primary);font-size:clamp(24px,3.2vw,44px);font-weight:500;line-height:1.12;letter-spacing:-.025em}
     .c2s-meta{display:grid;gap:18px}
@@ -32,7 +152,7 @@
     .c2s-copy{color:var(--color-text-secondary);font-size:17px;line-height:1.75}
     .c2s-copy p+p{margin-top:18px}
     .c2s-visual{margin-top:56px}
-    .c2s-caption{margin-top:12px;color:var(--color-text-muted);font-size:11px}
+    .c2s-caption{margin-top:10px;color:var(--color-text-muted);font-size:8.5px;line-height:1.45;letter-spacing:.01em}
     .c2s-placeholder{display:grid;place-items:center;min-height:380px;padding:36px;border:1px dashed rgba(111,143,162,.36);border-radius:16px;background:var(--color-surface);color:var(--color-text-muted);text-align:center}
     .c2s-placeholder strong{display:block;margin-bottom:8px;color:var(--color-accent);font-size:14px;font-weight:500}
     .c2s-insights,.c2s-strategy{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border);border-radius:16px;overflow:hidden}
@@ -148,8 +268,7 @@
 </section>
 
 <figure class="c2s-hero-media reveal">
-  <img src="city2surf-01-hero-final.jpg" alt="City2Surf final interface mockup"
-       onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-01-hero-final.jpg" alt="City2Surf final interface mockup">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-01-hero-final.jpg</strong>Screenshot the laptop mockup from City2Surf 2.0, page 1, top-right.</div>
   </div>
@@ -182,7 +301,7 @@
     </div>
   </div>
 <figure class="c2s-image-frame">
-  <img src="city2surf-02-existing-start-waves.jpg" alt="Original City2Surf starting wave system" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-02-existing-start-waves.jpg" alt="Original City2Surf starting wave system">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-02-existing-start-waves.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -209,28 +328,28 @@
   </div>
   <div class="c2s-shot-grid c2s-visual">
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-03-research-meetup.jpg" alt="Meetup competitor research" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-03-research-meetup.jpg" alt="Meetup competitor research">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-03-research-meetup.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">City2Surf 1.0, page 2 — Meetup research board.</p>
 </figure>
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-04-research-eventbrite.jpg" alt="Eventbrite competitor research" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-04-research-eventbrite.jpg" alt="Eventbrite competitor research">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-04-research-eventbrite.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">City2Surf 1.0, page 2 — Eventbrite research board.</p>
 </figure>
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-05-research-campfire.jpg" alt="Niantic Campfire competitor research" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-05-research-campfire.jpg" alt="Niantic Campfire competitor research">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-05-research-campfire.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">City2Surf 1.0, page 2 — Niantic Campfire research board.</p>
 </figure>
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-06-research-nextdoor.jpg" alt="Nextdoor competitor research" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-06-research-nextdoor.jpg" alt="Nextdoor competitor research">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-06-research-nextdoor.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -262,14 +381,14 @@
       <div><p class="c2s-decision__index">01 / Find your wave</p><h3>Make choosing a starting wave effortless.</h3><p>I designed two paths: <strong>Get my match</strong> for users who want guidance and <strong>Explore all waves</strong> for users who already know what they want.</p></div>
       <div class="c2s-shot-grid">
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-07-start-wave-landing.jpg" alt="Final Start Waves landing page" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-07-start-wave-landing.jpg" alt="Final Start Waves landing page">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-07-start-wave-landing.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">Iteration 4 final Start Waves landing page.</p>
 </figure>
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-08-explore-start-waves.jpg" alt="Final Explore Start Waves page" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-08-explore-start-waves.jpg" alt="Final Explore Start Waves page">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-08-explore-start-waves.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -284,14 +403,14 @@
       <div><p class="c2s-decision__index">02 / Belong</p><h3>Turn selection into a sense of belonging.</h3><p>Confirmation feedback and wave-specific colour create a clearer transition from selection into a distinct community experience.</p></div>
       <div class="c2s-shot-grid">
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-09-youre-in.jpg" alt="You're in confirmation state" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-09-youre-in.jpg" alt="You're in confirmation state">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-09-youre-in.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">Final join confirmation state.</p>
 </figure>
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-10-orange-wave-home.jpg" alt="Orange Wave homepage" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-10-orange-wave-home.jpg" alt="Orange Wave homepage">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-10-orange-wave-home.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -306,14 +425,14 @@
       <div><p class="c2s-decision__index">03 / Find your people</p><h3>Use interests to turn a wave into a community.</h3><p>Interest tags and recommended groups help runners discover people beyond pace alone.</p></div>
       <div class="c2s-shot-grid">
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-12-edit-profile.jpg" alt="Edit profile with interests" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-12-edit-profile.jpg" alt="Edit profile with interests">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-12-edit-profile.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">Use the final Edit Profile screen where interest tags are visible.</p>
 </figure>
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-11-profile.jpg" alt="City2Surf profile and recommended groups" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-11-profile.jpg" alt="City2Surf profile and recommended groups">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-11-profile.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -328,14 +447,14 @@
       <div><p class="c2s-decision__index">04 / Stay in control</p><h3>Give users control without creating risk.</h3><p>Confirmation and save states make the consequences of changing a wave visible before destructive changes are applied.</p></div>
       <div class="c2s-shot-grid">
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-13-save-changes.jpg" alt="Save Changes confirmation" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-13-save-changes.jpg" alt="Save Changes confirmation">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-13-save-changes.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">Final save changes popup.</p>
 </figure>
         <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-14-change-wave.jpg" alt="Change Start Wave confirmation" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-14-change-wave.jpg" alt="Change Start Wave confirmation">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-14-change-wave.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -365,21 +484,21 @@
   </div>
   <div class="c2s-shot-grid c2s-visual">
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-09-youre-in.jpg" alt="Final confirmation feedback" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-09-youre-in.jpg" alt="Final confirmation feedback">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-09-youre-in.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">Reuse the final confirmation state for the refined feedback example.</p>
 </figure>
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-11-profile.jpg" alt="Final profile navigation state" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-11-profile.jpg" alt="Final profile navigation state">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-11-profile.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
   <p class="c2s-caption">Reuse the final profile screen for navigation clarity.</p>
 </figure>
 <figure class="c2s-image-frame c2s-image-frame--half">
-  <img src="city2surf-14-change-wave.jpg" alt="Final change wave warning" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+  <img src="city2surf-14-change-wave.jpg" alt="Final change wave warning">
   <div class="c2s-image-fallback">
     <div><strong>city2surf-14-change-wave.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
   </div>
@@ -388,57 +507,27 @@
   </div>
 </section>
 
+
 <section class="c2s-section reveal">
   <div class="c2s-section__head">
     <p class="c2s-section__index">07 — Final Experience</p>
     <h2 class="c2s-section__title">From choosing a wave to finding a community.</h2>
   </div>
-  <div class="c2s-final">
-<figure class="c2s-image-frame">
-  <img src="city2surf-07-start-wave-landing.jpg" alt="Discover your starting wave" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-  <div class="c2s-image-fallback">
-    <div><strong>city2surf-07-start-wave-landing.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
-  </div>
-  <p class="c2s-caption">01 — Discover your wave</p>
-</figure>
-<figure class="c2s-image-frame">
-  <img src="city2surf-08-explore-start-waves.jpg" alt="Explore starting waves" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-  <div class="c2s-image-fallback">
-    <div><strong>city2surf-08-explore-start-waves.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
-  </div>
-  <p class="c2s-caption">02 — Choose what fits you</p>
-</figure>
-<figure class="c2s-image-frame">
-  <img src="city2surf-09-youre-in.jpg" alt="Join confirmation" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-  <div class="c2s-image-fallback">
-    <div><strong>city2surf-09-youre-in.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
-  </div>
-  <p class="c2s-caption">03 — Join</p>
-</figure>
-<figure class="c2s-image-frame">
-  <img src="city2surf-10-orange-wave-home.jpg" alt="Orange Wave homepage" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-  <div class="c2s-image-fallback">
-    <div><strong>city2surf-10-orange-wave-home.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
-  </div>
-  <p class="c2s-caption">04 — Enter your wave</p>
-</figure>
-<figure class="c2s-image-frame">
-  <img src="city2surf-12-edit-profile.jpg" alt="Build your runner profile" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-  <div class="c2s-image-fallback">
-    <div><strong>city2surf-12-edit-profile.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
-  </div>
-  <p class="c2s-caption">05 — Build your profile</p>
-</figure>
-<figure class="c2s-image-frame">
-  <img src="city2surf-11-profile.jpg" alt="Discover recommended groups" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-  <div class="c2s-image-fallback">
-    <div><strong>city2surf-11-profile.jpg</strong>Save your screenshot with this exact filename and place it beside this HTML file.</div>
-  </div>
-  <p class="c2s-caption">06 — Discover your people</p>
-</figure>
-  </div>
-  <div class="c2s-actions">
-    <a class="c2s-button" href="https://www.figma.com/proto/Aj1CnPZFbpNHQB0G7zyW2Y/Interface-Design-Final-Prototype?node-id=19-17718&p=f&viewport=-134%2C-930%2C0.06&t=klb0oBT9Qfg6wygb-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=19%3A17691&page-id=0%3A1" target="_blank" rel="noopener noreferrer">View prototype ↗</a>
+
+  <div class="c2s-copy-grid">
+    <p class="c2s-label">Prototype</p>
+    <div class="c2s-copy">
+      <p>The final prototype brings the full experience together — from discovering a starting wave to joining a community and managing the experience with confidence.</p>
+
+      <div class="c2s-actions">
+        <a class="c2s-button"
+           href="https://www.figma.com/proto/Aj1CnPZFbpNHQB0G7zyW2Y/Interface-Design-Final-Prototype?node-id=19-17718&p=f&viewport=-134%2C-930%2C0.06&t=klb0oBT9Qfg6wygb-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=19%3A17691&page-id=0%3A1"
+           target="_blank"
+           rel="noopener noreferrer">
+          View final prototype ↗
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 

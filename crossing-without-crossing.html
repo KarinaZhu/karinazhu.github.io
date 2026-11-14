@@ -11,6 +11,89 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script defer src="KarinaZhu.js"></script>
+
+  <style>
+    :root{
+      --cwc-accent:#8f6b90;
+      --cwc-accent-soft:#a88aa9;
+      --cwc-image-bg:transparent;
+    }
+    [data-theme="light"]{
+      --cwc-accent:#765a78;
+      --cwc-accent-soft:#947796;
+      --cwc-image-bg:#ffffff;
+    }
+    .cwc-page{padding:144px 0 96px}
+    .cwc-shell{width:min(1180px,calc(100% - 64px));margin:0 auto}
+    .cwc-back{display:inline-flex;gap:8px;margin-bottom:72px;color:var(--color-text-muted);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+    .cwc-kicker,.cwc-section__index,.cwc-label,.cwc-stage__index{color:var(--cwc-accent-soft);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.4}
+    .cwc-title,.cwc-section__title,.cwc-next__title{color:var(--cwc-accent)}
+    .cwc-hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);gap:80px;align-items:end;padding-bottom:56px;border-bottom:1px solid var(--color-border)}
+    .cwc-title{margin-top:18px;font-family:var(--font-serif);font-size:clamp(56px,8vw,108px);font-weight:400;line-height:.92;letter-spacing:-.04em}
+    .cwc-thesis{margin-top:30px;max-width:820px;color:var(--color-text-primary);font-size:clamp(22px,3vw,40px);font-weight:500;line-height:1.16;letter-spacing:-.02em}
+    .cwc-meta{display:grid;gap:18px}
+    .cwc-meta__row{padding-top:14px;border-top:1px solid var(--color-border)}
+    .cwc-meta__label{display:block;margin-bottom:5px;color:var(--color-text-muted);font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+    .cwc-meta__value{display:block;color:var(--color-text-secondary);font-size:13px;line-height:1.5}
+    .cwc-hero-media{position:relative;margin:56px 0 0;background:var(--cwc-image-bg);border-radius:18px;overflow:hidden}
+    .cwc-hero-media img{display:block;width:100%;height:auto;border:1px solid var(--color-border);border-radius:18px}
+    .cwc-section{padding:104px 0;border-top:1px solid var(--color-border)}
+    .cwc-section:first-of-type{border-top:0}
+    .cwc-section__head{display:grid;grid-template-columns:180px minmax(0,1fr);gap:72px;align-items:start}
+    .cwc-section__title{max-width:900px;font-family:var(--font-serif);font-size:clamp(32px,4.5vw,58px);font-weight:400;line-height:1.08;letter-spacing:-.022em}
+    .cwc-copy-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;margin-top:48px}
+    .cwc-copy-grid p,.cwc-body{color:var(--color-text-secondary);font-size:15px;line-height:1.75}
+    .cwc-pullquote{margin-top:56px;padding:40px 0;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);color:var(--color-text-primary);font-family:var(--font-serif);font-size:clamp(25px,3.2vw,42px);line-height:1.22}
+    .cwc-pullquote small{display:block;margin-top:18px;color:var(--color-text-muted);font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+    .cwc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .cwc-stat{padding:30px;background:var(--color-bg)}
+    .cwc-stat strong{display:block;color:var(--cwc-accent);font-family:var(--font-serif);font-size:42px;font-weight:400;line-height:1}
+    .cwc-stat span{display:block;margin-top:10px;color:var(--color-text-secondary);font-size:12px;line-height:1.45}
+    .cwc-insights{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .cwc-insight{padding:28px;background:var(--color-bg)}
+    .cwc-insight h3{margin-top:24px;color:var(--color-accent);font-size:18px;font-weight:500;line-height:1.25}
+    .cwc-insight p{margin-top:10px;color:var(--color-text-secondary);font-size:13px;line-height:1.65}
+    .cwc-reframe{margin-top:56px;padding:48px;border:1px solid var(--color-border);background:var(--color-surface)}
+    .cwc-reframe__before{color:var(--color-text-muted);font-size:15px;text-decoration:line-through;text-decoration-thickness:1px}
+    .cwc-reframe__after{margin-top:18px;max-width:900px;color:var(--cwc-accent);font-family:var(--font-serif);font-size:clamp(30px,4vw,52px);line-height:1.12}
+    .cwc-stage{padding:64px 0;border-top:1px solid var(--color-border)}
+    .cwc-stage:first-child{padding-top:0;border-top:0}
+    .cwc-stage__grid{display:grid;grid-template-columns:minmax(220px,.62fr) minmax(0,1.38fr);gap:72px}
+    .cwc-stage h3{margin-top:16px;color:var(--color-accent);font-family:var(--font-serif);font-size:clamp(28px,4vw,48px);font-weight:400;line-height:1.05}
+    .cwc-stage p{margin-top:18px;color:var(--color-text-secondary);font-size:15px;line-height:1.7}
+    .cwc-journey{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .cwc-journey__item{padding:26px;background:var(--color-bg)}
+    .cwc-journey__item strong{display:block;color:var(--cwc-accent);font-family:var(--font-serif);font-size:26px;font-weight:400}
+    .cwc-journey__item p{margin-top:12px;color:var(--color-text-secondary);font-size:12px;line-height:1.55}
+    .cwc-testing{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .cwc-test{padding:30px;background:var(--color-bg)}
+    .cwc-test h3{color:var(--color-accent);font-size:17px;font-weight:500}
+    .cwc-test p{margin-top:10px;color:var(--color-text-secondary);font-size:13px;line-height:1.65}
+    .cwc-image-frame{position:relative;margin-top:56px;background:var(--cwc-image-bg)}
+    .cwc-image-frame img{display:block;width:100%;height:auto;border:1px solid var(--color-border);border-radius:0}
+    .cwc-image-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:56px}
+    .cwc-image-grid .cwc-image-frame{margin-top:0}
+    .cwc-image-fallback{display:none;place-items:center;min-height:300px;padding:32px;border:1px dashed rgba(143,107,144,.45);background:var(--color-surface);color:var(--color-text-muted);text-align:center;font-size:12px;line-height:1.7}
+    .cwc-image-fallback strong{display:block;margin-bottom:8px;color:var(--cwc-accent);font-size:14px;font-weight:600}
+    .cwc-caption{margin-top:10px;color:var(--color-text-muted);font-size:8.5px;line-height:1.45;letter-spacing:.01em}
+    .cwc-final-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:56px;margin-top:56px;align-items:start}
+    .cwc-component{padding:26px 0;border-top:1px solid var(--color-border)}
+    .cwc-component:first-child{border-top:0;padding-top:0}
+    .cwc-component h3{color:var(--color-accent);font-size:16px;font-weight:500}
+    .cwc-component p{margin-top:8px;color:var(--color-text-secondary);font-size:13px;line-height:1.65}
+    .cwc-team{margin-top:48px;padding-top:28px;border-top:1px solid var(--color-border);color:var(--color-text-muted);font-size:11px;line-height:1.7}
+    .cwc-next{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:56px 0 8px;border-top:1px solid var(--color-border)}
+    .cwc-next__eyebrow{margin-bottom:8px;color:var(--color-text-muted);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+    .cwc-next__title{font-family:var(--font-serif);font-size:clamp(32px,4.5vw,54px);font-weight:400;line-height:1.08}
+    .cwc-next__arrow{color:var(--cwc-accent);font-size:30px}
+    @media(max-width:800px){
+      .cwc-page{padding-top:116px}.cwc-shell{width:min(100% - 36px,1180px)}
+      .cwc-hero,.cwc-section__head,.cwc-copy-grid,.cwc-stage__grid,.cwc-final-grid{grid-template-columns:1fr;gap:28px}
+      .cwc-stats,.cwc-insights,.cwc-journey,.cwc-testing,.cwc-image-grid{grid-template-columns:1fr}
+      .cwc-section{padding:72px 0}
+      .cwc-reframe{padding:30px}
+    }
+  </style>
 </head>
 <body>
   <a href="index.html" class="site-logo" aria-label="Karina Zhu home">    <svg width="137" height="81" viewBox="0 0 137 81" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">      <path d="M63.5 35.8931H68V39.3931H71V35.3931H76.5V31.8931H81V28.8931H83.5V27.3931H85.5V23.3931H89.5V20.8931H92V18.3931H94V16.8931H96V14.8931H98V12.3931H102.5V10.3931H104.5V8.8931H108.5V6.3931H112V4.3931H119V2.3931H131.5V4.3931H121.5V6.3931H116.5V8.8931H113V10.8931H110.5V13.3931V14.8931H106.5V16.8931H102.5V19.3931H100.5V20.8931H98V23.8931H96V25.8931H94V27.8931H92V29.8931H90V32.3931H88V34.3931H83.5V36.3931H82V37.8931H77.5V40.3931H73.5V42.3931H71V45.3931H60V35.8931H63.5Z" fill="black"/>      <path d="M131.5 4.3931V8.8931H127.5V10.8931H125V14.8931H127V17.3931H129.5V14.8931H134V10.8931H136V6.3931H133.5V4.3931H131.5Z" fill="black"/>      <path d="M131.5 4.3931V2.3931H119V4.3931H112V6.3931H108.5V8.8931H104.5V10.3931H102.5V12.3931H98V14.8931H96V16.8931H94V18.3931H92V20.8931H89.5V23.3931H85.5V27.3931H83.5V28.8931H81V31.8931H76.5V35.3931H71V39.3931H68V35.8931H63.5H60V45.3931H71V42.3931H73.5V40.3931H77.5V37.8931H82V36.3931H83.5V34.3931H88V32.3931H90V29.8931H92V27.8931H94V25.8931H96V23.8931H98V20.8931H100.5V19.3931H102.5V16.8931H106.5V14.8931H110.5V13.3931V10.8931H113V8.8931H116.5V6.3931H121.5V4.3931H131.5ZM131.5 4.3931V8.8931H127.5V10.8931H125V14.8931H127V17.3931H129.5V14.8931H134V10.8931H136V6.3931H133.5V4.3931H131.5Z" stroke="black"/>      <path d="M72.5 46.3931H76V49.8931H80V53.8931H91.5V57.3931H87.5V61.3931H84V64.8931H87.5V72.8931H76V65.3931V61.3931H72.5V57.3931V46.3931Z" fill="black"/>      <path d="M87.5 72.8931V76.8931H91.5V72.8931H87.5Z" fill="black"/>      <path d="M72.5 61.3931V57.3931H57V61.3931H61V65.3931H65V72.8931H72.5V65.3931V61.3931Z" fill="black"/>      <path d="M72.5 65.3931V72.8931V80.3931H76V72.8931V65.3931H72.5Z" fill="black"/>      <path d="M87.5 72.8931V64.8931H84V61.3931H87.5V57.3931H91.5V53.8931H80V49.8931H76V46.3931H72.5V57.3931M87.5 72.8931H76M87.5 72.8931V76.8931H91.5V72.8931H87.5ZM76 72.8931V65.3931M76 72.8931V80.3931M72.5 61.3931H76V65.3931M72.5 61.3931V57.3931M72.5 61.3931V65.3931M72.5 57.3931H57V61.3931H61V65.3931H65V72.8931H72.5M72.5 72.8931V65.3931M72.5 72.8931V80.3931M72.5 65.3931H76M72.5 65.3931V80.3931M76 65.3931V80.3931M76 80.3931H72.5" stroke="black"/>      <path d="M65 72.8931V76.8931H57V72.8931H65Z" fill="black" stroke="black"/>      <path d="M61.5 45.3931V48.8931H65.5V50.8931H67.5V52.3931H71.5H73V47.3931L61.5 45.3931Z" fill="black"/>      <path d="M88 61.3931H92V65.8931H97V70.3931H100V73.8931H102.5V77.3931H105V71.8931H111V64.3931H114.5V55.8931H117.5V52.3931H120V47.3931H123V43.8931H125V48.8931H122V54.3931H120V57.8931H117.5V65.8931H114.5V70.3931H113V73.8931H109.5V75.3931H107V77.3931V78.8931H105H96.5V71.8931H93V67.3931H90.5H83.5V63.3931V59.3931L88 61.3931Z" fill="black"/>      <path d="M61.5 45.3931V48.8931H65.5V50.8931H67.5V52.3931H71.5H73V47.3931L61.5 45.3931Z" stroke="black"/>      <path d="M88 61.3931H92V65.8931H97V70.3931H100V73.8931H102.5V77.3931H105V71.8931H111V64.3931H114.5V55.8931H117.5V52.3931H120V47.3931H123V43.8931H125V48.8931H122V54.3931H120V57.8931H117.5V65.8931H114.5V70.3931H113V73.8931H109.5V75.3931H107V77.3931V78.8931H105H96.5V71.8931H93V67.3931H90.5H83.5V63.3931V59.3931L88 61.3931Z" stroke="black"/>      <path d="M68 44.3931V42.8931L59.5 41.8931C61.5 47.0931 69 49.0598 72.5 49.3931V45.8931H71.5V44.3931H68Z" fill="black" stroke="black"/>      <path d="M76.5 10.3931C71.6667 17.0598 62.4 31.4931 64 35.8931C65.6 40.2931 62.6667 42.0598 61 42.3931V45.8931H56.5V49.8931H53V57.3931H49.5V61.3931H46.5C40.3333 65.7264 28 74.2931 28 73.8931V72.8931H26V76.8931H8.5V72.8931H4.5V61.3931H0.5V49.8931H2C3.5 45.5598 10.4 36.9931 12 35.3931H15.5V27.3931H19.5V23.3931H23.5V19.8931H31V23.3931H27V27.3931H23.5V31.3931H19.5V38.8931H17C14.5 41.0598 6 46.5931 6 53.3931H8.5V68.8931H12V72.8931H18.5V68.8931H26.5V66.3931C30.3333 62.8931 38.1 55.5931 38.5 54.3931H42V45.8931H46V42.3931H49.5V34.8931H53C60.3333 24.2264 74.9 2.6931 76.5 1.8931L78 3.3931L80 4.8931V10.3931H78.5H76.5Z" fill="black"/>      <path d="M28 73.8931C28 74.2931 40.3333 65.7264 46.5 61.3931H49.5V57.3931H53V49.8931H56.5V45.8931H61V42.3931C62.6667 42.0598 65.6 40.2931 64 35.8931C62.4 31.4931 71.6667 17.0598 76.5 10.3931H78.5H80V4.8931L78 3.3931L76.5 1.8931C74.9 2.6931 60.3333 24.2264 53 34.8931H49.5V42.3931H46V45.8931H42V54.3931H38.5C38.1 55.5931 30.3333 62.8931 26.5 66.3931V68.8931H18.5V72.8931H12V68.8931H8.5V53.3931H6C6 46.5931 14.5 41.0598 17 38.8931H19.5V31.3931H23.5V27.3931H27V23.3931H31V19.8931H23.5V23.3931H19.5V27.3931H15.5V35.3931H12C10.4 36.9931 3.5 45.5598 2 49.8931H0.5V61.3931H4.5V72.8931H8.5V76.8931H26V72.8931H28M28 73.8931C28 73.4931 28 73.0598 28 72.8931M28 73.8931V72.8931" stroke="black"/>      <path d="M31.5 15.8931V19.8931H35.5V15.8931H31.5Z" fill="black" stroke="black"/>      <path d="M36.5 11.3931V15.3931H40.5C50.8333 10.7264 54.7 2.79311 71.5 8.39311L76.5 10.8931H80.5V3.3931H77.5V0.893097H76C67.5 -0.273567 48.9 0.593115 40.5 11.3931H36.5Z" fill="black" stroke="black"/>    </svg>  </a>
@@ -30,47 +113,124 @@
     </svg>
   </button>
 
-  <main class="case-study-page">
-    <div class="case-study-shell">
-      <a class="case-study-back" href="index.html#projects">← Back to selected work</a>
+  
+  <main class="cwc-page">
+    <div class="cwc-shell">
+      <a class="cwc-back" href="uiux.html">← Back to UI/UX</a>
 
-      <section class="case-study-hero reveal">
+      <section class="cwc-hero reveal">
         <div>
-          <p class="case-study-kicker">01 · Experience Design · Interactive Installation</p>
-          <h1 class="case-study-title">Crossing without Crossing</h1>
+          <p class="cwc-kicker">Project 01 · Experience Design · Interactive Installation</p>
+          <h1 class="cwc-title">Crossing without Crossing</h1>
+          <p class="cwc-thesis">A travelling public installation that makes the emotional distance of a border briefly visible, negotiable, and human again.</p>
         </div>
-
-        <div class="case-study-meta">
-          <div class="case-study-meta-row">
-            <span class="case-study-meta-label">Project type</span>
-            <span class="case-study-meta-value">Experience Design · Interactive Installation</span>
-          </div>
-          <div class="case-study-meta-row">
-            <span class="case-study-meta-label">Selected work</span>
-            <span class="case-study-meta-value">01 / 04</span>
-          </div>
+        <div class="cwc-meta">
+          <div class="cwc-meta__row"><span class="cwc-meta__label">Project</span><span class="cwc-meta__value">Interactive public installation</span></div>
+          <div class="cwc-meta__row"><span class="cwc-meta__label">Duration</span><span class="cwc-meta__value">9 weeks · 2026</span></div>
+          <div class="cwc-meta__row"><span class="cwc-meta__label">Team</span><span class="cwc-meta__value">The Overthinkers · 5 designers</span></div>
+          <div class="cwc-meta__row"><span class="cwc-meta__label">Contribution</span><span class="cwc-meta__value">Research · synthesis · ideation · prototyping · testing · exhibition</span></div>
         </div>
       </section>
 
-      <div class="case-study-media reveal">
-          <img src="Crossing without Crossing.jpg" alt="Crossing without Crossing project">
-        </div>
+      <div class="cwc-hero-media reveal">
+        <img src="Crossing without Crossing.jpg" alt="Crossing without Crossing final installation concept" onload="this.parentElement.classList.add('is-loaded')" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="cwc-image-fallback"><div><strong>Hero image</strong>Crossing without Crossing.jpg</div></div>
+      </div>
 
-      <section class="case-study-copy reveal">
-        <div class="case-study-copy__label">Overview</div>
-        <p class="case-study-copy__body">A border begins as a line on a map, becomes a wall, and eventually becomes a story people inherit about who belongs and who does not. This project reframes the role of design. Not as a tool to remove borders, but as a way to momentarily disrupt the emotional distance they create and reveal the humanity that still exists on the other side.</p>
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">01 — The Problem</p><h2 class="cwc-section__title">A border is more than a structure. Over time, separation becomes something people inherit.</h2></div>
+        <div class="cwc-copy-grid">
+          <p>We began by looking at borders as physical systems: walls, checkpoints, fences and surveillance. From the US–Mexico border to the Belfast Peace Walls, the occupied West Bank and Ceuta–Melilla, each site was geographically different but structurally familiar.</p>
+          <p>The deeper problem was psychological. Distance becomes normalised. Communities learn who belongs, who does not, and eventually stop imagining the person on the other side. The project therefore moved away from trying to “solve” borders and toward making that emotional distance perceptible.</p>
+        </div>
+        <blockquote class="cwc-pullquote">“Sadness. When I see that wall, I automatically see a divide.”<small>Participant from the Republic of Ireland, speaking about the Belfast Walls</small></blockquote>
       </section>
 
-      
-
-      <a class="case-study-next reveal" href="city2surf.html">
-        <div>
-          <p class="case-study-next__eyebrow">Next project</p>
-          <h2 class="case-study-next__title">City2Surf</h2>
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">02 — Research</p><h2 class="cwc-section__title">Different borders. The same recurring pattern of distance, control and grief.</h2></div>
+        <div class="cwc-stats">
+          <div class="cwc-stat"><strong>3</strong><span>In-depth interviews</span></div>
+          <div class="cwc-stat"><strong>10</strong><span>Case studies</span></div>
+          <div class="cwc-stat"><strong>48</strong><span>Survey participants</span></div>
+          <div class="cwc-stat"><strong>100</strong><span>Online ethnography samples</span></div>
         </div>
-        <span class="case-study-next__arrow" aria-hidden="true">→</span>
-      </a>
+        <div class="cwc-insights">
+          <article class="cwc-insight"><p class="cwc-label">01 / Separation</p><h3>Physical barriers become social narratives.</h3><p>Walls do not only divide land. They influence how communities remember conflict, identity and the people beyond the divide.</p></article>
+          <article class="cwc-insight"><p class="cwc-label">02 / Surfaces</p><h3>Walls can hold both the wound and the response.</h3><p>Murals, protest messages and peace statements turn border surfaces into contested public memory rather than neutral infrastructure.</p></article>
+          <article class="cwc-insight"><p class="cwc-label">03 / Negotiation</p><h3>Participants responded more to negotiation than resistance.</h3><p>The research repeatedly pointed toward a softer interaction: not breaking through a wall, but creating a brief, fragile opening within it.</p></article>
+        </div>
+        <div class="cwc-image-frame"><img src="cwc-02-research-borders.jpg" alt="Research into border case studies" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="cwc-image-fallback"><div><strong>Add research visual</strong>cwc-02-research-borders.jpg</div></div><p class="cwc-caption">Suggested image: case-study research on the US–Mexico border, Belfast Walls, West Bank and Ceuta–Melilla.</p></div>
+      </section>
+
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">03 — The Reframe</p><h2 class="cwc-section__title">Design cannot dismantle the systems that built a border. It can interrupt the emotional distance they create.</h2></div>
+        <div class="cwc-reframe"><p class="cwc-reframe__before">How can design remove borders?</p><p class="cwc-reframe__after">How can design temporarily interrupt the emotional distance borders create?</p></div>
+        <div class="cwc-copy-grid"><p>The reframing changed the project from a solutionist proposition into a public encounter. The installation would not pretend to repair political conflict; it would create conditions for awareness, reflection and recognition.</p><p>The interaction also needed to be immediate. A passer-by should understand what to do within seconds — without tutorials or explanatory steps. The wall itself had to invite behaviour.</p></div>
+      </section>
+
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">04 — Concept Evolution</p><h2 class="cwc-section__title">The project moved from invisible borders to physical walls, then from resistance to negotiation.</h2></div>
+        <div class="cwc-stage">
+          <div class="cwc-stage__grid"><div><p class="cwc-stage__index">01 / Invisible borders</p><h3>We began with the digital divide.</h3></div><p>Early research explored invisible systems of exclusion, including access to the internet, education, healthcare and finance. But the research repeatedly returned to walls, steel, wire and concrete.</p></div>
+        </div>
+        <div class="cwc-stage">
+          <div class="cwc-stage__grid"><div><p class="cwc-stage__index">02 / Specific walls</p><h3>One site became a travelling installation.</h3></div><p>Rather than design for a single geography, we followed the patterns shared across the US–Mexico border, Belfast and the West Bank and shifted toward an installation that could exist between any two places divided by a wall.</p></div>
+        </div>
+        <div class="cwc-stage">
+          <div class="cwc-stage__grid"><div><p class="cwc-stage__index">03 / Two prototypes</p><h3>Sliding bricks versus a fogged surface.</h3></div><p>We tested obstruction against temporary visibility. Participants consistently preferred the fog interaction because it felt negotiable and human rather than simply adversarial.</p></div>
+        </div>
+        <div class="cwc-stage">
+          <div class="cwc-stage__grid"><div><p class="cwc-stage__index">04 / Critical layer</p><h3>Surveillance changed the meaning of the portal.</h3></div><p>Adding CCTV transformed a tender connection into something watched and fragile. The concept became less about romance across a wall and more about the infrastructure of separation itself.</p></div>
+        </div>
+        <div class="cwc-image-frame"><img src="cwc-04-concept-evolution.jpg" alt="Concept evolution from invisible borders to fog and surveillance" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="cwc-image-fallback"><div><strong>Add concept evolution visual</strong>cwc-04-concept-evolution.jpg</div></div><p class="cwc-caption">Suggested image: Stage 1–4 concept evolution from the final board.</p></div>
+      </section>
+
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">05 — Interaction</p><h2 class="cwc-section__title">Connection is not given. It has to be performed, maintained and negotiated.</h2></div>
+        <div class="cwc-journey">
+          <div class="cwc-journey__item"><strong>See</strong><p>From a distance: wire, cameras, a wall.</p></div>
+          <div class="cwc-journey__item"><strong>Hesitate</strong><p>Closer now. The surface is fogged. Someone is there.</p></div>
+          <div class="cwc-journey__item"><strong>Wipe</strong><p>Clear a patch. A face appears. The other person responds.</p></div>
+          <div class="cwc-journey__item"><strong>Notice</strong><p>Beside the wall, monitors reveal that the same moment is being watched.</p></div>
+          <div class="cwc-journey__item"><strong>Leave</strong><p>The wall remains — but the participant has briefly seen through it.</p></div>
+        </div>
+        <div class="cwc-image-grid">
+          <div class="cwc-image-frame"><img src="cwc-05-fog-interaction.jpg" alt="Fog interaction prototype" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="cwc-image-fallback"><div><strong>Add interaction visual</strong>cwc-05-fog-interaction.jpg</div></div><p class="cwc-caption">Fog / wipe interaction: visibility must be continuously maintained.</p></div>
+          <div class="cwc-image-frame"><img src="cwc-06-surveillance-layer.jpg" alt="Surveillance monitor layer" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="cwc-image-fallback"><div><strong>Add surveillance visual</strong>cwc-06-surveillance-layer.jpg</div></div><p class="cwc-caption">CCTV and monitor stack: the intimate connection is simultaneously observed.</p></div>
+        </div>
+      </section>
+
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">06 — User Testing</p><h2 class="cwc-section__title">People understood the interaction differently depending on whether trust already existed.</h2></div>
+        <div class="cwc-copy-grid"><p>We tested a physical mock-up using two cities, two iPads and a partition. Eight participants included both acquaintances and complete strangers. We observed hesitation, collaboration and how long people waited before initiating interaction.</p><p>The strongest behavioural difference was social. Acquaintances interacted quickly and playfully because trust already existed. Strangers were more cautious and tended to wait to see what the person on the other side would do first.</p></div>
+        <div class="cwc-testing">
+          <article class="cwc-test"><h3>Acquaintances</h3><p>Existing trust allowed the interaction to begin quickly and become playful.</p></article>
+          <article class="cwc-test"><h3>Strangers</h3><p>Participants waited, watched and negotiated the first move — reinforcing the project's focus on hesitation and fragile connection.</p></article>
+        </div>
+        <div class="cwc-image-frame"><img src="cwc-07-user-testing.jpg" alt="User testing of the Crossing without Crossing prototype" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="cwc-image-fallback"><div><strong>Add testing visual</strong>cwc-07-user-testing.jpg</div></div><p class="cwc-caption">Suggested image: cardboard / divider / iPad testing setup and participant observation photos.</p></div>
+      </section>
+
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">07 — Final Installation</p><h2 class="cwc-section__title">Two walls. Two cities. One brief human encounter — seen twice.</h2></div>
+        <div class="cwc-final-grid">
+          <div class="cwc-image-frame" style="margin-top:0"><img src="cwc-08-final-installation.jpg" alt="Final Crossing without Crossing installation render" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="cwc-image-fallback"><div><strong>Add final installation render</strong>cwc-08-final-installation.jpg</div></div><p class="cwc-caption">Final travelling outdoor installation render.</p></div>
+          <div>
+            <div class="cwc-component"><h3>The wall</h3><p>A large digital touch surface topped with barbed wire and surveillance cameras, visually continuous with real border infrastructure.</p></div>
+            <div class="cwc-component"><h3>The fog</h3><p>A live view of the person in the partner city is concealed. Participants wipe, draw, leave handprints or write words; the surface fogs over again every few seconds.</p></div>
+            <div class="cwc-component"><h3>The CCTV</h3><p>A monitor stack shows a live surveillance feed. The same moment appears once through intimacy and effort, and again through distance and control.</p></div>
+          </div>
+        </div>
+        <p class="cwc-team">Collaborative project by The Overthinkers — Sara Alasfar, Adinata Harlan, Rhesa Utomo, Karina Zhu and Lina Alawieah. Group contribution agreement: 20% per member.</p>
+      </section>
+
+      <section class="cwc-section reveal">
+        <div class="cwc-section__head"><p class="cwc-section__index">08 — Reflection</p><h2 class="cwc-section__title">The project became stronger when we stopped pretending design could solve the border.</h2></div>
+        <div class="cwc-copy-grid"><p>The most important shift was conceptual: from removing a wall to designing a temporary interruption within it. That change made the installation more honest about the limits of design and more precise about what an interaction could actually do.</p><p>It also changed how I think about critical experience design. The most meaningful interaction was not the most spectacular one. It was the one that made people hesitate, act, notice the surveillance around them, and leave with a slightly different awareness of the person beyond the divide.</p></div>
+      </section>
+
+      <a class="cwc-next reveal" href="city2surf.html"><div><p class="cwc-next__eyebrow">Next project</p><h2 class="cwc-next__title">City2Surf</h2></div><span class="cwc-next__arrow">→</span></a>
     </div>
   </main>
+
 </body>
 </html>

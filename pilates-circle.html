@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pilates Circle — product design case study by Karina Zhu.">
+  <meta name="description" content="Pilates Circle — UI/UX case study by Karina Zhu.">
   <title>Pilates Circle — Karina Zhu</title>
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +11,74 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script defer src="KarinaZhu.js"></script>
+
+  <style>
+    :root{
+      --pc-blue:#7898aa;
+      --pc-blue-soft:#91aab8;
+      --pc-image-bg:transparent;
+    }
+    [data-theme="light"]{
+      --pc-blue:#688b9f;
+      --pc-blue-soft:#89a7b7;
+      --pc-image-bg:#ffffff;
+    }
+    .pc-page{padding:144px 0 96px}
+    .pc-shell{width:min(1180px,calc(100% - 64px));margin:0 auto}
+    .pc-back{display:inline-flex;gap:8px;margin-bottom:72px;color:var(--color-text-muted);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+    .pc-kicker,.pc-section__index,.pc-label{color:var(--pc-blue-soft);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.4}
+    .pc-title,.pc-section__title,.pc-next__title{color:var(--pc-blue)}
+    .pc-hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,.5fr);gap:80px;align-items:end;padding-bottom:56px;border-bottom:1px solid var(--color-border)}
+    .pc-title{margin-top:18px;font-family:var(--font-serif);font-size:clamp(58px,8.8vw,112px);font-weight:400;line-height:.94;letter-spacing:-.035em}
+    .pc-thesis{margin-top:28px;max-width:780px;color:var(--color-text-primary);font-size:clamp(24px,3.2vw,44px);font-weight:500;line-height:1.12;letter-spacing:-.025em}
+    .pc-meta{display:grid;gap:18px}
+    .pc-meta__row{padding-top:12px;border-top:1px solid var(--color-border)}
+    .pc-meta__label{display:block;margin-bottom:4px;color:var(--color-text-muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+    .pc-meta__value{color:var(--color-accent);font-size:13px;line-height:1.5}
+    .pc-hero-media{margin-top:56px;overflow:hidden;border-radius:18px;background:var(--pc-image-bg)}
+    .pc-hero-media img{display:block;width:100%;height:auto;border:1px solid var(--color-border);border-radius:18px}
+    .pc-section{padding:104px 0;border-top:1px solid var(--color-border)}
+    .pc-section:first-of-type{border-top:0}
+    .pc-section__head{display:grid;grid-template-columns:180px minmax(0,1fr);gap:72px;align-items:start}
+    .pc-section__title{max-width:900px;font-family:var(--font-serif);font-size:clamp(32px,4.5vw,58px);font-weight:400;line-height:1.08;letter-spacing:-.022em}
+    .pc-copy-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;margin-top:48px}
+    .pc-copy-grid p,.pc-body{color:var(--color-text-secondary);font-size:15px;line-height:1.75}
+    .pc-insights{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .pc-insight{padding:28px;background:var(--color-bg)}
+    .pc-insight h3{margin-top:24px;color:var(--color-accent);font-size:18px;font-weight:500;line-height:1.25}
+    .pc-insight p{margin-top:10px;color:var(--color-text-secondary);font-size:13px;line-height:1.65}
+    .pc-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .pc-flow__item{padding:26px;background:var(--color-bg)}
+    .pc-flow__item strong{display:block;color:var(--pc-blue);font-family:var(--font-serif);font-size:24px;font-weight:400}
+    .pc-flow__item p{margin-top:12px;color:var(--color-text-secondary);font-size:12px;line-height:1.55}
+    .pc-image-frame{position:relative;margin-top:56px;background:var(--pc-image-bg)}
+    .pc-image-frame img{display:block;width:100%;height:auto;border:1px solid var(--color-border);border-radius:0}
+    .pc-image-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:56px}
+    .pc-image-grid .pc-image-frame{margin-top:0}
+    .pc-image-fallback{display:none;place-items:center;min-height:280px;padding:32px;border:1px dashed rgba(120,152,170,.45);background:var(--color-surface);color:var(--color-text-muted);text-align:center;font-size:12px;line-height:1.7}
+    .pc-image-fallback strong{display:block;margin-bottom:8px;color:var(--pc-blue);font-size:14px;font-weight:600}
+    .pc-caption{margin-top:10px;color:var(--color-text-muted);font-size:8.5px;line-height:1.45}
+    .pc-highlight{margin-top:56px;padding:44px;border:1px solid var(--color-border);background:var(--color-surface)}
+    .pc-highlight__eyebrow{color:var(--pc-blue-soft);font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+    .pc-highlight__title{margin-top:18px;color:var(--color-accent);font-family:var(--font-serif);font-size:clamp(28px,4vw,48px);font-weight:400;line-height:1.1}
+    .pc-highlight__meta{margin-top:20px;color:var(--color-text-secondary);font-size:14px;line-height:1.65}
+    .pc-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--color-border);border:1px solid var(--color-border)}
+    .pc-feature{padding:28px;background:var(--color-bg)}
+    .pc-feature h3{color:var(--pc-blue);font-size:18px;font-weight:500}
+    .pc-feature p{margin-top:10px;color:var(--color-text-secondary);font-size:13px;line-height:1.65}
+    .pc-next{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:56px 0 8px;border-top:1px solid var(--color-border)}
+    .pc-next__eyebrow{margin-bottom:8px;color:var(--color-text-muted);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+    .pc-next__title{font-family:var(--font-serif);font-size:clamp(32px,4.5vw,54px);font-weight:400;line-height:1.08}
+    .pc-next__arrow{color:var(--pc-blue);font-size:30px}
+    @media(max-width:800px){
+      .pc-page{padding-top:116px}.pc-shell{width:min(100% - 36px,1180px)}
+      .pc-hero,.pc-section__head,.pc-copy-grid{grid-template-columns:1fr;gap:28px}
+      .pc-insights,.pc-flow,.pc-features,.pc-image-grid{grid-template-columns:1fr}
+      .pc-section{padding:72px 0}
+      .pc-highlight{padding:30px}
+    }
+  </style>
+
 </head>
 <body>
   <a href="index.html" class="site-logo" aria-label="Karina Zhu home">    <svg width="137" height="81" viewBox="0 0 137 81" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">      <path d="M63.5 35.8931H68V39.3931H71V35.3931H76.5V31.8931H81V28.8931H83.5V27.3931H85.5V23.3931H89.5V20.8931H92V18.3931H94V16.8931H96V14.8931H98V12.3931H102.5V10.3931H104.5V8.8931H108.5V6.3931H112V4.3931H119V2.3931H131.5V4.3931H121.5V6.3931H116.5V8.8931H113V10.8931H110.5V13.3931V14.8931H106.5V16.8931H102.5V19.3931H100.5V20.8931H98V23.8931H96V25.8931H94V27.8931H92V29.8931H90V32.3931H88V34.3931H83.5V36.3931H82V37.8931H77.5V40.3931H73.5V42.3931H71V45.3931H60V35.8931H63.5Z" fill="black"/>      <path d="M131.5 4.3931V8.8931H127.5V10.8931H125V14.8931H127V17.3931H129.5V14.8931H134V10.8931H136V6.3931H133.5V4.3931H131.5Z" fill="black"/>      <path d="M131.5 4.3931V2.3931H119V4.3931H112V6.3931H108.5V8.8931H104.5V10.3931H102.5V12.3931H98V14.8931H96V16.8931H94V18.3931H92V20.8931H89.5V23.3931H85.5V27.3931H83.5V28.8931H81V31.8931H76.5V35.3931H71V39.3931H68V35.8931H63.5H60V45.3931H71V42.3931H73.5V40.3931H77.5V37.8931H82V36.3931H83.5V34.3931H88V32.3931H90V29.8931H92V27.8931H94V25.8931H96V23.8931H98V20.8931H100.5V19.3931H102.5V16.8931H106.5V14.8931H110.5V13.3931V10.8931H113V8.8931H116.5V6.3931H121.5V4.3931H131.5ZM131.5 4.3931V8.8931H127.5V10.8931H125V14.8931H127V17.3931H129.5V14.8931H134V10.8931H136V6.3931H133.5V4.3931H131.5Z" stroke="black"/>      <path d="M72.5 46.3931H76V49.8931H80V53.8931H91.5V57.3931H87.5V61.3931H84V64.8931H87.5V72.8931H76V65.3931V61.3931H72.5V57.3931V46.3931Z" fill="black"/>      <path d="M87.5 72.8931V76.8931H91.5V72.8931H87.5Z" fill="black"/>      <path d="M72.5 61.3931V57.3931H57V61.3931H61V65.3931H65V72.8931H72.5V65.3931V61.3931Z" fill="black"/>      <path d="M72.5 65.3931V72.8931V80.3931H76V72.8931V65.3931H72.5Z" fill="black"/>      <path d="M87.5 72.8931V64.8931H84V61.3931H87.5V57.3931H91.5V53.8931H80V49.8931H76V46.3931H72.5V57.3931M87.5 72.8931H76M87.5 72.8931V76.8931H91.5V72.8931H87.5ZM76 72.8931V65.3931M76 72.8931V80.3931M72.5 61.3931H76V65.3931M72.5 61.3931V57.3931M72.5 61.3931V65.3931M72.5 57.3931H57V61.3931H61V65.3931H65V72.8931H72.5M72.5 72.8931V65.3931M72.5 72.8931V80.3931M72.5 65.3931H76M72.5 65.3931V80.3931M76 65.3931V80.3931M76 80.3931H72.5" stroke="black"/>      <path d="M65 72.8931V76.8931H57V72.8931H65Z" fill="black" stroke="black"/>      <path d="M61.5 45.3931V48.8931H65.5V50.8931H67.5V52.3931H71.5H73V47.3931L61.5 45.3931Z" fill="black"/>      <path d="M88 61.3931H92V65.8931H97V70.3931H100V73.8931H102.5V77.3931H105V71.8931H111V64.3931H114.5V55.8931H117.5V52.3931H120V47.3931H123V43.8931H125V48.8931H122V54.3931H120V57.8931H117.5V65.8931H114.5V70.3931H113V73.8931H109.5V75.3931H107V77.3931V78.8931H105H96.5V71.8931H93V67.3931H90.5H83.5V63.3931V59.3931L88 61.3931Z" fill="black"/>      <path d="M61.5 45.3931V48.8931H65.5V50.8931H67.5V52.3931H71.5H73V47.3931L61.5 45.3931Z" stroke="black"/>      <path d="M88 61.3931H92V65.8931H97V70.3931H100V73.8931H102.5V77.3931H105V71.8931H111V64.3931H114.5V55.8931H117.5V52.3931H120V47.3931H123V43.8931H125V48.8931H122V54.3931H120V57.8931H117.5V65.8931H114.5V70.3931H113V73.8931H109.5V75.3931H107V77.3931V78.8931H105H96.5V71.8931H93V67.3931H90.5H83.5V63.3931V59.3931L88 61.3931Z" stroke="black"/>      <path d="M68 44.3931V42.8931L59.5 41.8931C61.5 47.0931 69 49.0598 72.5 49.3931V45.8931H71.5V44.3931H68Z" fill="black" stroke="black"/>      <path d="M76.5 10.3931C71.6667 17.0598 62.4 31.4931 64 35.8931C65.6 40.2931 62.6667 42.0598 61 42.3931V45.8931H56.5V49.8931H53V57.3931H49.5V61.3931H46.5C40.3333 65.7264 28 74.2931 28 73.8931V72.8931H26V76.8931H8.5V72.8931H4.5V61.3931H0.5V49.8931H2C3.5 45.5598 10.4 36.9931 12 35.3931H15.5V27.3931H19.5V23.3931H23.5V19.8931H31V23.3931H27V27.3931H23.5V31.3931H19.5V38.8931H17C14.5 41.0598 6 46.5931 6 53.3931H8.5V68.8931H12V72.8931H18.5V68.8931H26.5V66.3931C30.3333 62.8931 38.1 55.5931 38.5 54.3931H42V45.8931H46V42.3931H49.5V34.8931H53C60.3333 24.2264 74.9 2.6931 76.5 1.8931L78 3.3931L80 4.8931V10.3931H78.5H76.5Z" fill="black"/>      <path d="M28 73.8931C28 74.2931 40.3333 65.7264 46.5 61.3931H49.5V57.3931H53V49.8931H56.5V45.8931H61V42.3931C62.6667 42.0598 65.6 40.2931 64 35.8931C62.4 31.4931 71.6667 17.0598 76.5 10.3931H78.5H80V4.8931L78 3.3931L76.5 1.8931C74.9 2.6931 60.3333 24.2264 53 34.8931H49.5V42.3931H46V45.8931H42V54.3931H38.5C38.1 55.5931 30.3333 62.8931 26.5 66.3931V68.8931H18.5V72.8931H12V68.8931H8.5V53.3931H6C6 46.5931 14.5 41.0598 17 38.8931H19.5V31.3931H23.5V27.3931H27V23.3931H31V19.8931H23.5V23.3931H19.5V27.3931H15.5V35.3931H12C10.4 36.9931 3.5 45.5598 2 49.8931H0.5V61.3931H4.5V72.8931H8.5V76.8931H26V72.8931H28M28 73.8931C28 73.4931 28 73.0598 28 72.8931M28 73.8931V72.8931" stroke="black"/>      <path d="M31.5 15.8931V19.8931H35.5V15.8931H31.5Z" fill="black" stroke="black"/>      <path d="M36.5 11.3931V15.3931H40.5C50.8333 10.7264 54.7 2.79311 71.5 8.39311L76.5 10.8931H80.5V3.3931H77.5V0.893097H76C67.5 -0.273567 48.9 0.593115 40.5 11.3931H36.5Z" fill="black" stroke="black"/>    </svg>  </a>
@@ -30,54 +98,164 @@
     </svg>
   </button>
 
-  <main class="case-study-page">
-    <div class="case-study-shell">
-      <a class="case-study-back" href="uiux.html">← Back to UI/UX</a>
+  
+  
+  
+  <main class="pc-page">
+    <div class="pc-shell">
+      <a class="pc-back" href="uiux.html">← Back to UI/UX</a>
 
-      <section class="case-study-hero reveal">
+      <section class="pc-hero reveal">
         <div>
-          <p class="case-study-kicker">01 · Product Design · Founder Project</p>
-          <h1 class="case-study-title">Pilates Circle</h1>
+          <p class="pc-kicker">Project 01 · UI/UX Design · Product Concept</p>
+          <h1 class="pc-title">Pilates Circle</h1>
+          <p class="pc-thesis">A mobile-first Pilates discovery experience designed to make finding, comparing and booking classes feel clearer and more personal.</p>
         </div>
-
-        <div class="case-study-meta">
-          <div class="case-study-meta-row">
-            <span class="case-study-meta-label">Project type</span>
-            <span class="case-study-meta-value">Product Design · Local Service Discovery</span>
-          </div>
-          <div class="case-study-meta-row">
-            <span class="case-study-meta-label">Role</span>
-            <span class="case-study-meta-value">Founder · Product Strategy · UI/UX</span>
-          </div>
-          <div class="case-study-meta-row">
-            <span class="case-study-meta-label">Selected work</span>
-            <span class="case-study-meta-value">01 / 04</span>
-          </div>
+        <div class="pc-meta">
+          <div class="pc-meta__row"><span class="pc-meta__label">Role</span><span class="pc-meta__value">Founder · Product Designer</span></div>
+          <div class="pc-meta__row"><span class="pc-meta__label">Focus</span><span class="pc-meta__value">User research · UX strategy · UI design · prototyping</span></div>
+          <div class="pc-meta__row"><span class="pc-meta__label">Status</span><span class="pc-meta__value">Ongoing product development</span></div>
         </div>
       </section>
 
-      <div class="case-study-media reveal">
-        <img src="Pilates Circle.jpg" alt="Pilates Circle product design project">
+      <div class="pc-hero-media reveal">
+        <img src="Pilates Circle.jpg" alt="Pilates Circle interface overview" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div class="pc-image-fallback"><div><strong>Hero image</strong>Pilates Circle.jpg</div></div>
       </div>
 
-      <section class="case-study-copy reveal">
-        <div class="case-study-copy__label">Overview</div>
-        <p class="case-study-copy__body">Pilates Circle is a discovery and recommendation platform designed to help people find Pilates classes that match their goals, level and location. The project explores how a fragmented local-service search journey can become a clearer, more personalised path from discovery to the right class.</p>
-      </section>
-
-      <section class="case-study-copy reveal">
-        <div class="case-study-copy__label">In progress</div>
-        <p class="case-study-copy__body">This case study is being developed from the live founder project. The final version will document the market opportunity, customer decision friction, product strategy, recommendation flow, studio-side value proposition, validation and iteration.</p>
-      </section>
-
-      <a class="case-study-next reveal" href="crossing-without-crossing.html">
-        <div>
-          <p class="case-study-next__eyebrow">Next project</p>
-          <h2 class="case-study-next__title">Crossing without Crossing</h2>
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">01 — The Challenge</p>
+          <h2 class="pc-section__title">Pilates discovery is visually fragmented, and the experience often becomes harder than the class itself.</h2>
         </div>
-        <span class="case-study-next__arrow" aria-hidden="true">→</span>
+        <div class="pc-copy-grid">
+          <p>The project began by looking at the experience around choosing a class: browsing different studios, comparing options and moving between discovery and booking.</p>
+          <p>The design goal was to create a calmer, more coherent experience that reduces unnecessary decision friction while keeping users in control.</p>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">02 — User Research</p>
+          <h2 class="pc-section__title">Research informed the interface, but selected findings remain private.</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>I spoke with Pilates users at different experience levels, alongside an instructor, to understand how people currently discover classes and what affects confidence during the decision process.</p>
+          <p>Those conversations shaped the product structure, information hierarchy and interaction flow. Detailed research findings and product logic have been intentionally omitted from this public case study.</p>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">03 — Design Direction</p>
+          <h2 class="pc-section__title">Reduce complexity before adding more choice.</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>The experience uses a lightweight onboarding flow to create a more relevant starting point, rather than asking users to navigate a dense interface from the beginning.</p>
+          <p>From there, users can explore nearby options, move between views and continue into class details and booking without losing context.</p>
+        </div>
+        <div class="pc-image-frame">
+          <img src="pc-03-questionnaire.jpg" alt="Pilates Circle onboarding flow" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="pc-image-fallback"><div><strong>Add onboarding flow</strong>pc-03-questionnaire.jpg</div></div>
+          <p class="pc-caption">Selected onboarding screens. Detailed recommendation logic intentionally omitted.</p>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">04 — Discovery Experience</p>
+          <h2 class="pc-section__title">A flexible browse experience across map, list and studio detail.</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>The discovery experience was designed around clarity and continuity. Users can switch between spatial and list-based views, refine what they see and move into a studio profile without restarting the journey.</p>
+          <p>Studio pages use strong imagery, concise information and clear calls to action to help users understand the experience quickly.</p>
+        </div>
+        <div class="pc-image-grid">
+          <div class="pc-image-frame">
+            <img src="pc-05-map-list.jpg" alt="Pilates Circle map and list discovery" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="pc-image-fallback"><div><strong>Add discovery visual</strong>pc-05-map-list.jpg</div></div>
+            <p class="pc-caption">Map and list exploration.</p>
+          </div>
+          <div class="pc-image-frame">
+            <img src="pc-05-studio-profile.jpg" alt="Pilates Circle studio detail" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="pc-image-fallback"><div><strong>Add studio detail</strong>pc-05-studio-profile.jpg</div></div>
+            <p class="pc-caption">Studio and class detail.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">05 — Booking Flow</p>
+          <h2 class="pc-section__title">Keep the journey consistent from discovery to confirmation.</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>The booking flow was designed to preserve context while users review a class, create an account, complete payment and receive confirmation.</p>
+          <p>The focus was not on adding more steps, but on making each transition feel predictable and visually connected to the experience that came before it.</p>
+        </div>
+        <div class="pc-image-frame">
+          <img src="pc-06-booking-account.jpg" alt="Pilates Circle booking and account flow" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="pc-image-fallback"><div><strong>Add booking flow</strong>pc-06-booking-account.jpg</div></div>
+          <p class="pc-caption">Booking review, account creation, payment and confirmation.</p>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">06 — Product Direction</p>
+          <h2 class="pc-section__title">The public case study shows the interface — not the full product strategy.</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>Pilates Circle is an active product concept with additional research, recommendation logic and future product layers that are not published here.</p>
+          <p>This portfolio focuses only on selected UI/UX decisions: onboarding, discovery, studio detail, booking and account flows.</p>
+        </div>
+
+        <div class="pc-highlight">
+          <p class="pc-highlight__eyebrow">Confidentiality note</p>
+          <h3 class="pc-highlight__title">Selected product logic, research findings and future features have been intentionally omitted.</h3>
+          <p class="pc-highlight__meta">The project is still evolving, and this public case study is designed to show my product design process without revealing proprietary strategy.</p>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">07 — Reflection</p>
+          <h2 class="pc-section__title">The strongest experience came from simplifying what users see — not exposing everything the product knows.</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>Pilates Circle helped me think more carefully about progressive disclosure, information hierarchy and how to design a recommendation-led experience without making the interface feel complicated.</p>
+          <p>The project continues to evolve alongside ongoing user research and product development.</p>
+        </div>
+      </section>
+
+      <section class="pc-section reveal">
+        <div class="pc-section__head">
+          <p class="pc-section__index">08 — Learn More</p>
+          <h2 class="pc-section__title">Want to know more about Pilates Circle?</h2>
+        </div>
+        <div class="pc-copy-grid">
+          <p>This case study intentionally shows only a selected part of the product.</p>
+          <p>For the latest public version, product updates and more information, visit the Pilates Circle website.</p>
+        </div>
+
+        <!-- TODO: replace # with the live Pilates Circle website URL -->
+        <a href="#" class="pc-highlight" style="display:block;text-decoration:none;">
+          <p class="pc-highlight__eyebrow">Visit the website</p>
+          <h3 class="pc-highlight__title">Pilates Circle →</h3>
+          <p class="pc-highlight__meta">Explore the live public-facing product and latest updates.</p>
+        </a>
+      </section>
+
+      <a class="pc-next reveal" href="elemntstore.html">
+        <div>
+          <p class="pc-next__eyebrow">Next project</p>
+          <h2 class="pc-next__title">ELEMNT.STORE</h2>
+        </div>
+        <span class="pc-next__arrow">→</span>
       </a>
     </div>
   </main>
+
+
 </body>
 </html>

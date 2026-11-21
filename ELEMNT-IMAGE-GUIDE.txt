@@ -1,0 +1,11 @@
+ELEMNT.STORE image guide
+
+1. ELEMNT.STORE.jpg — homepage hover/cover image. Use the strongest neon-green campaign visual or a polished redesign hero.
+2. elemnt-01-current-site.jpg — combined current-state overview: current homepage + current product page.
+3. elemnt-02-home-before.jpg — full current homepage screenshot, including campaign hero and product grid.
+4. elemnt-03-pdp-before.jpg — current product page screenshot, showing purchase panel, audio preview and long-form product information.
+5. elemnt-04-home-redesign.jpg — final high-fidelity homepage redesign.
+6. elemnt-05-pdp-redesign.jpg — final high-fidelity product page redesign.
+7. elemnt-06-prototype.jpg — Figma prototype overview with 4–6 connected frames: landing → browse → PDP → audio preview → purchase option → add to cart.
+
+Prototype scope: only one representative purchase path is needed. Do not rebuild the entire store.

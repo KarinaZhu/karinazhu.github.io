@@ -15,34 +15,34 @@ document.addEventListener("DOMContentLoaded", () => {
       index: "01",
       name: "Pilates Circle",
       discipline: "Product Design · Founder Project",
-      desc: "A Pilates discovery and recommendation platform helping people find classes that fit their goals, level and location — while giving studios a more relevant path to new clients.",
+      desc: "A mobile-first Pilates discovery experience designed to make finding, comparing and booking classes feel clearer and more personal.",
       image: "Pilates Circle.jpg",
       live: "pilates-circle.html"
     },
     {
       index: "02",
+      name: "ELEMNT.STORE",
+      discipline: "E-commerce Redesign · UI/UX",
+      desc: "A focused redesign exploration for an independent audio brand, improving product visibility and purchase hierarchy while preserving its bold visual identity.",
+      image: "ELEMNT.STORE.jpg",
+      live: "elemntstore.html"
+    },
+    {
+      index: "03",
       name: "Crossing without Crossing",
       discipline: "Experience Design · Interactive Installation",
-      desc: "A travelling public installation exploring borders, surveillance and the emotional distance created by separation — using fog, touch and live connection to make the person on the other side briefly visible again.",
+      desc: "A travelling public installation exploring borders, surveillance and the emotional distance created by separation.",
       video: "",
       image: "Crossing without Crossing.jpg",
       live: "crossing-without-crossing.html"
     },
     {
-      index: "03",
+      index: "04",
       name: "City2Surf",
       discipline: "UI/UX Design · Website",
       desc: "Turning race-day participation into real-world connection through starting waves, interests and community discovery.",
       image: "City2Surf.jpg",
-      live: "https://www.figma.com/proto/Aj1CnPZFbpNHQB0G7zyW2Y/Interface-Design-Final-Prototype?node-id=19-17718&p=f&viewport=-134%2C-930%2C0.06&t=klb0oBT9Qfg6wygb-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=19%3A17691&page-id=0%3A1"
-    },
-    {
-      index: "04",
-      name: "Yasumo",
-      discipline: "Product Design · Software Interfaces",
-      desc: "Exploring how an AI companion can help young professionals manage stress, communicate emotions safely and create healthier workplace habits without disrupting existing cultural norms.",
-      image: "Yasumo.jpg",
-      live: "yasumo.html"
+      live: "city2surf.html"
     },
   ];
 
